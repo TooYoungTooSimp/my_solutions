@@ -3,11 +3,14 @@
 int n,m,a[90];
 struct bigint
 {
-    int data[80];
+    int data[80],len;
     void refresh()
     {
-        for(int i=0; i<40; i++)
+        for(int i=0; i<30; i++)
             data[i+1]+=data[i]/10,data[i]%=10;
+        for(len=70;len>=0&&data[len]==0;len--);
+        if(len<0) len=0;
+        len++;
     }
     bigint(int val=0)
     {
@@ -17,7 +20,7 @@ struct bigint
     }
     bigint operator+=(const bigint& rhs)
     {
-        for(int i=0; i<40; i++)
+        for(int i=0; i<rhs.len; i++)
             data[i]+=rhs.data[i];
         refresh();
         return *this;
@@ -30,8 +33,8 @@ struct bigint
     bigint operator*(const bigint& rhs)
     {
         bigint ret;
-        for(int i=0; i<40; i++)
-            for(int j=0; j<40; j++)
+        for(int i=0; i<len; i++)
+            for(int j=0; j<rhs.len; j++)
                 ret.data[i+j]+=(data[i]*rhs.data[j]);
         ret.refresh();
         return ret;
@@ -39,14 +42,11 @@ struct bigint
 };
 bigint max(const bigint& a,const bigint& b)
 {
-    int len1,len2;
-    for(len1=40; len1>=0&&a.data[len1]==0; len1--);
-    for(len2=40; len2>=0&&b.data[len2]==0; len2--);
-    if(len1>len2) return a;
-    if(len1<len2) return b;
-    for(; len1+len2>=0; len1--,len2--)
-        if(a.data[len1]>b.data[len2]) return a;
-        else if(a.data[len1]<b.data[len2]) return b;
+    if(a.len>b.len) return a;
+    if(a.len<b.len) return b;
+    for(int len=a.len; len>=0; len--)
+        if(a.data[len]>b.data[len]) return a;
+        else if(a.data[len]<b.data[len]) return b;
     return b;
 }
 bigint _2n[90],f[90][90],tmp,ans;
