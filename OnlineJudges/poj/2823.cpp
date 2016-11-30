@@ -1,42 +1,42 @@
+//¿±º¶POJ£¨ÃÏÃÏTLE
 #include <cstdio>
-#include <deque>
-#include <utility>
-using namespace std;
-deque<pair<int, int> > q;
-int a[1000010];
+int n, k, a[1000001], que[1000001][2], head, tail;
 int main()
 {
-    int n, k;
     scanf("%d%d", &n, &k);
-    for (int i = 0; i < n; i++)
-        scanf("%d", &a[i]);
+    for (int i = 0; i < n; i++) scanf("%d", a + i);
+    head = tail = 0;
     for (int i = 0; i < k; i++)
     {
-        while (!q.empty() && q.back().first >= a[i]) q.pop_back();
-        q.push_back(make_pair(a[i], i));
+        while (head < tail && que[tail - 1][0] > a[i]) tail--;
+        que[tail][0] = a[que[tail][1] = i];
+        tail++;
     }
-    printf("%d ", q.front());
+    printf("%d ", que[head][0]);
     for (int i = k; i < n; i++)
     {
-        while (!q.empty() && q.back().first >= a[i]) q.pop_back();
-        q.push_back(make_pair(a[i], i));
-        while (q.size() > 0 && q.front().second < i - k + 1) q.pop_front();
-        printf("%d ", q.front());
+        while (head < tail && que[tail - 1][0] > a[i]) tail--;
+        que[tail][0] = a[que[tail][1] = i];
+        tail++;
+        while (head < tail && i - que[head][1] >= k) head++;
+        printf("%d ", que[head][0]);
     }
-    q.clear();
     putchar('\n');
+    head = tail = 0;
     for (int i = 0; i < k; i++)
     {
-        while (!q.empty() && q.back().first <= a[i]) q.pop_back();
-        q.push_back(make_pair(a[i], i));
+        while (head < tail && que[tail - 1][0] < a[i]) tail--;
+        que[tail][0] = a[que[tail][1] = i];
+        tail++;
     }
-    printf("%d ", q.front());
+    printf("%d ", que[head][0]);
     for (int i = k; i < n; i++)
     {
-        while (!q.empty() && q.back().first <= a[i]) q.pop_back();
-        q.push_back(make_pair(a[i], i));
-        while (q.size() > 0 && q.front().second < i - k + 1) q.pop_front();
-        printf("%d ", q.front());
+        while (head < tail && que[tail - 1][0] < a[i]) tail--;
+        que[tail][0] = a[que[tail][1] = i];
+        tail++;
+        while (head < tail && i - que[head][1] >= k) head++;
+        printf("%d ", que[head][0]);
     }
     return 0;
 }
