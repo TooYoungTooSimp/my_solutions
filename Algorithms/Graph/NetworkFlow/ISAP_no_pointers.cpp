@@ -2,13 +2,12 @@
 #include <cstring>
 inline int min(int a, int b) { return a < b ? a : b; }
 const int maxn = 210;
-int head[maxn], from[maxn << 1], to[maxn << 1], cap[maxn << 1], next[maxn << 1], ecnt, m, n;
+int head[maxn], to[maxn << 1], cap[maxn << 1], next[maxn << 1], ecnt, m, n;
 int d[maxn], que[maxn], cur[maxn], num[maxn], fa[maxn];
 inline void addEdge(int f, int t, int c)
 {
     next[ecnt] = head[f];
     head[f] = ecnt;
-    from[ecnt] = f;
     to[ecnt] = t;
     cap[ecnt] = c;
     ecnt++;
@@ -30,9 +29,9 @@ int ISAP(int s, int e)
         if (x == e)
         {
             int curFlow = 0x3f3f3f3f;
-            for (x = e; x != s; x = from[fa[x]])
+            for (x = e; x != s; x = to[fa[x] ^ 1])
                 curFlow = min(curFlow, cap[fa[x]]);
-            for (x = e; x != s; x = from[fa[x]])
+            for (x = e; x != s; x = to[fa[x] ^ 1])
                 cap[fa[x]] -= curFlow, cap[fa[x] ^ 1] += curFlow;
             flow += curFlow;
             x = s;
@@ -49,7 +48,7 @@ int ISAP(int s, int e)
             if (--num[d[x]] == 0) break;
             num[d[x] = mn + 1]++;
             cur[x] = head[x];
-            if (x != s) x = from[fa[x]];
+            if (x != s) x = to[fa[x] ^ 1];
         }
     }
     return flow;
