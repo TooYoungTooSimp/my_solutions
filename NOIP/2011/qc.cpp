@@ -1,11 +1,17 @@
-#include <cstdio>
 #include <cinttypes>
+#include <cstdio>
 inline int64_t min(int64_t a, int64_t b) { return a < b ? a : b; }
 inline int64_t abs(int64_t a) { return a > 0 ? a : -a; }
 int32_t n, m;
 int64_t S;
-struct { int32_t w, v; } sto[200001];
-struct { int32_t l, r; } inv[200001];
+struct
+{
+    int32_t w, v;
+} sto[200001];
+struct
+{
+    int32_t l, r;
+} inv[200001];
 int64_t sum[200001];
 int32_t cnt[200001];
 int64_t check(int64_t T)
@@ -17,7 +23,7 @@ int64_t check(int64_t T)
     }
     int64_t ret = 0;
     for (int32_t i = 1; i <= m; i++)
-        ret += (cnt[inv[i].r] - cnt[inv[i].l - 1])*(sum[inv[i].r] - sum[inv[i].l - 1]);
+        ret += (cnt[inv[i].r] - cnt[inv[i].l - 1]) * (sum[inv[i].r] - sum[inv[i].l - 1]);
     return ret;
 }
 int main()
@@ -32,8 +38,10 @@ int main()
     {
         mid = (l + r) >> 1;
         ans = min(ans, abs(S - (tmp = check(mid))));
-        if (tmp >= S) l = mid + 1;
-        else r = mid;
+        if (tmp >= S)
+            l = mid + 1;
+        else
+            r = mid;
     }
     printf("%" PRId64, ans);
     return 0;

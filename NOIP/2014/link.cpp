@@ -1,11 +1,12 @@
 #include <cctype>
 #include <cstdio>
 const int maxn = 200001;
-inline void readInt(int& x)
+inline void readInt(int &x)
 {
     x = 0;
     static int ch;
-    while (!isdigit(ch = getchar()));
+    while (!isdigit(ch = getchar()))
+        ;
     while (isdigit(ch)) x = x * 10 + ch - '0', ch = getchar();
 }
 int n, w[maxn], max1[maxn], max2[maxn], sum[maxn], e[maxn][2], ans1, ans2;

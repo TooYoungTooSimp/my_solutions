@@ -6,10 +6,10 @@ struct Edge
 {
     int from, to, cap;
     Edge *next, *rev;
-    Edge(int f, int t, int c) :from(f), to(t), cap(c), next(0), rev(0) {};
+    Edge(int f, int t, int c) : from(f), to(t), cap(c), next(0), rev(0){};
 };
-typedef Edge* lpEdge;
-lpEdge addEdge(lpEdge* G, int from, int to, int cap)
+typedef Edge *lpEdge;
+lpEdge addEdge(lpEdge *G, int from, int to, int cap)
 {
     lpEdge newEdge = new Edge(from, to, cap);
     if (G[from])
@@ -41,7 +41,7 @@ int dfs(int x, int minFlow)
 {
     if (x == target || minFlow == 0) return minFlow;
     int flow = 0, curFlow;
-    for (lpEdge& i = (cur[x] ? cur[x] : cur[x] = G[x]); i; i = i->next)
+    for (lpEdge &i = (cur[x] ? cur[x] : cur[x] = G[x]); i; i = i->next)
         if ((depth[x] + 1 == depth[i->to]) && (curFlow = dfs(i->to, min(minFlow, i->cap))) > 0)
         {
             i->cap -= curFlow;
@@ -58,7 +58,7 @@ int Dinic(int s, int e)
     int ans = 0;
     while (getDepth(s, e))
         memset(cur, 0, sizeof(cur)),
-        ans += dfs(s, inf);
+            ans += dfs(s, inf);
     return ans;
 }
 int main()

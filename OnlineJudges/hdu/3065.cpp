@@ -1,6 +1,6 @@
+#include <cctype>
 #include <cstdio>
 #include <cstring>
-#include <cctype>
 struct node
 {
     node *trans[26], *fail;
@@ -54,7 +54,8 @@ void run(char *ch)
             for (; tmp; tmp = tmp->fail)
                 cnt[tmp->id]++;
         }
-        else cur = root;
+        else
+            cur = root;
 }
 int main()
 {

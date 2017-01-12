@@ -1,11 +1,12 @@
 #include <cctype>
 #include <cstdio>
 const int maxn = 200001;
-inline void readInt(int& x)
+inline void readInt(int &x)
 {
     x = 0;
     static int ch;
-    while (!isdigit(ch = getchar()));
+    while (!isdigit(ch = getchar()))
+        ;
     while (isdigit(ch)) x = x * 10 + ch - '0', ch = getchar();
 }
 inline int abs(int x) { return x < 0 ? -x : x; }
@@ -20,8 +21,10 @@ int main()
             int tmp = 0;
             for (int k = 0; k < n; k++)
                 if (abs(a[k][0] - i) <= d && abs(a[k][1] - j) <= d) tmp += a[k][2];
-            if (tmp > ans) ans = tmp, cnt = 0;
-            else if (tmp == ans) cnt++;
+            if (tmp > ans)
+                ans = tmp, cnt = 0;
+            else if (tmp == ans)
+                cnt++;
         }
     printf("%d %d", cnt + 1, ans);
     return 0;

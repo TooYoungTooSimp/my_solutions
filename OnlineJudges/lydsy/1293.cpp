@@ -1,11 +1,11 @@
-#include <cstdio>
 #include <algorithm>
+#include <cstdio>
 inline int min(int a, int b) { return a < b ? a : b; }
 struct node
 {
     int pos, col;
-    bool operator<(const node & R) const { return pos < R.pos || (pos == R.pos&&col < R.col); }
-}a[1000010];
+    bool operator<(const node &R) const { return pos < R.pos || (pos == R.pos && col < R.col); }
+} a[1000010];
 int cnt[65];
 int main()
 {

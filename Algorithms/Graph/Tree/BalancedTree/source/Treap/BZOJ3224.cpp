@@ -1,7 +1,7 @@
 #include <cstdio>
 #include <cstdlib>
 #define sz(x) ((x) == 0 ? 0 : (x)->sz)
-template<typename T>
+template <typename T>
 struct Allocator
 {
     int idx;
@@ -11,7 +11,7 @@ struct Allocator
     {
         idx = 0;
         data = new T[size];
-        ptr = new T*[size];
+        ptr = new T *[size];
         for (int i = 0; i < size; i++) ptr[i] = &data[i];
     }
     ~Allocator()
@@ -19,8 +19,8 @@ struct Allocator
         delete[] data;
         delete[] ptr;
     }
-    T* alloc() { return ptr[idx++]; }
-    void free(T* pt) { ptr[--idx] = pt; }
+    T *alloc() { return ptr[idx++]; }
+    void free(T *pt) { ptr[--idx] = pt; }
 };
 struct Treap
 {
@@ -39,7 +39,7 @@ struct Treap
         {
             sz = 1 + sz(ch[0]) + sz(ch[1]);
         }
-    }*lpNode;
+    } * lpNode;
     Treap(int max_size, int _seed)
     {
         srand(_seed);
@@ -59,7 +59,8 @@ struct Treap
         int ans = 1;
         lpNode cur = root;
         while (cur)
-            if (x <= cur->val) cur = cur->ch[0];
+            if (x <= cur->val)
+                cur = cur->ch[0];
             else
                 ans += sz(cur->ch[0]) + 1, cur = cur->ch[1];
         return ans;
@@ -68,13 +69,16 @@ struct Treap
     {
         lpNode cur = root;
         while (cur)
-            if (x == sz(cur->ch[0]) + 1) return cur->val;
-            else if (x <= sz(cur->ch[0])) cur = cur->ch[0];
+            if (x == sz(cur->ch[0]) + 1)
+                return cur->val;
+            else if (x <= sz(cur->ch[0]))
+                cur = cur->ch[0];
             else
                 x -= sz(cur->ch[0]) + 1,
-                cur = cur->ch[1];
+                    cur = cur->ch[1];
         return 0;
     }
+
 private:
     Allocator<Node> *alloc;
     lpNode root;
@@ -93,7 +97,8 @@ private:
     }
     void insert(lpNode &node, int x)
     {
-        if (node == 0) (node = alloc->alloc())->Init(x);
+        if (node == 0)
+            (node = alloc->alloc())->Init(x);
         else
         {
             int cmp = x < node->val;
@@ -104,20 +109,24 @@ private:
     }
     void remove(lpNode &node, int x)
     {
-        if (node == 0) return;
+        if (node == 0)
+            return;
         else
         {
-            if (x < node->val) remove(node->ch[0], x);
-            else if (x > node->val) remove(node->ch[1], x);
+            if (x < node->val)
+                remove(node->ch[0], x);
+            else if (x > node->val)
+                remove(node->ch[1], x);
+            else if (node->ch[0] == 0)
+                node = node->ch[1];
+            else if (node->ch[1] == 0)
+                node = node->ch[0];
             else
-                if (node->ch[0] == 0) node = node->ch[1];
-                else if (node->ch[1] == 0) node = node->ch[0];
-                else
-                {
-                    int d = node->ch[0]->pri < node->ch[1]->pri;
-                    rotate(node, d);
-                    remove(node->ch[d], x);
-                }
+            {
+                int d = node->ch[0]->pri < node->ch[1]->pri;
+                rotate(node, d);
+                remove(node->ch[d], x);
+            }
             if (node) node->update();
         }
     }

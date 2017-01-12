@@ -35,7 +35,8 @@ void buildFail()
             f = f->trans[i];
             if (cur->trans[i])
                 (que[t++] = cur->trans[i])->fail = f;
-            else cur->trans[i] = f;
+            else
+                cur->trans[i] = f;
         }
     }
 }

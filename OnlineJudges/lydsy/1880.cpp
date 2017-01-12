@@ -42,9 +42,11 @@ int main()
     }
     spfa(x1, disS1), spfa(x2, disS2), spfa(y1, disE1), spfa(y2, disE2);
     int len1 = disS1[y1], len2 = disS2[y2];
-    for (int i = 1; i <= n; i++) if (disS1[i] + disE1[i] == len1 && disS2[i] + disE2[i] == len2)
-        for (int j = 1; j <= n; j++) if (disS1[j] + disE1[j] == len1 && disS2[j] + disE2[j] == len2)
-            ans = max(ans, abs(disS1[i] - disS1[j]));
+    for (int i = 1; i <= n; i++)
+        if (disS1[i] + disE1[i] == len1 && disS2[i] + disE2[i] == len2)
+            for (int j = 1; j <= n; j++)
+                if (disS1[j] + disE1[j] == len1 && disS2[j] + disE2[j] == len2)
+                    ans = max(ans, abs(disS1[i] - disS1[j]));
     printf("%d", ans);
     return 0;
 }

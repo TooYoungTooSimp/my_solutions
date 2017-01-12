@@ -40,8 +40,10 @@ int main()
     }
     for (int i = n; i; i--) addEdge(0, i, 1);
     long long ans = 0;
-    if (!spfa()) ans = -1;
-    else for (int i = 1; i <= n; i++) ans += dis[i];
+    if (!spfa())
+        ans = -1;
+    else
+        for (int i = 1; i <= n; i++) ans += dis[i];
     printf("%lld", ans);
     return 0;
 }

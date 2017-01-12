@@ -10,7 +10,8 @@ int main()
     int cnt = 0, ite = 0, bcnt = 0;
     for (int i = 0; i <= n; i++)
     {
-        if (str[i] == 'B') bcnt++;
+        if (str[i] == 'B')
+            bcnt++;
         else if (bcnt != 0)
         {
             a[ite++] = bcnt;

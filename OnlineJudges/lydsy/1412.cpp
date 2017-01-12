@@ -4,8 +4,8 @@ inline int min(int a, int b) { return a < b ? a : b; }
 const int maxn = 10010, maxm = 100005, inf = 0x3f3f3f3f;
 int head[maxn], next[maxm], to[maxm], cap[maxm], ecnt, cnt, a[110][110];
 int num[maxn], dis[maxn], fa[maxn], que[maxm], cur[maxn];
-int dx[] = { 0, 1, 0, -1 };
-int dy[] = { 1, 0, -1, 0 };
+int dx[] = {0, 1, 0, -1};
+int dy[] = {1, 0, -1, 0};
 inline void addEdge_impl_(int f, int t, int c)
 {
     next[ecnt] = head[f];
@@ -25,9 +25,10 @@ int ISAP(int s, int e)
     int h = 0, t = 0, x;
     for (int i = 0; i <= cnt; i++) dis[i] = cnt;
     dis[que[t++] = e] = 0;
-    while (h != t) for (int i = head[x = que[h++]]; ~i; i = next[i])
-        if (cap[i ^ 1] > 0 && dis[to[i]] > dis[x] + 1)
-            dis[que[t++] = to[i]] = dis[x] + 1;
+    while (h != t)
+        for (int i = head[x = que[h++]]; ~i; i = next[i])
+            if (cap[i ^ 1] > 0 && dis[to[i]] > dis[x] + 1)
+                dis[que[t++] = to[i]] = dis[x] + 1;
     memset(num, 0, sizeof(num));
     for (int i = 0; i <= cnt; i++) num[dis[i]]++, cur[i] = head[i];
     x = s;
@@ -60,7 +61,6 @@ int ISAP(int s, int e)
     }
     return flow;
 }
-
 int main()
 {
     memset(head, -1, sizeof(head));

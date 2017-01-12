@@ -24,7 +24,7 @@ int main()
     for (int i = 1; i <= n; i++)
         for (int j = 1; j < i; j++, ecnt++)
             edges[ecnt].u = i, edges[ecnt].v = j, edges[ecnt].l =
-            sqrt((X[i] - X[j]) * (X[i] - X[j]) + (Y[i] - Y[j]) * (Y[i] - Y[j]));
+                                                      sqrt((X[i] - X[j]) * (X[i] - X[j]) + (Y[i] - Y[j]) * (Y[i] - Y[j]));
     sort(edges, edges + ecnt);
     for (int i = 0, fx, fy; i < ecnt; i++)
         if ((fx = Find(edges[i].u)) != (fy = Find(edges[i].v)))

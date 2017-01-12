@@ -1,5 +1,4 @@
 #include <cstdio>
-
 int main()
 {
     char ch;

@@ -23,7 +23,8 @@ void tarjan(int x)
     if (dfn[x] == low[x])
     {
         scccnt++;
-        do scc[stk[--top]] = scccnt;
+        do
+            scc[stk[--top]] = scccnt;
         while (stk[top] != x);
     }
 }
@@ -52,10 +53,12 @@ int main()
         for (int i = 0; i < n && flag; i++)
             if (scc[i << 1] == scc[i << 1 | 1])
                 flag = false;
-        if (!flag) puts("bad luck");
+        if (!flag)
+            puts("bad luck");
+        else if (n < 1)
+            putchar('\n');
         else
-            if (n < 1) putchar('\n');
-            else for (int i = 1; i < n; i++)
+            for (int i = 1; i < n; i++)
                 printf("%d%c%c", i, (scc[i << 1] > scc[i << 1 | 1]) ? 'w' : 'h', " \n"[i == n - 1]);
     }
     return 0;

@@ -22,14 +22,16 @@ int main()
         for (int i = 0; i <= n; i++) fa[i] = i, s[i] = 0;
         for (int i = 0, x, y, z; i < m && flag; i++)
         {
-            scanf("%d%d%d", &x, &y, &z); x--;
+            scanf("%d%d%d", &x, &y, &z);
+            x--;
             int fx = Find(x), fy = Find(y);
             if (fx != fy)
             {
                 fa[fx] = fy;
                 s[fx] = s[y] - s[x] + z;
             }
-            else if (s[x] - s[y] != z) flag = false;
+            else if (s[x] - s[y] != z)
+                flag = false;
         }
         puts(flag ? "true" : "false");
     }

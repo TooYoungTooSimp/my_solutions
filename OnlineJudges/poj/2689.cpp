@@ -1,6 +1,6 @@
+#include <cmath>
 #include <cstdio>
 #include <cstring>
-#include <cmath>
 int prime_count;
 int prime[5140];
 bool f[1000010];

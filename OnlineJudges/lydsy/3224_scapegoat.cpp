@@ -9,7 +9,7 @@ inline void setNode(int x, int v = 0) { val[x] = v, lch[x] = rch[x] = 0, exist[x
 inline bool isBad(int x)
 {
     return (sz[x] + 5 < cap[x] >> 1) ||
-        (max(sz[lch[x]], sz[rch[x]]) - 5 > (sz[x] * 3) >> 2);
+           (max(sz[lch[x]], sz[rch[x]]) - 5 > (sz[x] * 3) >> 2);
 }
 inline void update(int x)
 {
@@ -24,7 +24,7 @@ void rebuild_impl(int x)
     rebuild_impl(rch[x]);
     delNode(x);
 }
-void rebuild_impl(int& x, int b, int e)
+void rebuild_impl(int &x, int b, int e)
 {
     if (b < e)
     {
@@ -36,7 +36,7 @@ void rebuild_impl(int& x, int b, int e)
         update(x);
     }
 }
-inline void rebuild(int& x)
+inline void rebuild(int &x)
 {
     if (x == 0) return;
     aend = 0;
@@ -58,16 +58,20 @@ int kth(int x)
     int cur = root;
     while (cur)
     {
-        if (sz[lch[cur]] + 1 == x && exist[cur]) break;
-        else if (sz[lch[cur]] >= x) cur = lch[cur];
-        else x -= sz[lch[cur]] + exist[cur], cur = rch[cur];
+        if (sz[lch[cur]] + 1 == x && exist[cur])
+            break;
+        else if (sz[lch[cur]] >= x)
+            cur = lch[cur];
+        else
+            x -= sz[lch[cur]] + exist[cur], cur = rch[cur];
     }
     return val[cur];
 }
-int* insert_impl(int& node, int x)
+int *insert_impl(int &node, int x)
 {
-    int* res = 0;
-    if (node == 0) setNode(node = newNode(), x);
+    int *res = 0;
+    if (node == 0)
+        setNode(node = newNode(), x);
     else
     {
         res = insert_impl(x < val[node] ? lch[node] : rch[node], x);
@@ -76,13 +80,14 @@ int* insert_impl(int& node, int x)
     }
     return res;
 }
-int* delete_impl(int& node, int x)
+int *delete_impl(int &node, int x)
 {
     if (node == 0) return 0;
-    int* ret = 0;
+    int *ret = 0;
     sz[node]--;
     int pos = sz[lch[node]] + exist[node];
-    if (pos == x&&exist[node]) exist[node] = false;
+    if (pos == x && exist[node])
+        exist[node] = false;
     else
     {
         ret = x <= pos ? delete_impl(lch[node], x) : delete_impl(rch[node], x - pos);
@@ -93,14 +98,14 @@ int* delete_impl(int& node, int x)
 }
 void ins(int x)
 {
-    int* ret = insert_impl(root, x);
+    int *ret = insert_impl(root, x);
     if (ret) rebuild(*ret);
 }
 void del(int x)
 {
     int rk = rnk(x);
     if (x != kth(rk)) return;
-    int* ret = delete_impl(root, rk);
+    int *ret = delete_impl(root, rk);
     if (ret) rebuild(*ret);
 }
 int main()

@@ -4,11 +4,15 @@ typedef unsigned long long int64;
 inline int64 gcd(int64 a, int64 b)
 {
     int64 tmp;
-    if (a < b) { tmp = a; a = b; b = tmp; } //make sure a>b
+    if (a < b) {
+        tmp = a;
+        a = b;
+        b = tmp;
+    } //make sure a>b
     while (b)
     {
         tmp = b;
-        b = a%b;
+        b = a % b;
         a = tmp;
     }
     return a;
@@ -16,10 +20,10 @@ inline int64 gcd(int64 a, int64 b)
 int64 a[51][51];
 char c[51][51];
 int n, m;
-
 void calc(int i, int j)
 {
-    if (j > i || i >= n) return;
+    if (j > i || i >= n)
+        return;
     else
     {
         if (c[i][j] == '*')
@@ -31,10 +35,10 @@ void calc(int i, int j)
         {
             a[i + 2][j + 1] += a[i][j];
         }
-        else return;
+        else
+            return;
     }
 }
-
 int main()
 {
     scanf("%d%d", &n, &m);

@@ -6,7 +6,7 @@ inline int64 _max(int64 a, int64 b) { return a > b ? a : b; }
 struct word
 {
     int64 w, h;
-    bool operator<(const word& rhs) const
+    bool operator<(const word &rhs) const
     {
         return w > rhs.w || (w == rhs.w && h > rhs.h);
     }
@@ -20,10 +20,10 @@ int main()
     {
         int64 x;
         scanf("%lld", &x);
-        heap.push({ x, 0 });
+        heap.push({x, 0});
     }
     int top = (k - 1 - (n - 1) % (k - 1)) % (k - 1);
-    for (int i = 0; i < top; i++) heap.push({ 0, 0 });
+    for (int i = 0; i < top; i++) heap.push({0, 0});
     top += n;
     int64 ans = 0;
     for (; top != 1; top -= k - 1)
@@ -37,7 +37,7 @@ int main()
             heap.pop();
         }
         ans += w;
-        heap.push({ w, h + 1 });
+        heap.push({w, h + 1});
     }
     printf("%lld\n%lld", ans, heap.top().h);
     return 0;

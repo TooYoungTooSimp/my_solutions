@@ -1,11 +1,12 @@
-#include <cstdio>
-#include <cctype>
 #include <algorithm>
+#include <cctype>
+#include <cstdio>
 using namespace std;
 inline void readInt(int &x)
 {
     int ch = x = 0;
-    while (!isdigit(ch = getchar()));
+    while (!isdigit(ch = getchar()))
+        ;
     for (; isdigit(ch); ch = getchar()) x = x * 10 + ch - '0';
 }
 int n, zj[100001], jr[100001];
@@ -14,11 +15,14 @@ int calc(int *A, int *B)
     int ret = 0;
     int la = 0, lb = 0, ra = n - 1, rb = n - 1;
     while (la <= ra)
-        if (A[ra] < B[lb]) break;
-        else if (A[la] > B[lb]) la++, lb++, ret += 2;
-        else if (A[ra] > B[rb]) ra--, rb--, ret += 2;
-        else
-            if (A[la++] == B[rb--]) ret++;
+        if (A[ra] < B[lb])
+            break;
+        else if (A[la] > B[lb])
+            la++, lb++, ret += 2;
+        else if (A[ra] > B[rb])
+            ra--, rb--, ret += 2;
+        else if (A[la++] == B[rb--])
+            ret++;
     return ret;
 }
 int main()

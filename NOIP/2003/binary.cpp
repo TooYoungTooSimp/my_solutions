@@ -2,15 +2,18 @@
 unsigned n, sc[100], f[51][51], pos[51][51];
 unsigned dfs(int i, int j)
 {
-    if (f[i][j]) return f[i][j];
-    else if (i > j) return 1;
-    else if (i == j) return sc[i];
+    if (f[i][j])
+        return f[i][j];
+    else if (i > j)
+        return 1;
+    else if (i == j)
+        return sc[i];
     else
     {
         unsigned mmax = 0, cur;
         for (int x = i; x <= j; x++)
         {
-            cur = dfs(i, x - 1)*dfs(x + 1, j) + sc[x];
+            cur = dfs(i, x - 1) * dfs(x + 1, j) + sc[x];
             if (cur > mmax)
                 mmax = cur, pos[i][j] = x;
         }

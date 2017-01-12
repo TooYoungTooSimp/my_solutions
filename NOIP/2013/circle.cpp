@@ -6,8 +6,8 @@ int main()
     long long b = 10, ans = 1;
     while (k)
     {
-        if (k & 1) ans = (ans*b) % n;
-        b = (b*b) % n;
+        if (k & 1) ans = (ans * b) % n;
+        b = (b * b) % n;
         k >>= 1;
     }
     printf("%d", int((m * ans + x) % n));

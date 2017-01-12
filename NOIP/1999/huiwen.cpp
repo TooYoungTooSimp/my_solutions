@@ -8,13 +8,13 @@
 #define i64toa _i64toa
 #else
 #define i64toa __gcc_i64toa
-void __gcc_i64toa(long long _Value, char* _Buffer, int _Radix)
+void __gcc_i64toa(long long _Value, char *_Buffer, int _Radix)
 {
     int x;
-    char* _It = _Buffer;
+    char *_It = _Buffer;
     while (_Value)
     {
-        x = _Value%_Radix;
+        x = _Value % _Radix;
         _Value /= _Radix;
         *_It++ = (x > 10 ? x - 10 + 'A' : x + '0');
     }
@@ -38,7 +38,7 @@ bool check(long long x)
             return false;
     return true;
 }
-void add(long long& x)
+void add(long long &x)
 {
     i64toa(x, buffer, n);
     int i = 0, j = strlen(buffer) - 1, e = j + 1;

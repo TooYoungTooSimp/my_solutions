@@ -9,9 +9,12 @@ int getPos(int x)
     while (l < r)
     {
         m = (l + r) >> 1;
-        if (x >= seg[m][0] && x <= seg[m][1]) break;
-        else if (x < seg[m][0]) r = m;
-        else l = m + 1;
+        if (x >= seg[m][0] && x <= seg[m][1])
+            break;
+        else if (x < seg[m][0])
+            r = m;
+        else
+            l = m + 1;
     }
     return m;
 }
@@ -29,7 +32,7 @@ int main()
         cnt += curcnt;
         if (curcnt)
         {
-            posx = posx + curcnt*p + t;
+            posx = posx + curcnt * p + t;
             posx = max(posx, seg[posid = getPos(posx)][0]);
         }
         else

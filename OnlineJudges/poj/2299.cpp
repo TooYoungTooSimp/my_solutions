@@ -1,8 +1,8 @@
+#include <algorithm>
 #include <cstdio>
 #include <cstring>
 #include <stdint.h>
-#include <algorithm>
-#define lowbit(x) ((x)&-(x))
+#define lowbit(x) ((x) & -(x))
 const int N = 500005;
 int sum[N];
 int query(int x)
@@ -11,12 +11,15 @@ int query(int x)
     for (; x; x -= lowbit(x)) ans += sum[x];
     return ans;
 }
-void update(int x, int y) { for (; x <= N; x += lowbit(x)) sum[x] += y; }
+void update(int x, int y)
+{
+    for (; x <= N; x += lowbit(x)) sum[x] += y;
+}
 struct abcd
 {
     int val, pos;
     bool operator<(const abcd &rhs) const { return val < rhs.val; }
-}nodes[N];
+} nodes[N];
 int map[N];
 int main()
 {

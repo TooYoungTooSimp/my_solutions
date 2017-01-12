@@ -22,9 +22,10 @@ int ISAP(int S, int T)
     int h = 0, t = 0, x, flow = 0;
     for (int i = 0; i <= cnt; i++) dis[i] = cnt;
     dis[que[t++] = T] = 0;
-    while (h != t) for (int i = head[x = que[h++]]; ~i; i = next[i])
-        if (cap[i ^ 1] && dis[to[i]] > dis[x] + 1)
-            dis[que[t++] = to[i]] = dis[x] + 1;
+    while (h != t)
+        for (int i = head[x = que[h++]]; ~i; i = next[i])
+            if (cap[i ^ 1] && dis[to[i]] > dis[x] + 1)
+                dis[que[t++] = to[i]] = dis[x] + 1;
     memset(num, 0, sizeof(num));
     for (int i = 0; i <= cnt; i++) num[dis[i]]++, cur[i] = head[i];
     x = S;

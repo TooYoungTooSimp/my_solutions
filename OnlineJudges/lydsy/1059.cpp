@@ -2,15 +2,17 @@
 int T, n, tmp, g[205][205], st, vis[205], pre[205];
 bool dfs(int u)
 {
-    for (int v = 1; v <= n; v++) if (g[u][v]) if (vis[v] != st)
-    {
-        vis[v] = st;
-        if (pre[v] == 0 || dfs(pre[v]))
-        {
-            pre[v] = u;
-            return true;
-        }
-    }
+    for (int v = 1; v <= n; v++)
+        if (g[u][v])
+            if (vis[v] != st)
+            {
+                vis[v] = st;
+                if (pre[v] == 0 || dfs(pre[v]))
+                {
+                    pre[v] = u;
+                    return true;
+                }
+            }
     return false;
 }
 int main()

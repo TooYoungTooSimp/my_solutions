@@ -6,8 +6,8 @@ int fast_pow(int a, int p)
     int ans = 1;
     for (a %= mod; p; p >>= 1)
     {
-        if (p & 1) ans = (ans*a) % mod;
-        a = (a*a) % mod;
+        if (p & 1) ans = (ans * a) % mod;
+        a = (a * a) % mod;
     }
     return ans;
 }

@@ -1,11 +1,11 @@
+#include <algorithm>
 #include <cstdio>
 #include <cstring>
-#include <algorithm>
 struct edge
 {
     int from, to, len;
     bool operator<(const edge &rhs) const { return len < rhs.len; };
-}edges[5010];
+} edges[5010];
 int fa[510];
 int Find(int x) { return fa[x] == -1 ? x : fa[x] = Find(fa[x]); }
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
@@ -34,13 +34,16 @@ int main()
             }
         }
     }
-    if (!flag) printf("IMPOSSIBLE");
+    if (!flag)
+        printf("IMPOSSIBLE");
     else
     {
         int k = gcd(ans1, ans2);
         ans1 /= k, ans2 /= k;
-        if (ans2 == 1) printf("%d", ans1);
-        else printf("%d/%d", ans1, ans2);
+        if (ans2 == 1)
+            printf("%d", ans1);
+        else
+            printf("%d/%d", ans1, ans2);
     }
     return 0;
 }

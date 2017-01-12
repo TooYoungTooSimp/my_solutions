@@ -25,7 +25,8 @@ void tarjan(int x)
     if (dfn[x] == low[x])
     {
         scccnt++;
-        do scc[stk[--top]] = scccnt;
+        do
+            scc[stk[--top]] = scccnt;
         while (stk[top] != x);
     }
 }
@@ -43,16 +44,16 @@ bool check(int x)
             int r1 = d[j << 1], r2 = d[j << 1 | 1];
             if (l1 + r1 > x)
                 addEdge(i << 1, j << 1 | 1),
-                addEdge(j << 1, i << 1 | 1);
+                    addEdge(j << 1, i << 1 | 1);
             if (l1 + r2 + sLen > x)
                 addEdge(i << 1, j << 1),
-                addEdge(j << 1 | 1, i << 1 | 1);
+                    addEdge(j << 1 | 1, i << 1 | 1);
             if (l2 + r1 + sLen > x)
                 addEdge(i << 1 | 1, j << 1 | 1),
-                addEdge(j << 1, i << 1);
+                    addEdge(j << 1, i << 1);
             if (l2 + r2 > x)
                 addEdge(i << 1 | 1, j << 1),
-                addEdge(j << 1 | 1, i << 1);
+                    addEdge(j << 1 | 1, i << 1);
         }
     for (int i = 1, a, b; i <= A; i++)
     {
@@ -85,7 +86,7 @@ int main()
         scanf("%d%d", X + i, Y + i);
     for (int i = 1; i <= n; i++)
         d[i << 1] = abs(X[i] - sx1) + abs(Y[i] - sy1),
-        d[i << 1 | 1] = abs(X[i] - sx2) + abs(Y[i] - sy2);
+               d[i << 1 | 1] = abs(X[i] - sx2) + abs(Y[i] - sy2);
     for (int i = 1; i <= A; i++)
         scanf("%d%d", &hate[i][0], &hate[i][1]);
     for (int i = 1; i <= B; i++)

@@ -1,8 +1,10 @@
 #include <cstdio>
-void exgcd(int a, int b, int& x, int& y)
+void exgcd(int a, int b, int &x, int &y)
 {
-    if (b == 0) x = 1, y = 0;
-    else exgcd(b, a%b, y, x), y -= x*(a / b);
+    if (b == 0)
+        x = 1, y = 0;
+    else
+        exgcd(b, a % b, y, x), y -= x * (a / b);
 }
 int main()
 {

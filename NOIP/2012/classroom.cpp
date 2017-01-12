@@ -1,12 +1,13 @@
-#include <cstdio>
 #include <cctype>
-#include <cstring>
 #include <cstdint>
-void getint(int& x)
+#include <cstdio>
+#include <cstring>
+void getint(int &x)
 {
     x = 0;
     int ch;
-    while (!isdigit(ch = getchar()));
+    while (!isdigit(ch = getchar()))
+        ;
     while (isdigit(ch))
         x = x * 10 + ch - '0',
         ch = getchar();
@@ -34,10 +35,14 @@ int main()
     while (_l < _r)
     {
         _m = (_l + _r) >> 1;
-        if (check(_m)) _l = _m + 1;
-        else _r = _m;
+        if (check(_m))
+            _l = _m + 1;
+        else
+            _r = _m;
     }
-    if (_r == m + 1) putchar('0');
-    else printf("-1\n%d", _l);
+    if (_r == m + 1)
+        putchar('0');
+    else
+        printf("-1\n%d", _l);
     return 0;
 }

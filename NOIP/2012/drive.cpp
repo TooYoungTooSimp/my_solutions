@@ -1,7 +1,7 @@
+#include <algorithm>
 #include <cstdio>
 #include <set>
 #include <utility>
-#include <algorithm>
 using namespace std;
 int n, m, a[100001], nxt[100001][2], s, x, len[100001][2];
 int main()
@@ -44,7 +44,7 @@ int main()
                 tmp[k].second = _ite->second, k++;
         }
         S.erase(ite);
-        sort(tmp, tmp + k, [&](const pair<int, int>& l, const pair<int, int>& r) {
+        sort(tmp, tmp + k, [&](const pair<int, int> &l, const pair<int, int> &r) {
             if (l.first < r.first) return true;
             if (l.first > r.first) return false;
             return a[l.second] < a[r.second];
@@ -58,13 +58,20 @@ int main()
         {
             if (nxt[j][0] == 0 || nxt[j][1] == 0) break;
             len[i][p] += abs(a[j] - a[nxt[j][p]]);
-            if (len[i][0] + len[i][1] > x) { len[i][p] -= abs(a[j] - a[nxt[j][p]]); break; }
+            if (len[i][0] + len[i][1] > x) {
+                len[i][p] -= abs(a[j] - a[nxt[j][p]]);
+                break;
+            }
         }
-    struct { int id; double val; } ans;
+    struct
+    {
+        int id;
+        double val;
+    } ans;
     ans.id = -1, ans.val = 1e20;
     for (int i = 1; i <= n; i++)
-        if (len[i][1] != 0 && ans.val > 1.0*len[i][0] / len[i][1])
-            ans.val = 1.0*len[i][0] / len[i][1], ans.id = i;
+        if (len[i][1] != 0 && ans.val > 1.0 * len[i][0] / len[i][1])
+            ans.val = 1.0 * len[i][0] / len[i][1], ans.id = i;
     printf("%d\n", ans.id);
     memset(len, 0, sizeof(len));
     scanf("%d", &m);
@@ -75,7 +82,10 @@ int main()
         {
             if (nxt[j][p] == 0) break;
             len[s][p] += abs(a[j] - a[nxt[j][p]]);
-            if (len[s][0] + len[s][1] > x) { len[s][p] -= abs(a[j] - a[nxt[j][p]]); break; }
+            if (len[s][0] + len[s][1] > x) {
+                len[s][p] -= abs(a[j] - a[nxt[j][p]]);
+                break;
+            }
         }
         printf("%d %d\n", len[s][0], len[s][1]);
     }

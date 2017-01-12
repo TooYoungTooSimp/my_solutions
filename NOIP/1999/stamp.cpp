@@ -26,11 +26,12 @@ void dfs(int step)
             memcpy(aa, a, sizeof(int) << 6);
         }
     }
-    else for (int i = a[step - 1] + 1; i <= curmax + 1; i++)
-    {
-        a[step] = i;
-        dfs(step + 1);
-    }
+    else
+        for (int i = a[step - 1] + 1; i <= curmax + 1; i++)
+        {
+            a[step] = i;
+            dfs(step + 1);
+        }
 }
 int main()
 {

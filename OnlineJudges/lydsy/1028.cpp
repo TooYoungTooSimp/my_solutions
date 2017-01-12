@@ -1,9 +1,10 @@
-#include <cstdio>
 #include <cctype>
+#include <cstdio>
 inline void readInt(int &x)
 {
     int ch = x = 0;
-    while (!isdigit(ch = getchar()));
+    while (!isdigit(ch = getchar()))
+        ;
     for (; isdigit(ch); ch = getchar()) x = x * 10 + ch - '0';
 }
 int n, m, a[410], b[410], ans[410], sum;
@@ -23,7 +24,8 @@ bool check()
                 b[j] %= 3;
                 if (b[j] == 0 || b[j + 1] == 0 || b[j + 2] == 0) continue;
                 b[j]--, b[j + 1]--, b[j + 2]--;
-                j--; Ans += 3;
+                j--;
+                Ans += 3;
             }
         }
         if (Ans == m * 3 + 2) return true;
@@ -41,8 +43,10 @@ int main()
         if (check()) ans[sum++] = i;
         a[i]--;
     }
-    if (sum == 0) puts("NO");
-    else for (int i = 0; i < sum; i++)
-        printf(i != sum - 1 ? "%d " : "%d", ans[i]);
+    if (sum == 0)
+        puts("NO");
+    else
+        for (int i = 0; i < sum; i++)
+            printf(i != sum - 1 ? "%d " : "%d", ans[i]);
     return 0;
 }

@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <cctype>
+#include <cstdio>
 #include <map>
 typedef long long int64;
 const int64 mod = 989381;
@@ -8,7 +8,8 @@ inline void readInt(int &x)
 {
     int ch = x = 0;
     bool F = false;
-    for (; !isdigit(ch = getchar()); F = (ch == '-'));
+    for (; !isdigit(ch = getchar()); F = (ch == '-'))
+        ;
     for (; isdigit(ch); ch = getchar()) x = x * 10 + ch - '0';
     F && (x = -x);
 }
@@ -52,10 +53,12 @@ void dfs(int id, int f)
 }
 bool check()
 {
-    for (int i = 1; i <= n; i++) if (deg[i] > 2) return false;
+    for (int i = 1; i <= n; i++)
+        if (deg[i] > 2) return false;
     for (int i = 1; i <= n; i++)
         if (!vis[i])
-            if (deg[i] == 1) dfs(i, 0);
+            if (deg[i] == 1)
+                dfs(i, 0);
             else if (deg[i] == 0)
                 vis[i] = true, num++;
     return num == n;

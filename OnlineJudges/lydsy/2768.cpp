@@ -22,9 +22,10 @@ int ISAP(int s, int e)
     int h = 0, t = 0, x, flow = 0;
     for (int i = 0; i <= cnt; i++) dis[i] = cnt;
     dis[que[t++] = e] = 0;
-    while (h != t) for (int i = head[x = que[h++]]; ~i; i = next[i])
-        if (cap[i ^ 1] > 0 && dis[to[i]] > dis[x] + 1)
-            dis[que[t++] = to[i]] = dis[x] + 1;
+    while (h != t)
+        for (int i = head[x = que[h++]]; ~i; i = next[i])
+            if (cap[i ^ 1] > 0 && dis[to[i]] > dis[x] + 1)
+                dis[que[t++] = to[i]] = dis[x] + 1;
     memset(num, 0, sizeof(num));
     for (int i = 0; i <= cnt; i++) num[dis[i]]++, cur[i] = head[i];
     x = s;
@@ -63,8 +64,10 @@ int main()
     for (int i = 1, x; i <= n; i++)
     {
         scanf("%d", &x);
-        if (x) addEdge(0, i, 1);
-        else addEdge(i, n + 1, 1);
+        if (x)
+            addEdge(0, i, 1);
+        else
+            addEdge(i, n + 1, 1);
     }
     for (int i = 1, x, y; i <= m; i++)
     {

@@ -1,10 +1,11 @@
 #include <cctype>
 #include <cstdio>
 int n, m, a[10010], f[10010], len[10010], L, x;
-inline int readInt(int& _x)
+inline int readInt(int &_x)
 {
     int ch = _x = 0;
-    while (!isdigit(ch = getchar()));
+    while (!isdigit(ch = getchar()))
+        ;
     for (; isdigit(ch); ch = getchar()) _x = _x * 10 + ch - '0';
     return _x;
 }
@@ -14,8 +15,10 @@ inline int getPos(int _x)
     while (l < r)
     {
         mid = (l + r) >> 1;
-        if (len[mid] <= _x) r = mid;
-        else l = mid + 1;
+        if (len[mid] <= _x)
+            r = mid;
+        else
+            l = mid + 1;
     }
     return l;
 }
@@ -31,9 +34,11 @@ int main()
             len[f[i] = getPos(a[i])] = a[i];
     readInt(m);
     while (m--)
-        if (readInt(x) > L) puts("Impossible");
-        else for (int i = 1, prev = 0; i <= n; i++)
-            if (x && f[i] >= x && a[i] > prev)
-                printf(--x ? "%d " : "%d\n", prev = a[i]);
+        if (readInt(x) > L)
+            puts("Impossible");
+        else
+            for (int i = 1, prev = 0; i <= n; i++)
+                if (x && f[i] >= x && a[i] > prev)
+                    printf(--x ? "%d " : "%d\n", prev = a[i]);
     return 0;
 }

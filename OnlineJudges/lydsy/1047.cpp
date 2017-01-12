@@ -1,18 +1,19 @@
-#include <cstdio>
 #include <cctype>
+#include <cstdio>
 #include <cstring>
 inline int min(int a, int b) { return a < b ? a : b; }
 inline void readInt(int &x)
 {
     int ch = x = 0;
-    while (!isdigit(ch = getchar()));
+    while (!isdigit(ch = getchar()))
+        ;
     for (; isdigit(ch); ch = getchar()) x = x * 10 + ch - '0';
 }
 int mat[1001][1001], maxn[1001][1001], minn[1001][1001], a, b, n;
 struct MQueue
 {
     int head, tail, que[1001][2];
-    MQueue() :head(0), tail(0) { }
+    MQueue() : head(0), tail(0) {}
     void insert(int x, int pos)
     {
         while (head < tail && que[tail - 1][0] < x) tail--;
@@ -21,7 +22,7 @@ struct MQueue
         while (head < tail && pos - que[head][1] >= n) head++;
     }
     int top() const { return que[head][0]; }
-}MQ[1001];
+} MQ[1001];
 void gen(int f[1001][1001])
 {
     memset(MQ, 0, sizeof(MQ));
@@ -38,7 +39,7 @@ void gen(int f[1001][1001])
             q.insert(MQ[i].top(), i);
         for (int i = n - 1; i < a; i++)
             q.insert(MQ[i].top(), i),
-            f[i][j] = q.top();
+                f[i][j] = q.top();
     }
 }
 int main()

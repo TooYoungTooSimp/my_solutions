@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <cmath>
+#include <cstdio>
 int main()
 {
     int n, x0, y0, x, y, v;
@@ -10,7 +10,7 @@ int main()
         scanf("%d%d%d", &x, &y, &v);
         x -= x0;
         y -= y0;
-        tmp = sqrt(x*x + y*y) / v;
+        tmp = sqrt(x * x + y * y) / v;
         if (tmp < ans) ans = tmp;
     }
     printf("%.10lf", ans);

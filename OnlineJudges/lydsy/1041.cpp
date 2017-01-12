@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <cmath>
+#include <cstdio>
 inline unsigned gcd(unsigned x, unsigned y)
 {
     unsigned t;

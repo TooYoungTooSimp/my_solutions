@@ -1,10 +1,11 @@
-#include <cstdio>
 #include <cctype>
+#include <cstdio>
 inline int max(int a, int b) { return a > b ? a : b; }
 inline void readInt(int &x)
 {
     int ch = x = 0;
-    while (!isdigit(ch = getchar()));
+    while (!isdigit(ch = getchar()))
+        ;
     for (; isdigit(ch); ch = getchar()) x = x * 10 + ch - '0';
 }
 int a[5010][5010];

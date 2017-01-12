@@ -4,12 +4,12 @@ struct node
 {
     node *trans[10];
     bool is_end;
-}nodes[100010];
-node* root;
+} nodes[100010];
+node *root;
 int cnt;
-node* new_node() { return &nodes[cnt++]; }
+node *new_node() { return &nodes[cnt++]; }
 char buf[11];
-bool try_insert(node* n, char *str)
+bool try_insert(node *n, char *str)
 {
     if (n->is_end) return false;
     if (*str == '\0')

@@ -63,7 +63,8 @@ int main()
         addEdge(x, n + y, 1, z);
     }
     int C = 0, F = 0;
-    while (MCMF(S, T, F, C));
+    while (MCMF(S, T, F, C))
+        ;
     printf("%d", C);
     return 0;
 }

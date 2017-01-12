@@ -8,7 +8,8 @@ int main()
     scanf("%lld%lld%lld%lld%lld", &s, &t, &p, &q, &L);
     int64 a = (p - q + L) % L, b = L, c = (t - s + L) % L;
     int64 x = 0, y = 0, g = gcd(a, b);
-    if (c % g) puts("Impossible");
+    if (c % g)
+        puts("Impossible");
     else
     {
         a /= g, b /= g, c /= g;

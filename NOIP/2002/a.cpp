@@ -9,11 +9,12 @@ int main()
     for (int i = 0; i < n; i++) a[i] -= sum;
     sum = 0;
     for (int i = 0; i < n - 1; i++)
-        if (a[i] == 0) continue;
+        if (a[i] == 0)
+            continue;
         else
             a[i + 1] += a[i],
-            a[i] = 0,
-            sum++;
+                a[i] = 0,
+                sum++;
     printf("%d", sum);
     return 0;
 }

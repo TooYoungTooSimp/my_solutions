@@ -5,7 +5,6 @@ const int maxn = 201;
 int G[maxn][maxn], m, n;
 bool vis[maxn];
 int que[maxn], fa[maxn];
-
 int Edmonds_Karp(int s, int e)
 {
     int curFlow = 1 << 30, ans = 0;
@@ -34,7 +33,6 @@ int Edmonds_Karp(int s, int e)
     } while (curFlow);
     return ans;
 }
-
 int main()
 {
     while (~scanf("%d%d", &m, &n))

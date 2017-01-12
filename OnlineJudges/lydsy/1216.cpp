@@ -28,7 +28,7 @@ int main()
             }
             else
             {
-                ((task*)(&heap.top()))->exeTime -= delta;
+                ((task *)(&heap.top()))->exeTime -= delta;
                 curtime += delta;
                 delta = 0;
             }

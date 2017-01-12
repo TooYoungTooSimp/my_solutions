@@ -1,13 +1,15 @@
-#include <cstdio>
-#include <cctype>
-#include <cstring>
 #include <algorithm>
+#include <cctype>
+#include <cstdio>
+#include <cstring>
 #include <numeric>
 typedef long long int64;
-template <typename T> inline void readInt(T &x)
+template <typename T>
+inline void readInt(T &x)
 {
     int ch = x = 0;
-    while (!isdigit(ch = getchar()));
+    while (!isdigit(ch = getchar()))
+        ;
     for (; isdigit(ch); ch = getchar()) x = x * 10 + ch - '0';
 }
 int64 *A, *C;
@@ -17,8 +19,8 @@ int main()
     readInt(n);
     A = new int64[n + 10];
     C = new int64[n + 10];
-    memset(A, 0, sizeof(int64)*(n + 10));
-    memset(C, 0, sizeof(int64)*(n + 10));
+    memset(A, 0, sizeof(int64) * (n + 10));
+    memset(C, 0, sizeof(int64) * (n + 10));
     for (int i = 0; i < n; i++) readInt(A[i]);
     int64 tmp = std::accumulate(A, A + n, 0ll) / n;
     for (int i = 1; i < n; i++)

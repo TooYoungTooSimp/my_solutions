@@ -1,7 +1,8 @@
 #include <cstdio>
 #include <cstdlib>
-#define sz(x) (x == 0 ? 0 :x->size)
-#define update(x) if(x) x->size = sz(x->child[0]) + sz(x->child[1]) + 1
+#define sz(x) (x == 0 ? 0 : x->size)
+#define update(x) \
+    if (x) x->size = sz(x->child[0]) + sz(x->child[1]) + 1
 #define getVal(x) (x == 0 ? 0 : x->val)
 typedef int valType;
 const int arrSize = 100005;
@@ -11,13 +12,14 @@ struct Node
     int size;
     Node *child[2], *father;
 };
-typedef Node* lpNode;
+typedef Node *lpNode;
 struct allocator
 {
 private:
     int i;
     Node data[arrSize];
     lpNode pt[arrSize];
+
 public:
     allocator(int size)
     {
@@ -35,9 +37,8 @@ public:
     }
     void free(lpNode ptr) { pt[--i] = ptr; }
 };
- 
-    lpNode root = 0;
-    allocator* mem;
+lpNode root = 0;
+allocator *mem;
 struct SplayTree
 {
 private:
@@ -55,33 +56,36 @@ private:
         update(y);
         update(x);
     }
-    void Splay(lpNode x, lpNode& target)
+    void Splay(lpNode x, lpNode &target)
     {
         lpNode targetFather = target->father;
         while (x->father != targetFather)
-            if (x->father == target) rotate(x);
+            if (x->father == target)
+                rotate(x);
+            else if ((x->father->father->child[0] == x->father) == (x->father->child[0] == x))
+                rotate(x->father), rotate(x);
             else
-                if ((x->father->father->child[0] == x->father) == (x->father->child[0] == x))
-                    rotate(x->father), rotate(x);
-                else
-                    rotate(x), rotate(x);
+                rotate(x), rotate(x);
         target = x;
     }
     lpNode find(int x)
     {
         lpNode s = root;
         while (true)
-            if (s == 0) return 0;
+            if (s == 0)
+                return 0;
             else if (s->val == x)
             {
                 Splay(s, root);
                 return s;
             }
-            else s = s->child[x > s->val];
+            else
+                s = s->child[x > s->val];
     }
     lpNode join(lpNode x, lpNode y)
     {
-        if (x == 0) return y;
+        if (x == 0)
+            return y;
         else
         {
             lpNode m = max_min(x, 1);
@@ -91,11 +95,12 @@ private:
             return x;
         }
     }
+
 public:
     SplayTree(int _) { mem = new allocator(_); }
     lpNode max_min(lpNode x, int i)
     {
-        while (x&&x->child[i]) x = x->child[i];
+        while (x && x->child[i]) x = x->child[i];
         return x;
     }
     void insert(int x)
@@ -137,8 +142,10 @@ public:
     {
         lpNode s = root;
         while (s)
-            if (x == sz(s->child[0]) + 1) return s;
-            else if (x <= sz(s->child[0])) s = s->child[0];
+            if (x == sz(s->child[0]) + 1)
+                return s;
+            else if (x <= sz(s->child[0]))
+                s = s->child[0];
             else
                 x = x - 1 - sz(s->child[0]), s = s->child[1];
         return 0;
@@ -164,7 +171,6 @@ public:
         return ans;
     }
 };
- 
 int main()
 {
     SplayTree st(arrSize);

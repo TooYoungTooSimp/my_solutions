@@ -32,8 +32,8 @@ int main()
     {
         long long a = query(sum[0], cows[i].pos), b = query(sum[1], cows[i].pos);
         ans += (cows[i].pos * a - b + query(sum[1], 20000) - b -
-            (i - 1 - a) * cows[i].pos) *
-            cows[i].vol;
+                (i - 1 - a) * cows[i].pos) *
+               cows[i].vol;
         add(sum[0], cows[i].pos, 1);
         add(sum[1], cows[i].pos, cows[i].pos);
     }

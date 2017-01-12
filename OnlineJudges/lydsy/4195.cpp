@@ -1,10 +1,11 @@
-#include <cstdio>
 #include <cctype>
+#include <cstdio>
 #include <map>
 inline void readInt(int &x)
 {
     int ch = x = 0;
-    while (!isdigit(ch = getchar()));
+    while (!isdigit(ch = getchar()))
+        ;
     for (; isdigit(ch); ch = getchar()) x = x * 10 + ch - '0';
 }
 int fa[2000010], I[1000010], J[1000010], E[1000010];
@@ -26,10 +27,12 @@ int main()
             if (H.find(E[i]) == H.end()) H[E[i]] = H.size() + 1;
         }
         for (int i = 0, x, y; i < n; i++)
-            if (E[i]) if ((x = Find(H[I[i]])) != (y = Find(H[J[i]]))) fa[x] = y;
+            if (E[i])
+                if ((x = Find(H[I[i]])) != (y = Find(H[J[i]]))) fa[x] = y;
         bool flag = true;
         for (int i = 0, x, y; i < n && flag; i++)
-            if (E[i] ^ 1) if ((x = Find(H[I[i]])) == (y = Find(H[J[i]]))) flag = false;
+            if (E[i] ^ 1)
+                if ((x = Find(H[I[i]])) == (y = Find(H[J[i]]))) flag = false;
         puts(flag ? "YES" : "NO");
     }
     return 0;

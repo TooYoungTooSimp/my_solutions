@@ -1,8 +1,10 @@
 #include <cstdio>
 #include <cstring>
 const double eps = 1e-9;
-template <typename T> T max(T a, T b) { return a > b ? a : b; }
-template <typename T> T min(T a, T b) { return a < b ? a : b; }
+template <typename T>
+T max(T a, T b) { return a > b ? a : b; }
+template <typename T>
+T min(T a, T b) { return a < b ? a : b; }
 int head[3010], next[10010], to[10010], ecnt, n, m, flag, flags[3010];
 double a[10010], len[10010], dis[3010];
 inline void addEdge(int x, int y)

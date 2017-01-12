@@ -1,10 +1,11 @@
-#include <cstdio>
 #include <cctype>
-inline void readInt(int& x)
+#include <cstdio>
+inline void readInt(int &x)
 {
     x = 0;
     static int ch;
-    while (!isdigit(ch = getchar()));
+    while (!isdigit(ch = getchar()))
+        ;
     while (isdigit(ch)) x = x * 10 + ch - '0', ch = getchar();
 }
 inline int _(int x) { return x < 0 ? 0 : x; }

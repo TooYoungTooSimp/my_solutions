@@ -1,10 +1,10 @@
-#include <cstdio>
 #include <algorithm>
+#include <cstdio>
 struct line
 {
     int k, b, id;
     bool operator<(const line &rhs) const { return (k < rhs.k) || (k == rhs.k && b > rhs.b); }
-}a[50010];
+} a[50010];
 int n;
 int stk[50010], top;
 bool ans[50010];
@@ -25,6 +25,7 @@ int main()
         stk[top++] = i;
     }
     while (top) ans[a[stk[--top]].id] = true;
-    for (int i = 0; i <= n; i++) if (ans[i]) printf("%d ", i);
+    for (int i = 0; i <= n; i++)
+        if (ans[i]) printf("%d ", i);
     return 0;
 }

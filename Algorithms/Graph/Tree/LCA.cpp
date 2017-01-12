@@ -1,22 +1,28 @@
-#include <cstdio>
 #include <cctype>
+#include <cstdio>
 inline int min(int a, int b) { return a < b ? a : b; }
-inline int log2(int x) { int k = 0; while ((1 << (k + 1)) <= x) k++; return k; }
-void getInt(int& x)
+inline int log2(int x)
+{
+    int k = 0;
+    while ((1 << (k + 1)) <= x) k++;
+    return k;
+}
+void getInt(int &x)
 {
     x = 0;
     static int ch;
-    while (!isdigit(ch = getchar()));
+    while (!isdigit(ch = getchar()))
+        ;
     while (isdigit(ch)) x = x * 10 + ch - '0', ch = getchar();
 }
 typedef struct Edge
 {
     int to;
-    Edge* next;
-    Edge(int t, Edge* n) :to(t), next(n) { }
-}*lpEdge;
+    Edge *next;
+    Edge(int t, Edge *n) : to(t), next(n) {}
+} * lpEdge;
 lpEdge G[10000];
-#define addEdge(x,y) G[x] = new Edge(y, G[x])
+#define addEdge(x, y) G[x] = new Edge(y, G[x])
 int d[20001][100], E[20001], F[20001], cnt;
 void dfs(int id)
 {

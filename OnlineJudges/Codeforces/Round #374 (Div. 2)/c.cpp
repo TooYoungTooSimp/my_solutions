@@ -5,8 +5,8 @@ using namespace std;
 typedef struct Edge
 {
     int end, len;
-    Edge* next;
-}*lpEdge;
+    Edge *next;
+} * lpEdge;
 int F[5001][5001]; ///F[v][j] = min{F[u][j - 1] + t[u][v}
 bool B[5001][5001];
 int QUEX[2000000];
@@ -28,7 +28,7 @@ void bfs()
         B[i][j] = false;
         if (head >= QSIZE)
             head -= QSIZE;
-        for (Edge* p = V[i]; p; p = p->next)
+        for (Edge *p = V[i]; p; p = p->next)
         {
             if (F[i][j] + p->len < F[p->end][j + 1])
             {
@@ -47,7 +47,7 @@ void bfs()
 }
 void print(int i, int t, int k)
 {
-    for (Edge* p = E[i]; p; p = p->next)
+    for (Edge *p = E[i]; p; p = p->next)
     {
         if (t - p->len == F[p->end][k - 1])
         {
@@ -63,7 +63,7 @@ int main()
     for (int i = 0, u, v, w; i != m; ++i)
     {
         scanf("%d%d%d", &u, &v, &w);
-        Edge* tmp = new Edge();
+        Edge *tmp = new Edge();
         tmp->end = v;
         tmp->len = w;
         tmp->next = V[u];

@@ -7,7 +7,7 @@ int main()
     printf("%d=", n);
     while (n)
     {
-        ans[i] = n%radix;
+        ans[i] = n % radix;
         n /= radix;
         while (ans[i] < 0)
         {

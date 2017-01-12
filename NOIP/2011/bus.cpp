@@ -1,12 +1,17 @@
-#include <cstdio>
 #include <cassert>
+#include <cstdio>
 #include <numeric>
 inline int max(int a, int b) { return a > b ? a : b; }
 //D[i]=len(i->i+1) sum[i]=sum(i->i+1) canReduce[i]=1*D[i]+...
 int n, m, k, D[1001], last[1001], sum[1001], time[1001], canReduce[1001];
-struct p { int t, a, b; } P[10001];
-#define update(); for (int i = 2; i <= n; i++) time[i] = max(time[i - 1], last[i - 1]) + D[i - 1];
-#define getTime() std::accumulate(P, P + m, 0, [](int init, const decltype(*P) val) {return init + (time[val.b] - val.t); })
+struct p
+{
+    int t, a, b;
+} P[10001];
+#define update() \
+    ;            \
+    for (int i = 2; i <= n; i++) time[i] = max(time[i - 1], last[i - 1]) + D[i - 1];
+#define getTime() std::accumulate(P, P + m, 0, [](int init, const decltype(*P) val) { return init + (time[val.b] - val.t); })
 int main()
 {
     scanf("%d%d%d", &n, &m, &k);
@@ -24,7 +29,7 @@ int main()
     while (k--)
     {
         for (int i = n - 1; i; i--) canReduce[i] =
-            (time[i + 1] > last[i + 1]) ? sum[i] + canReduce[i + 1] : sum[i];
+                                        (time[i + 1] > last[i + 1]) ? sum[i] + canReduce[i + 1] : sum[i];
         int maxn = 0, maxid = 0;
         for (int i = n - 1; i; i--)
             if (canReduce[i] > maxn && D[i] > 0)

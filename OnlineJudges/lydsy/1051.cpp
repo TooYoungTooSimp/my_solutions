@@ -16,7 +16,8 @@ void tarjan(int x)
     dfn[x] = low[x] = ++idx;
     instk[stk[top++] = x] = true;
     for (int cur = head[x]; cur; cur = next[cur])
-        if (!dfn[to[cur]]) tarjan(to[cur]), low[x] = min(low[x], low[to[cur]]);
+        if (!dfn[to[cur]])
+            tarjan(to[cur]), low[x] = min(low[x], low[to[cur]]);
         else if (instk[to[cur]])
             low[x] = min(low[x], dfn[to[cur]]);
     if (dfn[x] == low[x])
@@ -50,7 +51,8 @@ int main()
     for (int i = 1; i <= scccnt; i++)
         if (deg[i] == 0)
             zcnt++, id = i;
-    if (zcnt != 1) putchar('0');
+    if (zcnt != 1)
+        putchar('0');
     else
     {
         int ans = 0;

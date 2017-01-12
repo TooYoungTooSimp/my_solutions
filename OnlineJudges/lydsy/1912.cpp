@@ -1,7 +1,7 @@
 #include <cstdio>
 #include <cstring>
 int n, k, head[100010], next[100010 << 1], from[100010 << 1], to[100010 << 1], len[100010 << 1],
-maxlen, ecnt, fa[100010], mx1[100010], mx2[100010], en;
+    maxlen, ecnt, fa[100010], mx1[100010], mx2[100010], en;
 void addEdge(int f, int t)
 {
     next[ecnt] = head[f];

@@ -1,6 +1,6 @@
-#include <cstdio>
-#include <cstdio>
 #include <algorithm>
+#include <cstdio>
+#include <cstdio>
 using namespace std;
 #define _User_BIGINT
 #ifndef _User_BIGINT
@@ -15,7 +15,8 @@ struct BigInt
         len = 0;
         for (int i = 0; i < 1000; i++)
             data[i + 1] += data[i] / BASE, data[i] %= BASE;
-        for (int i = 1000; i >= 0 && len == 0; i--) if (data[i]) len = i;
+        for (int i = 1000; i >= 0 && len == 0; i--)
+            if (data[i]) len = i;
     }
     BigInt(int init = 0)
     {
@@ -29,7 +30,7 @@ struct BigInt
         for (int i = len - 1; i >= 0; i--) printf("%04d", data[i]);
         putchar('\n');
     }
-    bool operator<(const BigInt& r)
+    bool operator<(const BigInt &r)
     {
         for (int i = max(len, r.len); i >= 0; i--)
             if (data[i] < r.data[i])
@@ -58,14 +59,17 @@ struct BigInt
 };
 #endif
 int n;
-struct { int a, b; } p[1001];
-void print(const BigInt& val)
+struct
 {
-    #ifndef _User_BIGINT
+    int a, b;
+} p[1001];
+void print(const BigInt &val)
+{
+#ifndef _User_BIGINT
     printf("%lld\n", val);
-    #else
+#else
     val.print();
-    #endif
+#endif
 }
 int main()
 {

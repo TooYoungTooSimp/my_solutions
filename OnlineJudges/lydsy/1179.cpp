@@ -14,7 +14,7 @@ struct Graph
         head[f] = ecnt;
         to[ecnt] = t;
     }
-}g1, g2;
+} g1, g2;
 int low[maxn], dfn[maxn], scc[maxn], scccnt, idx, st[maxn], top, dis[maxn], que[maxn << 2];
 bool inq[maxn];
 void tarjan(int u)
@@ -22,13 +22,15 @@ void tarjan(int u)
     low[u] = dfn[u] = ++idx;
     st[top++] = u;
     for (int i = g1.head[u]; i; i = g1.next[i])
-        if (!dfn[g1.to[i]]) tarjan(g1.to[i]), low[u] = min(low[u], low[g1.to[i]]);
+        if (!dfn[g1.to[i]])
+            tarjan(g1.to[i]), low[u] = min(low[u], low[g1.to[i]]);
         else if (!scc[g1.to[i]])
             low[u] = min(low[u], dfn[g1.to[i]]);
     if (dfn[u] == low[u])
     {
         scccnt++;
-        do scc[st[--top]] = scccnt;
+        do
+            scc[st[--top]] = scccnt;
         while (st[top] != u);
     }
 }

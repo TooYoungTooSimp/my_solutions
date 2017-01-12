@@ -10,7 +10,7 @@ int main()
             scanf("%I64d", &a[i][j]);
             if (a[i][j] == 0) x = i, y = j;
         }
-    tmp = (x + 1)%n;
+    tmp = (x + 1) % n;
     for (int i = 0; i < n; i++)
         sum += a[tmp][i];
     tmp = sum;
@@ -34,10 +34,12 @@ int main()
         if (tmp != sum) flag = false;
     }
     tmp = 0;
-    if (flag) for (int i = 0; i < n; i++) tmp += a[i][i];
+    if (flag)
+        for (int i = 0; i < n; i++) tmp += a[i][i];
     if (tmp != sum) flag = false;
     tmp = 0;
-    if (flag) for (int i = 0; i < n; i++) tmp += a[i][n - i - 1];
+    if (flag)
+        for (int i = 0; i < n; i++) tmp += a[i][n - i - 1];
     if (tmp != sum) flag = false;
     printf("%I64d", flag ? a[x][y] : -1);
     return 0;

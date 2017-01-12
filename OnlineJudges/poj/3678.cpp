@@ -23,7 +23,8 @@ void tarjan(int x)
     if (dfn[x] == low[x])
     {
         scccnt++;
-        do scc[stk[--top]] = scccnt;
+        do
+            scc[stk[--top]] = scccnt;
         while (stk[top] != x);
     }
 }

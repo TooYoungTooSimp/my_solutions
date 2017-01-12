@@ -1,10 +1,10 @@
-#include <cstdio>
 #include <algorithm>
+#include <cstdio>
 struct edge
 {
     int u, v, c;
     bool operator<(const edge &rhs) const { return c < rhs.c; }
-}E[900010];
+} E[900010];
 int n, m, cnt, ans, fa[310];
 int Find(int x) { return fa[x] == x ? x : fa[x] = Find(fa[x]); }
 int main()

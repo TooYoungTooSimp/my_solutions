@@ -1,15 +1,15 @@
+#include <algorithm>
 #include <cstdio>
 #include <cstring>
-#include <algorithm>
 using namespace std;
 typedef struct Edge
 {
     int from, to, len;
-    Edge* next;
-    Edge(int f, int t, int l, Edge* n) :from(f), to(t), len(l), next(n) {}
-}*lpEdge;
+    Edge *next;
+    Edge(int f, int t, int l, Edge *n) : from(f), to(t), len(l), next(n) {}
+} * lpEdge;
 lpEdge G[400];
-#define addEdge(x,y,z) G[(x)]=new Edge((x),(y),(z),G[(x)])
+#define addEdge(x, y, z) G[(x)] = new Edge((x), (y), (z), G[(x)])
 int n, s;
 int que[10000], dep[10000], fa[10000], mx[10000], dis[10000], head, tail;
 bool vis[10000];
@@ -66,10 +66,10 @@ int main()
         for (int j = x; j != fa[i]; j = fa[j])
             if (dis[j] - dis[i] <= s)
             {
-                int mmax = max(dis[i],dis[x]-dis[j]);
+                int mmax = max(dis[i], dis[x] - dis[j]);
                 for (int k = j; k != fa[i]; k = fa[k])
                     mmax = max(mmax, mx[k]);
-                if(mmax) mmin = min(mmin, mmax);
+                if (mmax) mmin = min(mmin, mmax);
             }
     printf("%d", mmin);
     //TODO:BZOJ1999data

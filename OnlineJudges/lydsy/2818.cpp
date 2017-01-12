@@ -8,15 +8,17 @@ int main()
 {
     scanf("%d", &n);
     phi[1] = 1;
-    for (int i = 2; i <= n; i++) if (!phi[i])
-        for (int j = i; j <= n; j += i)
-        {
-            if (!phi[j]) phi[j] = j;
-            phi[j] = phi[j] / i * (i - 1);
-        }
-    for (int64 i = 2; i <= n; i++) if (!notPrime[i])
-        for (int64 j = i * i; j <= n; j += i)
-            notPrime[j] = true;
+    for (int i = 2; i <= n; i++)
+        if (!phi[i])
+            for (int j = i; j <= n; j += i)
+            {
+                if (!phi[j]) phi[j] = j;
+                phi[j] = phi[j] / i * (i - 1);
+            }
+    for (int64 i = 2; i <= n; i++)
+        if (!notPrime[i])
+            for (int64 j = i * i; j <= n; j += i)
+                notPrime[j] = true;
     for (int i = 2; i <= n; i++)
         if (!notPrime[i])
             prime[pcnt++] = i;

@@ -4,11 +4,11 @@ struct Edge
 {
     int from, to, cap;
     Edge *next, *rev;
-    Edge(int f, int t, int c) :from(f), to(t), cap(c), next(0), rev(0) {}
+    Edge(int f, int t, int c) : from(f), to(t), cap(c), next(0), rev(0) {}
 };
-typedef Edge* lpEdge;
+typedef Edge *lpEdge;
 inline int min(int a, int b) { return (a < b ? a : b); }
-lpEdge addEdge(lpEdge* G, int from, int to, int cap)
+lpEdge addEdge(lpEdge *G, int from, int to, int cap)
 {
     lpEdge newEdge = new Edge(from, to, cap);
     newEdge->next = G[from];
@@ -22,7 +22,7 @@ lpEdge G[maxn], cur[maxn], fa[maxn];
 int ISAP(int s, int e, const int cnt)
 {
     int flow = 0, x;
-    int* que = new int[maxn];
+    int *que = new int[maxn];
     int head, tail;
     head = tail = 0;
     for (int i = 0; i < cnt; i++) d[i] = cnt;
@@ -65,7 +65,7 @@ int ISAP(int s, int e, const int cnt)
             x = s;
         }
         bool needRetreat = true;
-        for (lpEdge& i = (cur[x] ? cur[x] : cur[x] = G[x]); i; i = i->next)
+        for (lpEdge &i = (cur[x] ? cur[x] : cur[x] = G[x]); i; i = i->next)
             if (i->cap > 0 && d[x] == d[i->to] + 1)
             {
                 fa[x = i->to] = i;

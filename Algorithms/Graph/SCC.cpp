@@ -1,21 +1,22 @@
-#include <cstdio>
 #include <cctype>
+#include <cstdio>
 inline int min(int a, int b) { return a < b ? a : b; }
 const int maxn = 1001;
-inline void getInt(int& x)
+inline void getInt(int &x)
 {
     x = 0;
     int ch;
-    while (!isdigit(ch = getchar()));
+    while (!isdigit(ch = getchar()))
+        ;
     while (isdigit(ch))
         x = x * 10 + ch - '0', ch = getchar();
 }
 typedef struct Edge
 {
     int to;
-    Edge* next;
-    Edge(int t, Edge* n) :to(t), next(n) { }
-}*lpEdge;
+    Edge *next;
+    Edge(int t, Edge *n) : to(t), next(n) {}
+} * lpEdge;
 lpEdge G[maxn];
 int Low[maxn], DFN[maxn], st[maxn], s_top, DFNcnt, SCC[maxn], SCCcnt;
 bool instack[maxn];
@@ -29,15 +30,16 @@ void tarjan(int id)
     {
         if (!DFN[cur->to])
             tarjan(cur->to), Low[id] = min(Low[id], Low[cur->to]);
-        else if (instack[cur->to]) Low[id] = min(Low[id], DFN[cur->to]);
+        else if (instack[cur->to])
+            Low[id] = min(Low[id], DFN[cur->to]);
     }
     if (DFN[id] == Low[id])
     {
         SCCcnt++;
         do
             s_top--,
-            SCC[st[s_top]] = SCCcnt,
-            instack[st[s_top]] = false;
+                SCC[st[s_top]] = SCCcnt,
+                instack[st[s_top]] = false;
         while (st[s_top] != id);
     }
 }

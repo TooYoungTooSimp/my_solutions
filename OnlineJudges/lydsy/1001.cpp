@@ -6,9 +6,9 @@ bool inque[3000001];
 typedef struct Edge
 {
     int to, len;
-    Edge* next;
+    Edge *next;
     Edge(int t, int l, Edge *n) : to(t), len(l), next(n) {}
-}*lpEdge;
+} * lpEdge;
 lpEdge G[3000001];
 #define addEdge(x, y, z) G[x] = new Edge(y, z, G[x])
 #define addEdge2(x, y, z) addEdge(x, y, z), addEdge(y, x, z)
@@ -38,7 +38,8 @@ int main()
     int n, m;
     scanf("%d%d", &n, &m);
     if (n == 1 || m == 1)
-        if (n == 1 && m == 1) putchar(0);
+        if (n == 1 && m == 1)
+            putchar(0);
         else
         {
             int ans = 0x3f3f3f3f;
@@ -77,7 +78,7 @@ int main()
             {
                 scanf("%d", &x);
                 addEdge2((i - 1) * ((m - 1) << 1) + j * 2,
-                    (i - 1) * ((m - 1) << 1) + j * 2 + 1, x);
+                         (i - 1) * ((m - 1) << 1) + j * 2 + 1, x);
             }
             scanf("%d", &x);
             addEdge2(target, i * ((m - 1) << 1), x);
@@ -87,7 +88,7 @@ int main()
             {
                 scanf("%d", &x);
                 addEdge2((i - 1) * ((m - 1) << 1) + (j - 1) * 2 + 1,
-                    (i - 1) * ((m - 1) << 1) + (j - 1) * 2 + 2, x);
+                         (i - 1) * ((m - 1) << 1) + (j - 1) * 2 + 2, x);
             }
         spfa(0);
         printf("%d", pathlen[target]);

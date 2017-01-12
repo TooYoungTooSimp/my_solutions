@@ -9,7 +9,8 @@ int main()
         for (int j = 0; j < i; j++)
             if (abs(x[i] - x[j]) + abs(y[i] - y[j]) <= abs(t[i] - t[j]) && f[i] < f[j] + 1)
                 f[i] = f[j] + 1;
-    for (int i = 0; i < m; i++) if (f[i] > ans) ans = f[i];
+    for (int i = 0; i < m; i++)
+        if (f[i] > ans) ans = f[i];
     printf("%d", ans);
     return 0;
 }

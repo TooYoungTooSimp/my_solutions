@@ -1,9 +1,12 @@
 #include <cstdio>
 #include <cstring>
-#define lowbit(x) ((x)&-(x))
+#define lowbit(x) ((x) & -(x))
 const int maxn = 1 << 15 | 1;
 int a[maxn], n, m, level[maxn];
-void update(int pos, int x) { for (; pos < maxn; pos += lowbit(pos)) a[pos] += x; }
+void update(int pos, int x)
+{
+    for (; pos < maxn; pos += lowbit(pos)) a[pos] += x;
+}
 int query(int pos)
 {
     int ans = 0;

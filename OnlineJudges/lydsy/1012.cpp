@@ -9,8 +9,10 @@ int main()
         {
             a[++sz] = (l + q) % d;
             for (int i = sz; i; i--)
-                if (a[sz] > maxa[i]) maxa[i] = a[sz];
-                else break;
+                if (a[sz] > maxa[i])
+                    maxa[i] = a[sz];
+                else
+                    break;
         }
         else
             printf("%d\n", l = maxa[sz - q + 1]);

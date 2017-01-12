@@ -1,4 +1,4 @@
-#include <cstdio>  
+#include <cstdio>
 int n, x, t, tot;
 int main()
 {
@@ -6,9 +6,14 @@ int main()
     while (n--)
     {
         scanf("%d", &x);
-        if (tot == 0) { t = x; tot = 1; }
-        else if (t == x) tot++;
-        else tot--;
+        if (tot == 0) {
+            t = x;
+            tot = 1;
+        }
+        else if (t == x)
+            tot++;
+        else
+            tot--;
     }
     printf("%d", t);
     return 0;

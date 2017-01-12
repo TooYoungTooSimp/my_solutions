@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <cctype>
+#include <cstdio>
 #include <cstring>
 #include <list>
 #include <stack>
@@ -10,21 +10,24 @@ inline int fast_pow(int i, int j)
     int ans = 1;
     while (j)
     {
-        if (j & 1) ans = (ans*i) % MOD;
-        i = (i*i) % MOD;
+        if (j & 1) ans = (ans * i) % MOD;
+        i = (i * i) % MOD;
         j >>= 1;
     }
     return ans;
 }
-struct ENode { int type/*0=x,1=num,2=op*/, val; };
+struct ENode
+{
+    int type /*0=x,1=num,2=op*/, val;
+};
 typedef list<ENode>::iterator ite_type;
 class
 {
     list<ENode> _list;
     char *S, *T;
-    #define Next() ((S != T) ? *S++ : -1)
-    #define Seek() ((S != T) ? *S : -1)
-    #define wrapper(x) ((isdigit((x)) || (x) == 'a' || (x) == '+' || (x) == '-' || (x) == '*' || (x) == '/' || (x) == '(' || (x) == ')' || (x) == '^') ? (x) : -1)
+#define Next() ((S != T) ? *S++ : -1)
+#define Seek() ((S != T) ? *S : -1)
+#define wrapper(x) ((isdigit((x)) || (x) == 'a' || (x) == '+' || (x) == '-' || (x) == '*' || (x) == '/' || (x) == '(' || (x) == ')' || (x) == '^') ? (x) : -1)
     void Read()
     {
         while (Seek() != -1)
@@ -61,8 +64,10 @@ class
         list<ENode> newList;
         stack<ENode> st;
         for (list<ENode>::iterator cur = _list.begin(); cur != _list.end(); ++cur)
-            if (cur->type == 0 || cur->type == 1) newList.push_back(*cur);
-            else if (cur->val == '(' || st.empty()) st.push(*cur);
+            if (cur->type == 0 || cur->type == 1)
+                newList.push_back(*cur);
+            else if (cur->val == '(' || st.empty())
+                st.push(*cur);
             else if (cur->val == ')')
             {
                 while (st.top().val != '(')
@@ -88,17 +93,18 @@ class
         }
         _list = newList;
     }
+
 public:
-    list<ENode> operator()(char* beg, char* end)
+    list<ENode> operator()(char *beg, char *end)
     {
         _list.clear();
-        char* buf = new char[(end - beg) << 1];
+        char *buf = new char[(end - beg) << 1];
         this->S = buf;
-        for (char* ptr = beg; ptr != end; ptr++)
+        for (char *ptr = beg; ptr != end; ptr++)
             if (!isspace(*ptr)) *buf++ = *ptr;
         this->T = buf;
         int bcnt = 0;
-        for (char* ptr = S; ptr != T; ptr++) bcnt += (*ptr == '('), bcnt -= (*ptr == ')');
+        for (char *ptr = S; ptr != T; ptr++) bcnt += (*ptr == '('), bcnt -= (*ptr == ')');
         for (int i = 0; i < bcnt; i++) *T++ = ')';
         buf = this->S;
         Read();
@@ -107,7 +113,7 @@ public:
         return this->_list;
     }
 } build;
-int calc(const list<ENode>& expression, int num)
+int calc(const list<ENode> &expression, int num)
 {
     list<ENode> _list = expression;
     for (list<ENode>::iterator ite = _list.begin(); ite != _list.end(); ++ite)
@@ -160,9 +166,10 @@ int main()
     for (int i = 10; i < 20; i++)
     {
         int ans = calc(mslist, i);
-        for (int j = 0; j < n; j++) if (!failed[j])
-            if (calc(opslst[j], i) != ans)
-                failed[j] = true;
+        for (int j = 0; j < n; j++)
+            if (!failed[j])
+                if (calc(opslst[j], i) != ans)
+                    failed[j] = true;
     }
     for (int i = 0; i < n; i++)
         if (!failed[i])

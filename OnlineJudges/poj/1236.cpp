@@ -22,7 +22,8 @@ void tarjan(int x)
     if (dfn[x] == low[x])
     {
         scccnt++;
-        do scc[stk[--top]] = scccnt;
+        do
+            scc[stk[--top]] = scccnt;
         while (stk[top] != x);
     }
 }
@@ -40,7 +41,8 @@ int main()
             if (scc[i] != scc[to[j]])
                 f[scc[i]]++, g[scc[to[j]]]++;
     int ans1 = 0, ans2 = 0;
-    if (scccnt == 1) printf("1\n0");
+    if (scccnt == 1)
+        printf("1\n0");
     else
     {
         for (int i = 1; i <= scccnt; i++)

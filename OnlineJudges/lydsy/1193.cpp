@@ -1,9 +1,14 @@
 #include <cstdio>
 #include <cstring>
 inline int abs(int x) { return x > 0 ? x : -x; }
-inline void swap(int &x, int &y) { int t = x; x = y; y = t; }
-const int dx[] = { 1, 2, 2, 1, -1, -2, -2, -1 };
-const int dy[] = { 2, 1, -1, -2, -2, -1, 1, 2 };
+inline void swap(int &x, int &y)
+{
+    int t = x;
+    x = y;
+    y = t;
+}
+const int dx[] = {1, 2, 2, 1, -1, -2, -2, -1};
+const int dy[] = {2, 1, -1, -2, -2, -1, 1, 2};
 int que[1 << 20], head, tail, dis[(1 << 14) - 1];
 #define zip(x, y) ((x << 7) + y)
 #define unzip(x, y, val) (x = val >> 7, y = val & 127)
@@ -16,8 +21,10 @@ int main()
     while (x + y >= 50)
     {
         if (x < y) swap(x, y);
-        if (x - 4 >= y << 1) x -= 4;
-        else x -= 4, y -= 2;
+        if (x - 4 >= y << 1)
+            x -= 4;
+        else
+            x -= 4, y -= 2;
         ans += 2;
     }
     memset(dis, -1, sizeof(dis));

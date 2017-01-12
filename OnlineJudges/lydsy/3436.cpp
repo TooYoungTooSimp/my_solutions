@@ -18,8 +18,13 @@ void dfs(int x)
         if (dis[to[cur]] > dis[x] + len[cur])
         {
             dis[to[cur]] = dis[x] + len[cur];
-            if (!inq[to[cur]]) dfs(to[cur]);
-            else { flag = true; return; }
+            if (!inq[to[cur]])
+                dfs(to[cur]);
+            else
+            {
+                flag = true;
+                return;
+            }
         }
     inq[x] = false;
 }

@@ -13,17 +13,18 @@ int main()
         q ? G[q][0] ? G[q][1] = i : G[q][0] = i : M[i] = true;
     }
     for (int i = 1; i <= m; i++)
-        if (M[i]) for (int j = N, w, c; j; j--)
-        {
-            w = W[i], c = C[i];
-            if (j >= w) f[j] = max(f[j], f[j - w] + c);
-            w = W[i] + W[G[i][0]], c = C[i] + C[G[i][0]];
-            if (j >= w) f[j] = max(f[j], f[j - w] + c);
-            w = W[i] + W[G[i][1]], c = C[i] + C[G[i][1]];
-            if (j >= w) f[j] = max(f[j], f[j - w] + c);
-            w = W[i] + W[G[i][0]] + W[G[i][1]], c = C[i] + C[G[i][0]] + C[G[i][1]];
-            if (j >= w) f[j] = max(f[j], f[j - w] + c);
-        }
+        if (M[i])
+            for (int j = N, w, c; j; j--)
+            {
+                w = W[i], c = C[i];
+                if (j >= w) f[j] = max(f[j], f[j - w] + c);
+                w = W[i] + W[G[i][0]], c = C[i] + C[G[i][0]];
+                if (j >= w) f[j] = max(f[j], f[j - w] + c);
+                w = W[i] + W[G[i][1]], c = C[i] + C[G[i][1]];
+                if (j >= w) f[j] = max(f[j], f[j - w] + c);
+                w = W[i] + W[G[i][0]] + W[G[i][1]], c = C[i] + C[G[i][0]] + C[G[i][1]];
+                if (j >= w) f[j] = max(f[j], f[j - w] + c);
+            }
     printf("%d", f[N] * 10);
     return 0;
 }

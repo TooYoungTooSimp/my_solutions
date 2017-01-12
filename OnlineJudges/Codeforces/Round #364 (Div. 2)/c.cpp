@@ -7,8 +7,10 @@ bool has[56];
 inline int min(int aa, int bb) { return (aa < bb ? aa : bb); }
 inline int ch2int(char ch)
 {
-    if (ch >= 'a') return ch - 'a' + 26;
-    else return ch - 'A';
+    if (ch >= 'a')
+        return ch - 'a' + 26;
+    else
+        return ch - 'A';
 }
 int main()
 {

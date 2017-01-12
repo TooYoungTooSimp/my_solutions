@@ -32,7 +32,7 @@ bool MCMF(int S, int T, int &C, int &F)
                 dis[to[i]] = dis[x] + cost[i];
                 curFlow[to[i]] = min(curFlow[x], cap[i]);
                 fa[to[i]] = i;
-                if (!inq[to[i]])  inq[que[t++] = to[i]] = true;
+                if (!inq[to[i]]) inq[que[t++] = to[i]] = true;
             }
     if (dis[T] == inf) return false;
     for (int i = T; i != S; i = to[fa[i] ^ 1])
@@ -57,7 +57,8 @@ int main()
         if (i + 1 <= n) addEdge(i, i + 1, inf, 0);
     }
     int F = 0, C = 0;
-    while (MCMF(S, T, C, F));
+    while (MCMF(S, T, C, F))
+        ;
     printf("%d", C);
     return 0;
 }

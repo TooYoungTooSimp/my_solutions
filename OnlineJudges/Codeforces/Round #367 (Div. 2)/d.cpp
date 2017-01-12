@@ -3,17 +3,18 @@ inline int max(int a, int b) { return (a > b ? a : b); }
 struct Node
 {
     int size;
-    Node* ch[2], *fa;
+    Node *ch[2], *fa;
     Node() { fa = ch[0] = ch[1] = 0, size = 0; }
 };
-typedef Node* lpNode;
+typedef Node *lpNode;
 struct Trie
 {
     lpNode root;
-    Trie() :root(new Node()) { }
+    Trie() : root(new Node()) {}
     void insert(int x)
     {
-        lpNode cur = root; cur->size++;
+        lpNode cur = root;
+        cur->size++;
         for (int i = 31; i >= 0; i--)
         {
             int id = (x >> i) & 1;
@@ -25,7 +26,8 @@ struct Trie
     }
     void remove(int x)
     {
-        lpNode cur = root; cur->size--;
+        lpNode cur = root;
+        cur->size--;
         for (int i = 31; i >= 0; i--)
         {
             cur = cur->ch[(x >> i) & 1];
@@ -47,11 +49,10 @@ struct Trie
                     p = p->ch[1], ans++;
                 else
                     p = p->ch[0];
+            else if (p->ch[0])
+                p = p->ch[0];
             else
-                if (p->ch[0])
-                    p = p->ch[0];
-                else
-                    p = p->ch[1], ans++;
+                p = p->ch[1], ans++;
         }
         return ans;
     }

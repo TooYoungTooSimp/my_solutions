@@ -1,9 +1,9 @@
-#include <cstdio>
 #include <cctype>
+#include <cstdio>
 int s, t, que[1 << 16 | 1], vis[1 << 16 | 1], head, tail;
 int a[4][4];
-const int dx[] = { 1, 0, -1, 0 };
-const int dy[] = { 0, -1, 0, 1 };
+const int dx[] = {1, 0, -1, 0};
+const int dy[] = {0, -1, 0, 1};
 inline void unzip(int x)
 {
     for (int i = 3; i >= 0; i--)
@@ -22,12 +22,14 @@ int main()
 {
     for (int i = 0, ch; i < 16; i++)
     {
-        while (!isdigit(ch = getchar()));
+        while (!isdigit(ch = getchar()))
+            ;
         s = (s << 1) | (ch == '1');
     }
     for (int i = 0, ch; i < 16; i++)
     {
-        while (!isdigit(ch = getchar()));
+        while (!isdigit(ch = getchar()))
+            ;
         t = (t << 1) | (ch == '1');
     }
     que[tail++] = s;
@@ -38,7 +40,8 @@ int main()
         unzip(x);
         for (int i = 0; i < 4; i++)
             for (int j = 0; j < 4; j++)
-                if (a[i][j]) for (int d = 0; d < 4; d++)
+                if (a[i][j])
+                    for (int d = 0; d < 4; d++)
                     {
                         i += dx[d], j += dy[d];
                         if (i >= 0 && i <= 3 && j >= 0 && j <= 3 && a[i][j] == 0)
@@ -50,7 +53,6 @@ int main()
                         }
                         i -= dx[d], j -= dy[d];
                     }
-
     }
     printf("%d", vis[t]);
     return 0;

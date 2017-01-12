@@ -1,7 +1,9 @@
 #include <cstdio>
 #include <cstring>
-template <typename T> inline T max(T a, T b) { return a > b ? a : b; }
-template <typename T> inline T min(T a, T b) { return a < b ? a : b; }
+template <typename T>
+inline T max(T a, T b) { return a > b ? a : b; }
+template <typename T>
+inline T min(T a, T b) { return a < b ? a : b; }
 int head[200005], next[200005 << 2], to[200005 << 2], len[200005 << 2], ecnt, n, m, que[200005 << 1];
 long long disa[200005], disb[200005];
 inline void addEdge(int f, int t, int l)
@@ -21,7 +23,8 @@ int bfs(int s, long long *dis)
         for (int cur = head[x = que[h]]; cur; cur = next[cur])
             if (dis[to[cur]] == -1)
                 dis[que[t++] = to[cur]] = dis[x] + len[cur];
-    int id = -1; long long val = -1;
+    int id = -1;
+    long long val = -1;
     for (int i = 1; i <= n; i++)
         if (dis[i] > val) val = dis[id = i];
     return id;

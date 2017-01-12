@@ -34,7 +34,8 @@ int main()
             if (x > pre)
             {
                 for (int j = pre + 1; j <= x; j++)
-                    if (vis[j]) continue;
+                    if (vis[j])
+                        continue;
                     else
                     {
                         unread--;

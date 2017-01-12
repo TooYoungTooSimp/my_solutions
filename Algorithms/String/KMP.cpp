@@ -42,8 +42,8 @@ int main()
     }
     return 0;
 }*/
-#include<cstdio>
-#include<cstring>
+#include <cstdio>
+#include <cstring>
 using namespace std;
 const int mt = 1e6 + 5;
 char x[mt], y[mt], next[mt];
@@ -53,8 +53,10 @@ void pre()
     int i = 0, j = next[0] = -1;
     while (i != m)
     {
-        if (-1 == j || y[i] == y[j]) next[++i] = ++j;
-        else j = next[j];
+        if (-1 == j || y[i] == y[j])
+            next[++i] = ++j;
+        else
+            j = next[j];
     }
 }
 int cnt()
@@ -63,8 +65,10 @@ int cnt()
     int i = 0, j = 0, ans = 0;
     while (i != n && j != m)
     {
-        if (-1 == j || y[i] == x[j]) i++, j++;
-        else j = next[j];
+        if (-1 == j || y[i] == x[j])
+            i++, j++;
+        else
+            j = next[j];
         if (j == m)
             ans++, i -= j - 1, j = -1;
     }

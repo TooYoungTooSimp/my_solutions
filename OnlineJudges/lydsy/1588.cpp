@@ -7,13 +7,14 @@ struct Node
     valType val;
     Node *child[2], *father;
 };
-typedef Node* lpNode;
+typedef Node *lpNode;
 struct allocator
 {
 private:
     int i;
     Node data[arrSize];
     lpNode pt[arrSize];
+
 public:
     allocator()
     {
@@ -45,13 +46,26 @@ void Splay(lpNode x, lpNode target)
             rotate(x, x == p->child[0]);
             break;
         }
-        else
-            if (x == p->child[0])
-                if (p == p->father->child[0]) { rotate(p, 1); rotate(x, 1); }
-                else { rotate(x, 1); rotate(x, 0); }
+        else if (x == p->child[0])
+            if (p == p->father->child[0]) {
+                rotate(p, 1);
+                rotate(x, 1);
+            }
             else
-                if (p == p->father->child[1]) { rotate(p, 0); rotate(x, 0); }
-                else { rotate(x, 0); rotate(x, 1); }
+            {
+                rotate(x, 1);
+                rotate(x, 0);
+            }
+        else if (p == p->father->child[1])
+        {
+            rotate(p, 0);
+            rotate(x, 0);
+        }
+        else
+        {
+            rotate(x, 0);
+            rotate(x, 1);
+        }
     }
 }
 lpNode max(lpNode x)
@@ -68,13 +82,19 @@ lpNode find(valType x, lpNode s)
 {
     lpNode p = s;
     while (true)
-        if (p == 0) return p;
-        else if (p->val == x) { Splay(p, s); return p; }
-        else p = p->child[x > p->val];
+        if (p == 0)
+            return p;
+        else if (p->val == x)
+        {
+            Splay(p, s);
+            return p;
+        }
+        else
+            p = p->child[x > p->val];
 }
 lpNode pred(valType x, lpNode s) { return max(find(x, s)->child[0]); }
 lpNode succ(valType x, lpNode s) { return min(find(x, s)->child[1]); }
-void ins(valType x, lpNode& s)
+void ins(valType x, lpNode &s)
 {
     if (s == 0)
     {
@@ -89,7 +109,8 @@ void ins(valType x, lpNode& s)
             p = s;
             s = s->child[x > s->val];
         }
-        if (p == 0) s->val = x;
+        if (p == 0)
+            s->val = x;
         else
         {
             lpNode n = mem.alloc();
@@ -112,13 +133,17 @@ int main()
     {
         scanf("%d", &tmp);
         ins(tmp, root);
-        if (i == 0) ans += tmp;
+        if (i == 0)
+            ans += tmp;
         else
         {
             lpNode p = pred(tmp, root), s = succ(tmp, root);
-            if (p == 0) ans += abs(tmp - s->val);
-            else if (s == 0) ans += abs(tmp - p->val);
-            else ans += _min(abs(tmp - s->val), abs(tmp - p->val));
+            if (p == 0)
+                ans += abs(tmp - s->val);
+            else if (s == 0)
+                ans += abs(tmp - p->val);
+            else
+                ans += _min(abs(tmp - s->val), abs(tmp - p->val));
         }
     }
     printf("%d", ans);

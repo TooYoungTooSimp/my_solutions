@@ -26,6 +26,7 @@ int main()
         for (int i = 0; i < n; i++)
             printf("%s\n", seat[i]);
     }
-    else printf("NO");
+    else
+        printf("NO");
     return 0;
 }

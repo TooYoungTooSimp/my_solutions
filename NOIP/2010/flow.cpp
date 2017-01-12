@@ -1,15 +1,15 @@
+#include <algorithm>
 #include <cstdio>
 #include <cstring>
-#include <algorithm>
-#include <vector>
 #include <utility>
+#include <vector>
 using namespace std;
 int n, m, a[502][502];
 vector<pair<int, int>> segs;
 vector<int> toSearch;
 bool vis[1 << 18], lVis[1 << 9];
-int dx[] = { 1,0,-1,0 };
-int dy[] = { 0,-1,0,1 };
+int dx[] = {1, 0, -1, 0};
+int dy[] = {0, -1, 0, 1};
 int que[1 << 18], head, tail;
 int main()
 {
@@ -30,7 +30,8 @@ int main()
         int l = 1 << 9, r = 0;
         while (head < tail)
         {
-            int x = que[head] >> 9, y = que[head] & 511; head++;
+            int x = que[head] >> 9, y = que[head] & 511;
+            head++;
             if (x == n) l = min(l, y), r = max(r, y);
             for (int i = 0; i < 4; i++)
                 if (!vis[((x + dx[i]) << 9) + (y + dy[i])] && a[x + dx[i]][y + dy[i]] < a[x][y])
@@ -38,10 +39,10 @@ int main()
         }
         segs.push_back(make_pair(l, r));
     });
-    sort(segs.begin(), segs.end(), [](const decltype(segs)::value_type& seg1, const decltype(segs)::value_type& seg2) {
+    sort(segs.begin(), segs.end(), [](const decltype(segs)::value_type &seg1, const decltype(segs)::value_type &seg2) {
         return (seg1.first < seg2.first) || (seg1.first == seg2.first && seg1.second > seg2.second);
     });
-    for_each(segs.begin(), segs.end(), [&](const decltype(segs)::value_type& s) {
+    for_each(segs.begin(), segs.end(), [&](const decltype(segs)::value_type &s) {
         for (int i = s.first; i <= s.second; i++) lVis[i] = true;
     });
     int wCnt = (int)count(lVis + 1, lVis + m + 1, true);

@@ -18,9 +18,10 @@ int ISAP(int s, int e)
     int h = 0, t = 0, x;
     for (int i = 1; i <= n; i++) d[i] = n;
     d[que[t++] = e] = 0;
-    while (h != t) for (int i = head[x = que[h++]]; ~i; i = next[i])
-        if (cap[i ^ 1] > 0 && d[to[i]] > d[x] + 1)
-            d[que[t++] = to[i]] = d[x] + 1;
+    while (h != t)
+        for (int i = head[x = que[h++]]; ~i; i = next[i])
+            if (cap[i ^ 1] > 0 && d[to[i]] > d[x] + 1)
+                d[que[t++] = to[i]] = d[x] + 1;
     memset(num, 0, sizeof(num));
     for (int i = 1; i <= n; i++) num[d[i]]++, cur[i] = head[i];
     x = s;

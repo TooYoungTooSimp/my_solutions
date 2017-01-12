@@ -2,15 +2,16 @@
 #include <cstring>
 struct node
 {
-    node* trans[4];
+    node *trans[4];
     int cnt;
-}nodes[400010];
+} nodes[400010];
 int tot;
 node *root;
 inline node *new_node() { return &nodes[tot++]; }
 void try_insert(node *n, char *str)
 {
-    if (*str == '\0') n->cnt++;
+    if (*str == '\0')
+        n->cnt++;
     else
     {
         if (n->trans[*str - '0'] == 0) n->trans[*str - '0'] = new_node();

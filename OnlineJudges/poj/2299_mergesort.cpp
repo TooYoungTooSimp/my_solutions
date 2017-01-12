@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <cctype>
+#include <cstdio>
 #include <cstring>
 typedef long long int64;
 const int N = 500005;
@@ -7,7 +7,8 @@ int a[N], b[N], c[N];
 inline void read(int &x)
 {
     int ch = x = 0;
-    while (!isdigit(ch = getchar()));
+    while (!isdigit(ch = getchar()))
+        ;
     for (; isdigit(ch); ch = getchar()) x = x * 10 + ch - '0';
 }
 int64 solve(int l, int r)

@@ -6,10 +6,12 @@ int a, b, n;
 double g[11][11], sum[11][11], f[11][11][11][11][11], avg;
 double dfs(int x1, int y1, int x2, int y2, int v)
 {
-    if (f[x1][y1][x2][y2][v] < f[0][0][0][0][0] - 100) return f[x1][y1][x2][y2][v];
-    else if (v == 0) return f[x1][y1][x2][y2][v] =
-        (sum[x2][y2] - sum[x1 - 1][y2] - sum[x2][y1 - 1] + sum[x1 - 1][y1 - 1] - avg)*
-        (sum[x2][y2] - sum[x1 - 1][y2] - sum[x2][y1 - 1] + sum[x1 - 1][y1 - 1] - avg);
+    if (f[x1][y1][x2][y2][v] < f[0][0][0][0][0] - 100)
+        return f[x1][y1][x2][y2][v];
+    else if (v == 0)
+        return f[x1][y1][x2][y2][v] =
+                   (sum[x2][y2] - sum[x1 - 1][y2] - sum[x2][y1 - 1] + sum[x1 - 1][y1 - 1] - avg) *
+                   (sum[x2][y2] - sum[x1 - 1][y2] - sum[x2][y1 - 1] + sum[x1 - 1][y1 - 1] - avg);
     else
     {
         double ans = *****f;

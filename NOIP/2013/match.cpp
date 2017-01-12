@@ -1,16 +1,17 @@
-#include <cstdio>
-#include <cctype>
 #include <algorithm>
+#include <cctype>
+#include <cstdio>
 #include <utility>
 using namespace std;
-inline void getInt(int& x)
+inline void getInt(int &x)
 {
     x = 0;
     static int ch;
-    while (!isdigit(ch = getchar()));
+    while (!isdigit(ch = getchar()))
+        ;
     while (isdigit(ch)) x = x * 10 + ch - '0', ch = getchar();
 }
-#define lowbit(x) ((x)&-(x))
+#define lowbit(x) ((x) & -(x))
 pair<int, int> a[100001], b[100001];
 int n, c[100001], C[100001], ans;
 inline int query(int pos)

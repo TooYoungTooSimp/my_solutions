@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <cctype>
+#include <cstdio>
 #include <cstring>
 char key[101], str[1001];
 int lkey, lstr;

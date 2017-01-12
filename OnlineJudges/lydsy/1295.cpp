@@ -1,12 +1,12 @@
-#include <cstdio>
 #include <cmath>
+#include <cstdio>
 #include <cstring>
 struct point
 {
     int x, y;
-}que[1 << 16 | 1];
-const int dx[] = { 0, 0, 1, -1 };
-const int dy[] = { 1, -1, 0, 0 };
+} que[1 << 16 | 1];
+const int dx[] = {0, 0, 1, -1};
+const int dy[] = {1, -1, 0, 0};
 int m, n, T, a[33][33], f[33][33];
 char buf[35];
 double ans;
@@ -15,7 +15,7 @@ inline double dis(const point &l, const point &r)
 {
     return sqrt((l.x - r.x) * (l.x - r.x) + (l.y - r.y) * (l.y - r.y));
 }
-void spfa(const point& s)
+void spfa(const point &s)
 {
     int h = 0, t = 0;
     memset(f, 0x3f, sizeof(f));
@@ -42,7 +42,7 @@ void spfa(const point& s)
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
             if (f[i][j] <= T)
-                ans = fmax(ans, dis(s, { i,j }));
+                ans = fmax(ans, dis(s, {i, j}));
 }
 int main()
 {
@@ -55,7 +55,7 @@ int main()
     }
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
-            spfa({ i, j });
+            spfa({i, j});
     printf("%.6lf", ans);
     return 0;
 }

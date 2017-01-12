@@ -8,6 +8,5 @@ int main()
     scanf("%d%d", &n, &k);
     for (int i = 0; i < n; i++)
         scanf("%d", c + i), sum += c[i];
-
     return 0;
 }

@@ -4,11 +4,12 @@ int n, m, a[51];
 bool check(int x)
 {
     int cnt = m < x ? m : x;
-    for (int i = 0; i < n; i++) if (a[i] < x)
-    {
-        cnt -= x - a[i];
-        if (cnt < 0) return false;
-    }
+    for (int i = 0; i < n; i++)
+        if (a[i] < x)
+        {
+            cnt -= x - a[i];
+            if (cnt < 0) return false;
+        }
     return true;
 }
 int main()

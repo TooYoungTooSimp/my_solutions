@@ -66,7 +66,8 @@ int main()
         for (int i = 1; i <= mcnt; i++)
             for (int j = 1; j <= hcnt; j++)
                 addEdge(i, mcnt + j, 1, abs(M[i][0] - H[j][0]) + abs(M[i][1] - H[j][1]));
-        while (MCMF(S, T, F, C));
+        while (MCMF(S, T, F, C))
+            ;
         printf("%d\n", C);
     }
     return 0;

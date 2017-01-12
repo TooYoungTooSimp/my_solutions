@@ -1,7 +1,7 @@
-#include <iostream>
-#include <string>
-#include <queue>
 #include <algorithm>
+#include <iostream>
+#include <queue>
+#include <string>
 #include <unordered_map>
 #include <vector>
 using namespace std;
@@ -9,7 +9,7 @@ int n, ans;
 string a, b, cura, curb;
 unordered_map<string, int> H1, H2;
 pair<string, string> rules[6];
-vector<string> tran(const string& org, const pair<string, string> rule)
+vector<string> tran(const string &org, const pair<string, string> rule)
 {
     vector<string> arr;
     string s;

@@ -8,9 +8,16 @@ int main()
     {
         if (H[*i1] == 0) H[*i1] = *i2;
         if (R[*i2] == 0) R[*i2] = *i1;
-        if (H[*i1] != *i2 || R[*i2] != *i1) { puts("Failed"); return 0; }
+        if (H[*i1] != *i2 || R[*i2] != *i1) {
+            puts("Failed");
+            return 0;
+        }
     }
-    for (int c = 'A'; c <= 'Z'; c++) if (H[c] == 0) { puts("Failed"); return 0; }
+    for (int c = 'A'; c <= 'Z'; c++)
+        if (H[c] == 0) {
+            puts("Failed");
+            return 0;
+        }
     for (char *i3 = buf3; *i3; i3++) *i3 = H[*i3];
     puts(buf3);
     return 0;
