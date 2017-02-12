@@ -1,0 +1,69 @@
+\documentclass[]{cpp}
+\title{省选基础算法}
+\author{雷宇辰}
+\begin{document}
+	\setcounter{page}{0}
+	\maketitle
+	\newpage
+	\tableofcontents
+	\newpage
+    \setcounter{page}{1}
+	\section{day1 图论}
+	\subsection{有向图强连通分量的 Tarjan 算法}
+	\paragraph{定义}
+	在\textbf{有向图$G$}中，如果两个顶点$u,v$间存在一条路径$u$到$v$的路径且也存在一条$v$到$u$的路径，则称这两个顶点$u,v$是\textbf{强连通的(strongly connected)}。如果有向图$G$的每两个顶点都强连通，称$G$是一个\textbf{强连通图}。有向非强连通图的 极大强连通子图，称为\textbf{强连通分量(strongly connected components)}。若将有向图中的强连通分量都缩为一个点，则原图会形成一个 DAG（有向无环图）。
+	\subparagraph{极大强连通子图}
+	G 是一个极大强连通子图当且仅当 G 是一个强连通子图且不存在另一个强连通子图 G’使得 G 是 G’的真子集。
+	\paragraph{Tarjan 算法}
+	定义$dfn(u)$为结点$u$搜索的次序编号，给出函数$low(u)$使得\\
+	$low(u) = min$
+	\\$\{$\\
+	\verb|    |$dfn(u),$\\
+	\verb|    |$low(v),$  \quad $(u,v)$为树枝边，$u$为$v$的父结点\\
+	\verb|    |$dfn(v)\;$ \quad $(u,v)$为后向边或指向栈中结点的横叉边
+	\\$\}$\\
+	当结点$u$的搜索过程结束后，若$dfn(u)=low(u)$，则以$u$为根的搜索子树上所有还在栈中的结点是一个强连通分量。
+	\subparagraph{代码}$\\$
+	\codeinput[tarjan - SCC]{assets/day1/tarjan.cpp}
+	\paragraph{练习题}
+	\subparagraph{
+	\href{http://poj.org/problem?id=2186}{POJ2186}/
+	\href{http://www.lydsy.com/JudgeOnline/problem.php?id=1051}{BZOJ1051}
+	 - Popular Cows} 双倍的快乐
+	\codeinput[Popular Cows]{assets/day1/poj2186.cpp}
+	\subparagraph{\href{http://poj.org/problem?id=3180}{POJ3180} - The Cow Prom}
+	\verb|The N (2 <= N <= 10,000) cows are so excited.|
+	\codeinput[The Cow Prom]{assets/day1/poj3180.cpp}
+	\subparagraph{\href{http://poj.org/problem?id=3180}{POJ1236} - Network of Schools}
+	强连通分量缩点求出度为0的和入度为0的分量个数
+	\codeinput[Network of Schools]{assets/day1/poj1236.cpp}
+    \newpage
+	\section{day2 }
+    \newpage
+	\section{day3 }
+    \newpage
+	\section{day4 }
+    \newpage
+	\section{day5 }
+    \newpage
+	\section{day6 }
+    \newpage
+	\section{day7 }
+    \newpage
+	\section{day8 }
+    \newpage
+	\section{day9 }
+    \newpage
+	\section{day10 }
+    \newpage
+	\section{day11 }
+    \newpage
+	\section{day12 }
+    \newpage
+	\section{day13 }
+    \newpage
+	\section{day14 }
+    \newpage
+	\section{day15 }
+    \newpage
+\end{document}
