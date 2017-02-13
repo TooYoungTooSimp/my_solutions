@@ -24,12 +24,10 @@
 	\\$\}$\\
 	当结点$u$的搜索过程结束后，若$dfn(u)=low(u)$，则以$u$为根的搜索子树上所有还在栈中的结点是一个强连通分量。
 	\subparagraph{代码}$\\$
-	\codeinput[tarjan - SCC]{assets/day1/tarjan.cpp}
+	\codeinput[tarjan - SCC]{assets/day1/tarjan-scc.cpp}
 	\paragraph{练习题}
 	\subparagraph{
-	\href{http://poj.org/problem?id=2186}{POJ2186}/
-	\href{http://www.lydsy.com/JudgeOnline/problem.php?id=1051}{BZOJ1051}
-	 - Popular Cows} 双倍的快乐
+	\href{http://poj.org/problem?id=2186}{POJ2186}/\href{http://www.lydsy.com/JudgeOnline/problem.php?id=1051}{BZOJ1051} - Popular Cows} 双倍的快乐
 	\codeinput[Popular Cows]{assets/day1/poj2186.cpp}
 	\subparagraph{\href{http://poj.org/problem?id=3180}{POJ3180} - The Cow Prom}
 	\verb|The N (2 <= N <= 10,000) cows are so excited.|
@@ -37,33 +35,32 @@
 	\subparagraph{\href{http://poj.org/problem?id=3180}{POJ1236} - Network of Schools}
 	强连通分量缩点求出度为0的和入度为0的分量个数
 	\codeinput[Network of Schools]{assets/day1/poj1236.cpp}
-    \newpage
-	\section{day2 }
-    \newpage
-	\section{day3 }
-    \newpage
-	\section{day4 }
-    \newpage
-	\section{day5 }
-    \newpage
-	\section{day6 }
-    \newpage
-	\section{day7 }
-    \newpage
-	\section{day8 }
-    \newpage
-	\section{day9 }
-    \newpage
-	\section{day10 }
-    \newpage
-	\section{day11 }
-    \newpage
-	\section{day12 }
-    \newpage
-	\section{day13 }
-    \newpage
-	\section{day14 }
-    \newpage
-	\section{day15 }
-    \newpage
+	\subsection{图的割点、桥与双连通分量}
+	\paragraph{定义}
+	\subparagraph{点连通度与边连通度}
+	在一个\textbf{无向连通图}中，如果有一个顶点集合$V$，删除顶点集合$V$，以及与$V$中顶点相连（至少有一端在$V$中）的所有边后，原图\textbf{不连通}，就称这个点集$V$为\textbf{割点集合}。\\
+	一个图的\textbf{点连通度}的定义为：最小割点集合中的顶点数。\\
+	类似的，如果有一个边集合，删除这个边集合以后，原图不连通，就称这个点集为\textbf{割边集合}。
+	\subparagraph{双连通图、割点与桥}
+	如果一个无向连通图的\textbf{点连通度大于$1$}，则称该图是\textbf{点双连通的(point biconnected)}，简称双连通或重连通。一个图有\textbf{割点}，当且仅当这个图的点连通度为$1$，则割点集合的唯一元素被称为\textbf{割点(cut point)}，又叫关节点(articulation point)。一个图可能有多个割点。\\
+	如果一个无向连通图的\textbf{边连通度大于$1$}，则称该图是\textbf{边双连通的(edge biconnected)}，简称双连通或重连通。一个图有\textbf{桥}，当且仅当这个图的边连通度为$1$，则割边集合的唯一元素被称为\textbf{桥(bridge)}，又叫关节边(articulation edge)。一个图可能有多个桥。\\
+	可以看出，点双连通与边双连通都可以简称为双连通，它们之间是有着某种联系的，下文中提到的双连通，均既可指点双连通，又可指边双连通。（但这并不意味着它们等价）\\
+	双连通分量（分支）：在图 G 的所有子图 G'中，如果 G'是双连通的，则称 G'为双连通子图。如果一个双连通子图 G'它不是任何一个双连通子图的真子集，则 G'为极大双连通子图。双连通分量(biconnected component)，或重连通分量，就是图的极大双连通子图。特殊的，点双连通分量又叫做块。
+	\paragraph{Tarjan 算法}
+	给出函数$low(u)$使得\\
+	$low(u) = min$
+	\\$\{$\\
+	\verb|    |$dfn(u),$\\
+	\verb|    |$low(v),$  \quad $(u,v)$为树枝边(父子边)\\
+	\verb|    |$dfn(v)\;$ \quad $(u,v)$为后向边(返祖边) 等价于$dfn(v)<dfn(u)$且$v$不为$u$的父亲结点
+	\\$\}$\\
+	\subparagraph{代码}$\\$
+	\codeinput[tarjan - BCC]{assets/day1/tarjan-bcc.cpp}
+	\paragraph{练习题}
+	\subparagraph{\href{http://poj.org/problem?id=3177}{POJ3177} - Redundant Paths}
+	将一张有桥图通过加边变成边双连通图，至少要加$\frac{leaf+1}{2}$条边。
+	\codeinput[Redundant Paths]{assets/day1/poj3177.cpp}
+	\subparagraph{\href{http://poj.org/problem?id=1523}{POJ1523} - SPF}
+	求割点与删除这个点之后有多少个连通分量
+	\codeinput[Redundant Paths]{assets/day1/poj1523.cpp}
 \end{document}
