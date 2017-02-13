@@ -63,4 +63,25 @@
 	\subparagraph{\href{http://poj.org/problem?id=1523}{POJ1523} - SPF}
 	求割点与删除这个点之后有多少个连通分量
 	\codeinput[Redundant Paths]{assets/day1/poj1523.cpp}
+	\subsection{2-SAT}
+	\paragraph{定义}
+	给定一个布尔方程，判断是否存在一组布尔变量的取值方案，使得整个方程值为真的问题，被称为布尔方程的可满足性问题(SAT)。SAT问题是NP完全的，但对于一些特殊形式的SAT问题我们可以有效求解。\\
+	我们将下面这种布尔方程称为合取范式：
+	$$(a\lor b\lor c\lor\cdots)\land(d\lor e\lor f\lor\cdots)\land\cdots$$
+	其中$a,b,c,\cdots$称为文字，它是一个布尔变量或其否定。像$(a\lor b\lor c\lor\cdots)$这样用$\lor$连接的部分称为子句。如果合取范式的每个子句中的文字个数都不超过两个，那么对应的SAT问题又称为\textbf{2-SAT}问题。
+	\paragraph{解法}
+	对于给定的\textbf{2-SAT}问题，首先利用$\Rightarrow$将每个子句$(a\lor b)$改写成等价形式$(\neg a\Rightarrow b\land a\Rightarrow\neg b)$.这样原布尔公式就变成了把$a\Rightarrow b$形式的布尔公式用$\land$连接起来的形式。\\
+	对每个布尔变量$x$构造两个顶点分别代表$x$与$\neg x$。以$\Rightarrow$关系为边建立有向图。若在此图中$a$点能到达$b$点，就表示$a$为真时$b$也一定为真。因此该图中同一个强连通分量中所含的所有变量的布尔值均相同。\\
+	若存在某个变量$x$,代表$x$与$\neg x$的两个顶点在同一个强连通分量中，则原布尔表达式的值无法为真。\\
+	反之若不存在这样的变量，那么我们先将原图中所有的强连通分量缩为一个点，构出一个新图，新图显然是一个拓扑图，我们求出它的一个拓扑序。那么对于每个变量$x$，\textbf{$$x\text{所在的强连通分量（新图中的点）的拓扑序在}\neg x\text{所在的强连通分量之后}\Leftrightarrow x\text{为真}$$}就是一组合适布尔变量赋值。注意到 Tarjan 算法所求的强连通分量就是按拓扑序的逆序得出的，因此不需要真的缩点建新图求拓扑序，直接利用强连通分量的编号来当做顺序即可。
+	\paragraph{练习题}
+	\subparagraph{\href{http://poj.org/problem?id=3648}{POJ3648} - Wedding}
+	Additionally, there are several pairs of people conducting adulterous relationships (both different-sex and same-sex relationships are possible)
+	\codeinput[adulterous relationships]{assets/day1/poj3648.cpp}
+	\subparagraph{\href{http://poj.org/problem?id=3678}{POJ3678} - Katu Puzzle}
+	我什么时候做过这个题？
+	\codeinput[Katu Puzzle]{assets/day1/poj3678.cpp}
+	\subparagraph{\href{http://poj.org/problem?id=2749}{POJ2749} - Building roads}
+	杀光奶牛问题就会得到解决
+	\codeinput[Building roads]{assets/day1/poj2749.cpp}
 \end{document}
