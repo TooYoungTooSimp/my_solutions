@@ -84,4 +84,43 @@
 	\subparagraph{\href{http://poj.org/problem?id=2749}{POJ2749} - Building roads}
 	杀光奶牛问题就会得到解决
 	\codeinput[Building roads]{assets/day1/poj2749.cpp}
+	\subsection{欧拉回路}
+	\paragraph{定义}
+	设$G=(V,E)$是一个图。
+	\subparagraph{欧拉回路} 图 G 中经过\textbf{每条边一次}并且\textbf{仅一次}的回路称作欧拉回路。
+	\subparagraph{欧拉路径} 图 G 中经过\textbf{每条边一次}并且\textbf{仅一次}的路径称作欧拉路径。
+	\subparagraph{欧拉图}   存在\textbf{欧拉回路}的图称为欧拉图。
+	\subparagraph{半欧拉图} 存在欧拉路径但不存在欧拉回路的图称为半欧拉图。
+	\paragraph{性质与定理}
+	以下不加证明的给出一些定理\quad\sout{（因为我懒得抄讲义了}
+	\subparagraph{定理 1} 无向图$G$为欧拉图，当且仅当$G$为连通图且所有顶点的度为偶数。
+	\subparagraph{推论 1} 无向图$G$为半欧拉图，当且仅当$G$为连通图且除了两个顶点的度为奇数之外，其它所有顶点的度为偶数。
+	\subparagraph{定理 2} 有向图$G$为欧拉图，当且仅当$G$的基图\footnote{忽略有向图所有边的方向，得到的无向图称为该有向图的基图。}连通，且所有顶点的入度等于出度。
+	\subparagraph{推论 2} 有向图$G$为半欧拉图，当且仅当$G$的基图连通，且存在顶点$u$的入度比出度大1、$v$的入度比出度小1，其它所有顶点的入度等于出度。
+	\paragraph{代码}
+	由此可以得到以下求欧拉图 G 的欧拉回路的算法：
+	1 在图 G 中任意找一个回路 C ；
+	2 将图 G 中属于回路 C 的边删除；
+	3 在残留图的各极大连通子图中分别寻找欧拉回路；
+	4 将各极大连通子图的欧拉回路合并到 C 中得到图 G 的欧拉回路。
+	该算法的伪代码如下：
+	\begin{verbatim}
+	void dfs(u)
+	{
+	    for (edge e : edges[u])
+	        if (!flag[e])
+	        {
+	            flag[e] = true;
+	            flag[rev(e)] = true; //如果图 G 是有向图则删去本行
+	            dfs(e.to);
+	            S.push(v);
+	        }
+	}
+	\end{verbatim}
+	最后依次取出栈$S$每一条边而得到图$G$的欧拉回路(也就是边出栈序的逆序)。
+	由于该算法执行过程中每条边最多访问两次，因此该算法的时间复杂度为$O(|E|)$。
+	\paragraph{练习题}
+	\subparagraph{\href{http://uoj.ac/problem/117}{UOJ117} - 欧拉回路}
+	混合两个子任务使代码风格变得鬼畜起来。
+	\codeinput[Building roads]{assets/day1/uoj117.cpp}
 \end{document}
