@@ -2,19 +2,19 @@
 \title{省选基础算法}
 \author{雷宇辰}
 \begin{document}
-	\setcounter{page}{0}
-	\maketitle
-	\newpage
-	\tableofcontents
-	\newpage
-	\setcounter{page}{1}
-	\section{day1 图论}
-	\subsection{有向图强连通分量的 Tarjan 算法}
-	\paragraph{定义}
+\setcounter{page}{0}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\setcounter{page}{1}
+\section{day1 图论}
+\subsection{有向图强连通分量的 Tarjan 算法}
+\paragraph{定义}
 	在\textbf{有向图$G$}中，如果两个顶点$u,v$间存在一条路径$u$到$v$的路径且也存在一条$v$到$u$的路径，则称这两个顶点$u,v$是\textbf{强连通的(strongly connected)}。如果有向图$G$的每两个顶点都强连通，称$G$是一个\textbf{强连通图}。有向非强连通图的 极大强连通子图，称为\textbf{强连通分量(strongly connected components)}。若将有向图中的强连通分量都缩为一个点，则原图会形成一个 DAG（有向无环图）。
-	\subparagraph{极大强连通子图}
+\subparagraph{极大强连通子图}
 	G 是一个极大强连通子图当且仅当 G 是一个强连通子图且不存在另一个强连通子图 G’使得 G 是 G’的真子集。
-	\paragraph{Tarjan 算法}
+\paragraph{Tarjan 算法}
 	定义$dfn(u)$为结点$u$搜索的次序编号，给出函数$low(u)$使得\\
 	$low(u) = min$
 	\\$\{$\\
@@ -23,30 +23,27 @@
 	\verb|    |$dfn(v)\;$ \quad $(u,v)$为后向边或指向栈中结点的横叉边
 	\\$\}$\\
 	当结点$u$的搜索过程结束后，若$dfn(u)=low(u)$，则以$u$为根的搜索子树上所有还在栈中的结点是一个强连通分量。
-	\subparagraph{代码}$\\$
-	\codeinput[tarjan - SCC]{assets/day1/tarjan-scc.cpp}
-	\paragraph{练习题}
-	\subparagraph{
-	\href{http://poj.org/problem?id=2186}{POJ2186}/\href{http://www.lydsy.com/JudgeOnline/problem.php?id=1051}{BZOJ1051} - Popular Cows} 双倍的快乐
-	\codeinput[Popular Cows]{assets/day1/poj2186.cpp}
-	\subparagraph{\href{http://poj.org/problem?id=3180}{POJ3180} - The Cow Prom}
-	\verb|The N (2 <= N <= 10,000) cows are so excited.|
-	\codeinput[The Cow Prom]{assets/day1/poj3180.cpp}
-	\subparagraph{\href{http://poj.org/problem?id=3180}{POJ1236} - Network of Schools}
-	强连通分量缩点求出度为0的和入度为0的分量个数
-	\codeinput[Network of Schools]{assets/day1/poj1236.cpp}
-	\subsection{图的割点、桥与双连通分量}
-	\paragraph{定义}
-	\subparagraph{点连通度与边连通度}
+\subparagraph{代码}$\\$
+\codeinput[tarjan - SCC]{assets/day1/tarjan-scc.cpp}
+\paragraph{练习题}
+\subparagraph{\href{http://poj.org/problem?id=2186}{POJ2186}/\href{http://www.lydsy.com/JudgeOnline/problem.php?id=1051}{BZOJ1051} - Popular Cows} 双倍的快乐
+\codeinput[Popular Cows]{assets/day1/poj2186.cpp}
+\subparagraph{\href{http://poj.org/problem?id=3180}{POJ3180} - The Cow Prom} The $N (2 <= N <= 10,000)$ cows are so excited.
+\codeinput[The Cow Prom]{assets/day1/poj3180.cpp}
+\subparagraph{\href{http://poj.org/problem?id=3180}{POJ1236} - Network of Schools} 强连通分量缩点求出度为0的和入度为0的分量个数
+\codeinput[Network of Schools]{assets/day1/poj1236.cpp}
+\subsection{图的割点、桥与双连通分量}
+\paragraph{定义}
+\subparagraph{点连通度与边连通度}
 	在一个\textbf{无向连通图}中，如果有一个顶点集合$V$，删除顶点集合$V$，以及与$V$中顶点相连（至少有一端在$V$中）的所有边后，原图\textbf{不连通}，就称这个点集$V$为\textbf{割点集合}。\\
 	一个图的\textbf{点连通度}的定义为：最小割点集合中的顶点数。\\
 	类似的，如果有一个边集合，删除这个边集合以后，原图不连通，就称这个点集为\textbf{割边集合}。
-	\subparagraph{双连通图、割点与桥}
+\subparagraph{双连通图、割点与桥}
 	如果一个无向连通图的\textbf{点连通度大于$1$}，则称该图是\textbf{点双连通的(point biconnected)}，简称双连通或重连通。一个图有\textbf{割点}，当且仅当这个图的点连通度为$1$，则割点集合的唯一元素被称为\textbf{割点(cut point)}，又叫关节点(articulation point)。一个图可能有多个割点。\\
 	如果一个无向连通图的\textbf{边连通度大于$1$}，则称该图是\textbf{边双连通的(edge biconnected)}，简称双连通或重连通。一个图有\textbf{桥}，当且仅当这个图的边连通度为$1$，则割边集合的唯一元素被称为\textbf{桥(bridge)}，又叫关节边(articulation edge)。一个图可能有多个桥。\\
 	可以看出，点双连通与边双连通都可以简称为双连通，它们之间是有着某种联系的，下文中提到的双连通，均既可指点双连通，又可指边双连通。（但这并不意味着它们等价）\\
 	双连通分量（分支）：在图 G 的所有子图 G'中，如果 G'是双连通的，则称 G'为双连通子图。如果一个双连通子图 G'它不是任何一个双连通子图的真子集，则 G'为极大双连通子图。双连通分量(biconnected component)，或重连通分量，就是图的极大双连通子图。特殊的，点双连通分量又叫做块。
-	\paragraph{Tarjan 算法}
+\paragraph{Tarjan 算法}
 	给出函数$low(u)$使得\\
 	$low(u) = min$
 	\\$\{$\\
@@ -54,55 +51,55 @@
 	\verb|    |$low(v),$  \quad $(u,v)$为树枝边(父子边)\\
 	\verb|    |$dfn(v)\;$ \quad $(u,v)$为后向边(返祖边) 等价于$dfn(v)<dfn(u)$且$v$不为$u$的父亲结点
 	\\$\}$\\
-	\subparagraph{代码}$\\$
-	\codeinput[tarjan - BCC]{assets/day1/tarjan-bcc.cpp}
-	\paragraph{练习题}
-	\subparagraph{\href{http://poj.org/problem?id=3177}{POJ3177} - Redundant Paths}
-	将一张有桥图通过加边变成边双连通图，至少要加$\frac{leaf+1}{2}$条边。
-	\codeinput[Redundant Paths]{assets/day1/poj3177.cpp}
-	\subparagraph{\href{http://poj.org/problem?id=1523}{POJ1523} - SPF}
-	求割点与删除这个点之后有多少个连通分量
-	\codeinput[Redundant Paths]{assets/day1/poj1523.cpp}
-	\subsection{2-SAT}
-	\paragraph{定义}
+\subparagraph{代码}$\\$
+\codeinput[tarjan - BCC]{assets/day1/tarjan-bcc.cpp}
+\paragraph{练习题}
+\subparagraph{\href{http://poj.org/problem?id=3177}{POJ3177} - Redundant Paths}
+将一张有桥图通过加边变成边双连通图，至少要加$\frac{leaf+1}{2}$条边。
+\codeinput[Redundant Paths]{assets/day1/poj3177.cpp}
+\subparagraph{\href{http://poj.org/problem?id=1523}{POJ1523} - SPF}
+求割点与删除这个点之后有多少个连通分量
+\codeinput[Redundant Paths]{assets/day1/poj1523.cpp}
+\subsection{2-SAT}
+\paragraph{定义}
 	给定一个布尔方程，判断是否存在一组布尔变量的取值方案，使得整个方程值为真的问题，被称为布尔方程的可满足性问题(SAT)。SAT问题是NP完全的，但对于一些特殊形式的SAT问题我们可以有效求解。\\
 	我们将下面这种布尔方程称为合取范式：
 	$$(a\lor b\lor c\lor\cdots)\land(d\lor e\lor f\lor\cdots)\land\cdots$$
 	其中$a,b,c,\cdots$称为文字，它是一个布尔变量或其否定。像$(a\lor b\lor c\lor\cdots)$这样用$\lor$连接的部分称为子句。如果合取范式的每个子句中的文字个数都不超过两个，那么对应的SAT问题又称为\textbf{2-SAT}问题。
-	\paragraph{解法}
+\paragraph{解法}
 	对于给定的\textbf{2-SAT}问题，首先利用$\Rightarrow$将每个子句$(a\lor b)$改写成等价形式$(\neg a\Rightarrow b\land a\Rightarrow\neg b)$.这样原布尔公式就变成了把$a\Rightarrow b$形式的布尔公式用$\land$连接起来的形式。\\
 	对每个布尔变量$x$构造两个顶点分别代表$x$与$\neg x$。以$\Rightarrow$关系为边建立有向图。若在此图中$a$点能到达$b$点，就表示$a$为真时$b$也一定为真。因此该图中同一个强连通分量中所含的所有变量的布尔值均相同。\\
 	若存在某个变量$x$,代表$x$与$\neg x$的两个顶点在同一个强连通分量中，则原布尔表达式的值无法为真。\\
 	反之若不存在这样的变量，那么我们先将原图中所有的强连通分量缩为一个点，构出一个新图，新图显然是一个拓扑图，我们求出它的一个拓扑序。那么对于每个变量$x$，\textbf{$$x\text{所在的强连通分量（新图中的点）的拓扑序在}\neg x\text{所在的强连通分量之后}\Leftrightarrow x\text{为真}$$}就是一组合适布尔变量赋值。注意到 Tarjan 算法所求的强连通分量就是按拓扑序的逆序得出的，因此不需要真的缩点建新图求拓扑序，直接利用强连通分量的编号来当做顺序即可。
-	\paragraph{练习题}
-	\subparagraph{\href{http://poj.org/problem?id=3648}{POJ3648} - Wedding}
-	Additionally, there are several pairs of people conducting adulterous relationships (both different-sex and same-sex relationships are possible)
-	\codeinput[adulterous relationships]{assets/day1/poj3648.cpp}
-	\subparagraph{\href{http://poj.org/problem?id=3678}{POJ3678} - Katu Puzzle}
-	我什么时候做过这个题？
-	\codeinput[Katu Puzzle]{assets/day1/poj3678.cpp}
-	\subparagraph{\href{http://poj.org/problem?id=2749}{POJ2749} - Building roads}
-	杀光奶牛问题就会得到解决
-	\codeinput[Building roads]{assets/day1/poj2749.cpp}
-	\subsection{欧拉回路}
-	\paragraph{定义}
+\paragraph{练习题}
+\subparagraph{\href{http://poj.org/problem?id=3648}{POJ3648} - Wedding}
+Additionally, there are several pairs of people conducting adulterous relationships (both different-sex and same-sex relationships are possible)
+\codeinput[adulterous relationships]{assets/day1/poj3648.cpp}
+\subparagraph{\href{http://poj.org/problem?id=3678}{POJ3678} - Katu Puzzle} 我什么时候做过这个题？
+\codeinput[Katu Puzzle]{assets/day1/poj3678.cpp}
+\subparagraph{\href{http://poj.org/problem?id=2749}{POJ2749} - Building roads} 杀光奶牛问题就会得到解决
+\codeinput[Building roads]{assets/day1/poj2749.cpp}
+\subsection{欧拉回路}
+\paragraph{定义}
 	设$G=(V,E)$是一个图。
-	\subparagraph{欧拉回路} 图 G 中经过\textbf{每条边一次}并且\textbf{仅一次}的回路称作欧拉回路。
-	\subparagraph{欧拉路径} 图 G 中经过\textbf{每条边一次}并且\textbf{仅一次}的路径称作欧拉路径。
-	\subparagraph{欧拉图}   存在\textbf{欧拉回路}的图称为欧拉图。
-	\subparagraph{半欧拉图} 存在欧拉路径但不存在欧拉回路的图称为半欧拉图。
-	\paragraph{性质与定理}
-	以下不加证明的给出一些定理\quad\sout{（因为我懒得抄讲义了}
-	\subparagraph{定理 1} 无向图$G$为欧拉图，当且仅当$G$为连通图且所有顶点的度为偶数。
-	\subparagraph{推论 1} 无向图$G$为半欧拉图，当且仅当$G$为连通图且除了两个顶点的度为奇数之外，其它所有顶点的度为偶数。
-	\subparagraph{定理 2} 有向图$G$为欧拉图，当且仅当$G$的基图\footnote{忽略有向图所有边的方向，得到的无向图称为该有向图的基图。}连通，且所有顶点的入度等于出度。
-	\subparagraph{推论 2} 有向图$G$为半欧拉图，当且仅当$G$的基图连通，且存在顶点$u$的入度比出度大1、$v$的入度比出度小1，其它所有顶点的入度等于出度。
-	\paragraph{代码}
-	由此可以得到以下求欧拉图 G 的欧拉回路的算法：
-	1 在图 G 中任意找一个回路 C ；
-	2 将图 G 中属于回路 C 的边删除；
-	3 在残留图的各极大连通子图中分别寻找欧拉回路；
-	4 将各极大连通子图的欧拉回路合并到 C 中得到图 G 的欧拉回路。
+\subparagraph{欧拉回路} 图 G 中经过\textbf{每条边一次}并且\textbf{仅一次}的回路称作欧拉回路。
+\subparagraph{欧拉路径} 图 G 中经过\textbf{每条边一次}并且\textbf{仅一次}的路径称作欧拉路径。
+\subparagraph{欧拉图}   存在\textbf{欧拉回路}的图称为欧拉图。
+\subparagraph{半欧拉图} 存在欧拉路径但不存在欧拉回路的图称为半欧拉图。
+\paragraph{性质与定理}
+以下不加证明的给出一些定理\quad\sout{（因为我懒得抄讲义了}
+\subparagraph{定理 1} 无向图$G$为欧拉图，当且仅当$G$为连通图且所有顶点的度为偶数。
+\subparagraph{推论 1} 无向图$G$为半欧拉图，当且仅当$G$为连通图且除了两个顶点的度为奇数之外，其它所有顶点的度为偶数。
+\subparagraph{定理 2} 有向图$G$为欧拉图，当且仅当$G$的基图\footnote{忽略有向图所有边的方向，得到的无向图称为该有向图的基图。}连通，且所有顶点的入度等于出度。
+\subparagraph{推论 2} 有向图$G$为半欧拉图，当且仅当$G$的基图连通，且存在顶点$u$的入度比出度大1、$v$的入度比出度小1，其它所有顶点的入度等于出度。
+\paragraph{解法}
+	由此可以得到以下求欧拉图$G$的欧拉回路的算法：
+	\begin{enumerate}
+		\item 在图$G$中任意找一个回路$C$。
+		\item 将图$G$中属于回路$C$的边删除
+		\item 在残留图的各极大连通子图中分别寻找欧拉回路。
+		\item 将各极大连通子图的欧拉回路合并到$C$中得到图$G$的欧拉回路。
+	\end{enumerate}
 	该算法的伪代码如下：
 	\begin{verbatim}
 	void dfs(u)
@@ -117,10 +114,9 @@
 	        }
 	}
 	\end{verbatim}
-	最后依次取出栈$S$每一条边而得到图$G$的欧拉回路(也就是边出栈序的逆序)。
-	由于该算法执行过程中每条边最多访问两次，因此该算法的时间复杂度为$O(|E|)$。
-	\paragraph{练习题}
-	\subparagraph{\href{http://uoj.ac/problem/117}{UOJ117} - 欧拉回路}
-	混合两个子任务使代码风格变得鬼畜起来。
-	\codeinput[Building roads]{assets/day1/uoj117.cpp}
+	最后依次取出栈$S$每一条边而得到图$G$的欧拉回路(也就是边出栈序的逆序)。由于该算法执行过程中每条边最多访问两次，因此该算法的时间复杂度为$O(|E|)$。
+\paragraph{练习题}
+\subparagraph{\href{http://uoj.ac/problem/117}{UOJ117} - 欧拉回路}
+混合两个子任务使代码风格变得鬼畜起来。
+\codeinput[Building roads]{assets/day1/uoj117.cpp}
 \end{document}
