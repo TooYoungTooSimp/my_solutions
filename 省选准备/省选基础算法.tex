@@ -60,6 +60,10 @@
 \subparagraph{\href{http://poj.org/problem?id=1523}{POJ1523} - SPF}
 求割点与删除这个点之后有多少个连通分量
 \codeinput[Redundant Paths]{assets/day1/poj1523.cpp}
+\subparagraph{\href{http://poj.org/problem?id=2942}{POJ2942} - Knights of the Round Table}
+这题过于复杂，我来先给个\href{http://blog.csdn.net/lyy289065406/article/details/6756821}{别人的题解}。然后是我自己的实现（仿佛还是没看懂。
+\\实现被狗吃了
+%\codeinput[Knights of the Round Table]{assets/day1/poj2942.cpp}
 \subsection{2-SAT}
 \paragraph{定义}
 	给定一个布尔方程，判断是否存在一组布尔变量的取值方案，使得整个方程值为真的问题，被称为布尔方程的可满足性问题(SAT)。SAT问题是NP完全的，但对于一些特殊形式的SAT问题我们可以有效求解。\\
@@ -87,7 +91,7 @@ Additionally, there are several pairs of people conducting adulterous relationsh
 \subparagraph{欧拉图}   存在\textbf{欧拉回路}的图称为欧拉图。
 \subparagraph{半欧拉图} 存在欧拉路径但不存在欧拉回路的图称为半欧拉图。
 \paragraph{性质与定理}
-以下不加证明的给出一些定理\quad\sout{（因为我懒得抄讲义了}
+	以下不加证明的给出一些定理\quad\sout{（因为我懒得抄讲义了}
 \subparagraph{定理 1} 无向图$G$为欧拉图，当且仅当$G$为连通图且所有顶点的度为偶数。
 \subparagraph{推论 1} 无向图$G$为半欧拉图，当且仅当$G$为连通图且除了两个顶点的度为奇数之外，其它所有顶点的度为偶数。
 \subparagraph{定理 2} 有向图$G$为欧拉图，当且仅当$G$的基图\footnote{忽略有向图所有边的方向，得到的无向图称为该有向图的基图。}连通，且所有顶点的入度等于出度。
@@ -117,6 +121,28 @@ Additionally, there are several pairs of people conducting adulterous relationsh
 	最后依次取出栈$S$每一条边而得到图$G$的欧拉回路(也就是边出栈序的逆序)。由于该算法执行过程中每条边最多访问两次，因此该算法的时间复杂度为$O(|E|)$。
 \paragraph{练习题}
 \subparagraph{\href{http://uoj.ac/problem/117}{UOJ117} - 欧拉回路}
-混合两个子任务使代码风格变得鬼畜起来。
+	混合两个子任务使代码风格变得鬼畜起来。
 \codeinput[Building roads]{assets/day1/uoj117.cpp}
+\section{day2 字符串（一）}
+\subsection{KMP}
+\paragraph{算法介绍} 用来在线性时间内匹配字符串
+\paragraph{算法流程}
+	我觉得鏼鏼鏼在WC上讲的比较清楚，于是我开始抄讲义。\\
+	\textbf{字符串：} $s[1\ldots n]$, $|s| = n$。\\
+	\textbf{子串：} $s[i\ldots j] = s[i]s[i + 1]\cdots[j]$。\\
+	\textbf{前缀：} $pre(s,x) = s[1\ldots x]$, 后缀：$suf(s,x) = s[n − x + 1\ldots n]$\\
+	若 $0 \leq r \le |s|, pre(s,r) = suf(s,r)$, 就称 $pre(s,r)$ 是 $s$ 的 \textbf{border}。\\
+	KMP算法的第一步主要做这么一件事：在$O(n)$时间求出数组$next[1\ldots n]$, 其中$next[i]$表示前缀$s[1\ldots i]$的最大 border 长度。
+	于是可以知道$s$的所有 border 长度为${next[n],next[next[n]],\cdots}$，我想这是显然的，于是不加证明的在这里给出。\\
+	第二步就是匹配，如果失配了就把模式串的当前位置指针$i$跳到$next[i]$处然后继续匹配，然后就好了。
+\paragraph{算法实现}$\\$
+\codeinput[genNext]{assets/day2/kmp-genNext.cpp}
+\codeinput[Find]{assets/day2/kmp-Find.cpp}
+\paragraph{练习题}
+\subparagraph{\href{http://poj.org/problem?id=3461}{POJ3461} - Oulipo} 求出所有匹配位置
+\codeinput[Oulipo]{assets/day2/poj3461.cpp}
+\subparagraph{\href{http://poj.org/problem?id=2406}{POJ2406} - Power Strings} $next$数组的奇妙性质
+\codeinput[Power Strings]{assets/day2/poj2406.cpp}
+\subparagraph{\href{http://codeforces.com/problemset/problem/526/D}{CF526D} - Om Nom and Necklace} 啥？
+\codeinput[Om Nom and Necklace]{assets/day2/CF526D.cpp}
 \end{document}
