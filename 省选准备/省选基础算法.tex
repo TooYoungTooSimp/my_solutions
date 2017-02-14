@@ -145,4 +145,17 @@ Additionally, there are several pairs of people conducting adulterous relationsh
 \codeinput[Power Strings]{assets/day2/poj2406.cpp}
 \subparagraph{\href{http://codeforces.com/problemset/problem/526/D}{CF526D} - Om Nom and Necklace} 啥？
 \codeinput[Om Nom and Necklace]{assets/day2/CF526D.cpp}
+讲道理我KMP真的学的不是很明白，望各位dalao给予指导。
+\subsection{Trie}
+\paragraph{简介}
+	字典树，也称 Trie、字母树，指的是某个字符串集合对应的形如下图的有根树。树的每条边上对应有恰好一个字符，每个顶点代表从根到该节点的路径所对应的字符串（将所有经过的边上的字符按顺序连接起来）。
+\paragraph{实现} 水
+\codeinput[Trie - impl]{assets/day2/trieImpl.cpp}
+\paragraph{练习题}
+\subparagraph{\href{http://poj.org/problem?id=3630}{POJ3630} - Phone List}
+若插入过程中，有某个经过的节点带有串结尾标记，则之前插入的某个串是当前串的前缀。
+\codeinput[Oulipo]{assets/day2/poj3630.cpp}
+\subparagraph{\href{http://poj.org/problem?id=2945}{POJ2945} - Find the Clones} 
+$n$个基因片段，每个长度为$m$，输出$n$行表示重复出现$i$次$(1 \leq i \leq n)$的基因片段的个数
+\codeinput[Find the Clones]{assets/day2/poj2945.cpp}
 \end{document}
