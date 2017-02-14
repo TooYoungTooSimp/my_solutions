@@ -158,4 +158,15 @@ Additionally, there are several pairs of people conducting adulterous relationsh
 \subparagraph{\href{http://poj.org/problem?id=2945}{POJ2945} - Find the Clones} 
 $n$个基因片段，每个长度为$m$，输出$n$行表示重复出现$i$次$(1 \leq i \leq n)$的基因片段的个数
 \codeinput[Find the Clones]{assets/day2/poj2945.cpp}
+待续
+\subsection{Aho–Corasick Automaton}
+\paragraph{简介}
+	多模式串字符串匹配，Trie上的KMP，其中$next$数组变成了$fail$指针，功能相同。
+\paragraph{实现}
+	Trie的实现上文已经出现，所以此处不再重复。
+\codeinput[buildFail]{assets/day2/AC-buildFail.cpp}
+\paragraph{练习题}
+\subparagraph{\href{http://acm.hdu.edu.cn/showproblem.php?pid=2222}{HDU2222} - Keywords Search}
+AC 自动机模板题，注意统计答案时，每个节点只能统计一次不要重复统计。
+\codeinput[Keywords Search]{assets/day2/poj3630.cpp}
 \end{document}
