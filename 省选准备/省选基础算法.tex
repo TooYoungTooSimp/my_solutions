@@ -62,7 +62,7 @@
 \codeinput[Redundant Paths]{assets/day1/poj1523.cpp}
 \subparagraph{\href{http://poj.org/problem?id=2942}{POJ2942} - Knights of the Round Table}
 这题过于复杂，我来先给个\href{http://blog.csdn.net/lyy289065406/article/details/6756821}{别人的题解}。然后是我自己的实现（仿佛还是没看懂。
-\\实现被狗吃了
+\\ //实现被狗吃了
 %\codeinput[Knights of the Round Table]{assets/day1/poj2942.cpp}
 \subsection{2-SAT}
 \paragraph{定义}
@@ -121,7 +121,7 @@ Additionally, there are several pairs of people conducting adulterous relationsh
 	最后依次取出栈$S$每一条边而得到图$G$的欧拉回路(也就是边出栈序的逆序)。由于该算法执行过程中每条边最多访问两次，因此该算法的时间复杂度为$O(|E|)$。
 \paragraph{练习题}
 \subparagraph{\href{http://uoj.ac/problem/117}{UOJ117} - 欧拉回路}
-	混合两个子任务使代码风格变得鬼畜起来。
+混合两个子任务使代码风格变得鬼畜起来。
 \codeinput[Building roads]{assets/day1/uoj117.cpp}
 \section{day2 字符串（一）}
 \subsection{KMP}
@@ -158,7 +158,6 @@ Additionally, there are several pairs of people conducting adulterous relationsh
 \subparagraph{\href{http://poj.org/problem?id=2945}{POJ2945} - Find the Clones} 
 $n$个基因片段，每个长度为$m$，输出$n$行表示重复出现$i$次$(1 \leq i \leq n)$的基因片段的个数
 \codeinput[Find the Clones]{assets/day2/poj2945.cpp}
-待续
 \subsection{Aho–Corasick Automaton}
 \paragraph{简介}
 	多模式串字符串匹配，Trie上的KMP，其中$next$数组变成了$fail$指针，功能相同。
@@ -175,4 +174,128 @@ AC 自动机模板题，注意统计答案时，每个节点只能统计一次�
 \subparagraph{\href{http://poj.org/problem?id=3974}{POJ3974} - Palindrome}
 Manacher 模板题
 \codeinput[Palindrome]{assets/day2/poj3974.cpp}
+\section{day3 简单数学}
+说是简单数学其实我后半部分也没看懂，等明天来补欠债。20170215\\
+\subsection{整除及剩余}
+\paragraph{整除定义}
+	设$a,b$是两个整数，且$b\neq0$.如果存在整数$c$，使得$a=bc$，则称$a$被$b$整除，或$b$整除$a$，记作$b|a$。此时，又称$a$是$b$的倍数，$b$是$a$的因子。
+\paragraph{整除的基本性质}
+	\begin{enumerate}
+		\item $a|b \land a|c \Rightarrow a|(b+c)$
+		\item $a|b \Rightarrow \forall c\in\mathbb{Z},\ a|bc$
+		\item $a|b \land b|c \Rightarrow a|c$
+	\end{enumerate}
+\paragraph{同余基本定义和定理}
+\subparagraph{定义1：带余除法}
+	$$\forall a\in\mathbb{Z},b\in\mathbb{Z^{*}}\to\exists q,r\in\mathbb{Z},a=qb+r,r\in [0,|b|)$$
+\subparagraph{定义2：同余}
+	$$a\!\!\!\!\mod m = b\!\!\!\!\mod m \iff a\equiv b\!\!\!\!\pmod{m}$$
+\subparagraph{定义3：剩余类}
+	$$\mathbf{A_i}=\{x|x\in\mathbb{Z}\land x\!\!\!\!\mod{m} = i\}\to\forall a,b\in\mathbf{A_i},a\equiv b\!\!\!\!\pmod{m}$$
+\subparagraph{定义4：完系}
+	$$\{a_1\!\!\!\!\mod m,a_2\!\!\!\!\mod m,\ldots,a_n\!\!\!\!\mod m\}=\{0,1,2,\ldots,m-1\}$$
+\subparagraph{定理1}
+	$$a\equiv b\!\!\!\!\pmod{m}\iff\exists k\in\mathbb{Z},a=b+km\iff m|(a-b)$$
+\subparagraph{定理2} 同余关系是等价关系
+	\begin{enumerate}
+		\item $a\equiv a\pmod{m}$
+		\item $a\equiv b\pmod{m}\Rightarrow b\equiv a\pmod{m}$
+		\item $a\equiv b\pmod{m} \;\land\; b\equiv c\pmod{m}\Rightarrow a\equiv c\pmod{m}$
+	\end{enumerate}
+\subparagraph{定理3} 同余的三则运算\\
+	$a,b,c\in\mathbb{R},m\in\mathbb{N^*}, a\equiv b\pmod{m} \Rightarrow$
+	\begin{enumerate}
+		\item $a+c\equiv b+c\pmod{m}$
+		\item $a-c\equiv b-c\pmod{m}$
+		\item $ac\equiv bc\pmod{m}$
+	\end{enumerate}
+\subparagraph{定理4} 同余式的三则运算\\
+	$a,b,c\in\mathbb{R},m\in\mathbb{N^*}, a\equiv b\pmod{m} \land c\equiv d\pmod{m} \Rightarrow$
+	\begin{enumerate}
+		\item $ax+cy\equiv bx+dy\pmod{m}\qquad x,y\in\mathbb{Z}$
+		\item $ac\equiv bd\pmod{m}$
+		\item $a^n\equiv b^n\pmod{m}\qquad n\in\mathbb{N^*}$
+		\item $f(a)\equiv f(b)\pmod{m}\qquad f(x)$为任一整系数多项式
+	\end{enumerate}
+\subparagraph{定理5}
+	\begin{enumerate}
+		\item $a\equiv b\pmod{m}\land d|m \Rightarrow a\equiv b\pmod{d}$
+		\item $a\equiv b\pmod{m}\Rightarrow gcd(a,m)=gcd(b,m)$
+		\item $\forall i \in [1,n]\ ,\;a\equiv b\pmod{m_i} \iff a\equiv b\pmod{lcm(m_1,m_2,\ldots,m_n)}$
+	\end{enumerate}
+\subsection{素数}
+\paragraph{定义}
+	素数（质数）是大于$1$的正整数，并且除了$1$和它本身不能被其他正整数整除。大于$1$的非素数的正整数称为合数。
+\paragraph{分布}
+	素数有无穷多个.如果使用$\pi(x)$表示小于一个正实数$x$的素数有多少个，那么有$$\lim\limits_{x\rightarrow{\infty}}\frac{\pi(x)}{x}=\ln{x}$$
+\paragraph{算术基本定理/惟一分解定理}
+	$$n=\prod\limits_{i=1}^\infty p_i^{a_i} \qquad p_i\in\mathbb{P},\;a_i\in\mathbb{N}$$
+\paragraph{判定}
+	$$n\in\mathbb{P}\iff\forall i\in[2,\sqrt{n}],\;i\nmid n$$
+\paragraph{Eratosthenes 筛法} $ $
+\codeinput[Eratosthenes Sieve]{assets/day3/Eratosthenes.cpp}
+\paragraph{欧拉函数} 欧拉函数$\varphi(n)$指不超过$n$且与$n$互素的正整数的个数，其中$n$是一个正整数。
+\subparagraph{欧拉函数的性质} $n=\prod\limits_{i=1}^m p_i^{a_i}\to\varphi(n)=\prod\limits_{i=1}^m\varphi(p_i^{a_i})$
+\subparagraph{定理1} $p\in\mathbb{P}\iff\varphi(p)=p-1$
+\subparagraph{定理2} $p\in\mathbb{P},\;a\in\mathbb{N_+}\Rightarrow\varphi(p^a)=p^{a}-p^{a-1}$
+\subparagraph{定理3} $m,n\in\mathbb{N_+}\land gcd(m,n)=1\Rightarrow\varphi(mn)=\varphi(m)\varphi(n)$
+\subparagraph{定理4} $n=\prod\limits_{i=1}^m p_i^{a_i}\to\varphi(n)=n\prod\limits_{i=1}^{m}(1-\frac{1}{p_i})$
+\subparagraph{推论} $n\equiv1\pmod2\to\varphi(2n)=\varphi(n)$
+\subparagraph{定理5} $n\in(2,+\infty)\bigcap\mathbb{Z}\Rightarrow\varphi(n)\equiv0\pmod2$
+\subparagraph{定理6} $n\in\mathbb{N_+}\Rightarrow\sum\limits_{d|n}\varphi(n)=n$
+\subparagraph{欧拉定理} $gcd(a,m)=1,a\in\mathbb{N_+},m\in[2,+\infty)\bigcap\mathbb{Z}\Rightarrow a^{\varphi(m)}\equiv1\pmod{m}$
+\subparagraph{费马小定理} $m\in\mathbb{P}\Rightarrow a^{m-1}\equiv1\pmod{m}$
+\paragraph{练习题}
+\subparagraph{\href{http://poj.org/problem?id=2689}{POJ2689} - Prime Distance} 暴力筛掉合数
+\codeinput[Prime Distance]{assets/day3/poj2689.cpp}
+\subparagraph{\href{http://poj.org/problem?id=3421}{POJ3421} - X-factor Chains} 质因子的排列组合
+\codeinput[X-factor Chains]{assets/day3/poj3421.cpp}
+\subparagraph{\href{http://poj.org/problem?id=3090}{POJ3090} - Visible Lattice Points} 欧拉函数
+\codeinput[Visible Lattice Points]{assets/day3/poj3090.cpp}
+\subsection{欧几里得算法}
+\paragraph{最大公约数与最小公倍数}
+\subparagraph{定义1} 设$a$和$b$是两个整数，如果$d|a$ 且$d|b$，则称$d$是$a$与$b$的公因子
+\subparagraph{定义2} 设$a$和$b$是两个不全为$0$的整数，称$a$与$b$的公因子中最大的为$a$与$b$的最大公因子，或最大公约数，记作$gcd(a,b)$
+\subparagraph{定义3} 设$a$和$b$是两个非零整数，称$a$与$b$最小的正公倍数为$a$与$b$的最小公倍数，记作$lcm(a,b)$
+\paragraph{最大公约数与最小公倍数的性质}
+	\begin{enumerate}
+		\item $a|m \land b|m \Rightarrow lcm(a,b)|m$
+		\item $d|a \land d|b \Rightarrow d|gcd(a,b)$
+		\item $lcm(a,b)=\frac{ab}{gcd(a,b)}$
+		\item $m,a,b\in\mathbb{N_+}\to lcm(ma,mb)=m\times lcm(a,b)\ ,\;\ gcd(ma,mb)=m \times gcd(a,b)$
+	\end{enumerate}
+\paragraph{计算方法}
+\subparagraph{素因子分解法}
+	令 $$a=\prod\limits_{i=1}^{m}p_{i}^{r_i}\;,\quad\;b=\prod\limits_{i=1}^{m}p_{i}^{s_i}$$
+	于是 $$gcd(a,b)=\prod\limits_{i=1}^{m}p_{i}^{min(r_i,s_i)}\;,\quad\;lcm(a,b)=\prod\limits_{i=1}^{m}p_{i}^{max(r_i,s_i)}$$
+\subparagraph{欧几里得算法1} $$gcd(a,b)=gcd(b,a\!\!\!\!\mod b)$$
+\subparagraph{欧几里得算法2} $$gcd(a,b)=gcd(a,a-b)$$
+\paragraph{拓展欧几里得算法} 不理解就记下来
+\codeinput[exgcd]{assets/day3/exgcd.cpp}
+\subsection{线性同余方程}
+\paragraph{二元一次不定方程}
+\subparagraph{定义1} $a,b,c\in\mathbb{Z},a\ne0,b\ne0$，那形如$ax+by=c$的方程称为二元一次不定方程。
+\subparagraph{定理1} 设$a,b\in\mathbb{Z}$且$d=gcd(a,b)$，如果$d|c$，那么方程存在无穷多个整数解，否则方程不存在整数解。
+\subparagraph{定理2} 如果不定方程有解且特解为$x=x_0,y=y_0$那么方程的解可以表示为$$x=x_0+\frac{b}{d}t,y=y_0-\frac{a}{d}t,\mbox{其中}t\in\mathbb{Z}$$
+\paragraph{同余方程与不定方程} 在$a>0$且$b>0$的条件下，求二元一次方程$ax+by=c$的整数解等价于求一元线性同余方程$ax\equiv c\bmod{b}$的整数解
+\paragraph{求一元线性同余方程}
+	要求$ax\equiv c\bmod{b}$，即为求$ax+my=b$的解。记$d=gcd(a,m)$，先使用拓展欧几里得求$ax+my=b$，如果$d\nmid b$则无解，否则$\mod m$意义下的解有$d$个，可以通过对其中某个解不断地加$\frac{m}{d}$得到。(这$d$个解的形式为$x_0+\frac{m}{d}t,\;t\in\mathbb{Z}$,其中$x_0$是已知的一个解)
+\paragraph{中国剩余定理}
+	若$m_1,m_2,m_3,\ldots,m_r$是两两互素的正整数，则同余方程组
+	\begin{equation}
+	\left\{
+	\begin{aligned}
+		& x\equiv a_1\pmod{m_1}\\
+		& x\equiv a_2\pmod{m_2}\\
+		& x\equiv a_3\pmod{m_3}\\
+		& \cdots\\
+		& x\equiv a_r\pmod{m_r}\\
+	\end{aligned}
+	\right.
+	\end{equation}
+	有$\mod M=\prod\limits_1^r m$的唯一解，即为中国剩余定理。\\
+	若$n=pq$且$gcd(p,q)=1$，那么$x\mod p,x\mod q$的值确定后，$x\mod n$的值也会随之确定。
+\subparagraph{算法说明}
+	$$M_i=\prod\limits_{j\ne i}m_j\to gcd(M_i,m_i)=1\Rightarrow \exists p_i,q_i,\,M_ip_i+m_iq_i=1$$
+	$$(e_i=M_i p_i)\equiv int(j==i)\pmod{m_i} \to \sum\limits_1^r e_i a_i\mod{\sum\limits_1^r m_i}\mbox{是方程的最小非负整数解}$$
 \end{document}
