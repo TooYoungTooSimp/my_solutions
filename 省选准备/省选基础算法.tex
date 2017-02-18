@@ -4,6 +4,7 @@
 \begin{document}
 \setcounter{page}{0}
 \maketitle
+\begin{center}\includegraphics[height=20cm]{assets/banner.png}\end{center}
 \newpage
 \tableofcontents
 \newpage
@@ -298,4 +299,34 @@ Manacher 模板题
 \subparagraph{算法说明}
 	$$M_i=\prod\limits_{j\ne i}m_j\to gcd(M_i,m_i)=1\Rightarrow \exists p_i,q_i,\,M_ip_i+m_iq_i=1$$
 	$$(e_i=M_i p_i)\equiv int(j==i)\pmod{m_i} \to \sum\limits_1^r e_i a_i\mod{\sum\limits_1^r m_i}\mbox{是方程的最小非负整数解}$$
+\paragraph{练习题}
+\subparagraph{\href{http://poj.org/problem?id=1061}{POJ1061} - 蛤蛤的约会} +1s
+\codeinput[蛤蛤的约会]{assets/day3/poj1061.cpp}
+\subparagraph{\href{http://poj.org/problem?id=2142}{POJ2142} - The Balance} 求$ax+by=c$的一组解，使得$|x|+|y|$尽量小，在前者尽量小时$|ax|+|by|$尽量小
+\codeinput[The Balance]{assets/day3/poj2142.cpp}
+\subsection{逆元}
+\paragraph{解一元线性同余方程}
+	$$gcd(a,m)=1\Rightarrow\exists x,ax\equiv1\pmod{m}$$
+	$$ax\equiv1\pmod{m}\iff\exists k\in\mathbb{Z},\,ax-km=1$$
+\codeinput[\ ]{assets/day3/inv.cpp}
+\paragraph{费马小定理}
+	$$\forall p\in\mathbb{P}\to x^p\equiv x\pmod{p}$$被称为费马小定理，若$p\nmid x$，有
+	$$x^{p-1}\equiv 1\pmod{p}$$于是有
+	$$\forall p\in\mathbb{P},x\in\mathbb{Z}\to x^{-1}\equiv x^{p-2}\pmod{p}$$
+	使用快速幂即可计算。
+\subsection{待续：高次不定方程}
+\subsection{原根}
+\paragraph{阶}
+	$$n>1,a\in\mathbb{Z},gcd(a,n)=1\to\exists r\in[1,n],a^r\equiv1\pmod{n}$$ $r$的最小整数值称为$a$模$n$的阶，记为$Ord_n(a)$
+\paragraph{阶的性质}
+	$$gcd(a,n)=1,r=Ord_n(a),\forall N\in\{x|a^N\equiv1\pmod{n}\}\Rightarrow r|N$$
+	$$gcd(a,n)=1\Rightarrow Ord_n(a)|\varphi(n)$$
+	$$\mbox{特别的，}p\in\mathbb{P},gcd(a,p)=1\Rightarrow Ord_p(a)|p-1\mbox{，显然}\varphi(p)=p-1$$
+\paragraph{原根} $n\in\mathbb{N_+},a\in\mathbb{Z},Ord_n(a)=\varphi(n)$，则称$a$为模$n$的一个原根，由阶的定义可知原根和$n$必然互质。
+\paragraph{求质数$p$的原根算法}
+	暴力从小到大枚举$g\in\mathbb{N_+}$，$\forall a\in\{x\;|\;x|p-1,x\in\mathbb{P}\},g^{\frac{p-1}{a}}\not\equiv1\pmod{p}$
+\codeinput[Primitive Root]{assets/day3/proot.cpp}
+\paragraph{练习题}
+\subparagraph{\href{http://poj.org/problem?id=1284}{POJ1284} - Primitive Roots} 如果$n\in\mathbb{N_+}$有一个原根，那么$n$一共有$\varphi(\varphi(n))$个不同余的原根
+\codeinput[Primitive Roots]{assets/day3/poj1284.cpp}
 \end{document}
