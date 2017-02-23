@@ -284,15 +284,13 @@ Manacher 模板题
 \paragraph{中国剩余定理}
 	若$m_1,m_2,m_3,\ldots,m_r$是两两互素的正整数，则同余方程组
 	\begin{equation}
-	\left\{
-	\begin{aligned}
+	\left\{\begin{aligned}
 		& x\equiv a_1\pmod{m_1}\\
 		& x\equiv a_2\pmod{m_2}\\
 		& x\equiv a_3\pmod{m_3}\\
 		& \cdots\\
 		& x\equiv a_r\pmod{m_r}\\
-	\end{aligned}
-	\right.
+	\end{aligned}\right.
 	\end{equation}
 	有$\mod M=\prod\limits_1^r m$的唯一解，即为中国剩余定理。\\
 	若$n=pq$且$gcd(p,q)=1$，那么$x\mod p,x\mod q$的值确定后，$x\mod n$的值也会随之确定。
@@ -330,10 +328,40 @@ Manacher 模板题
 	$$gcd(a,n)=1\Rightarrow Ord_n(a)|\varphi(n)$$
 	$$\mbox{特别的，}p\in\mathbb{P},gcd(a,p)=1\Rightarrow Ord_p(a)|p-1\mbox{，显然}\varphi(p)=p-1$$
 \paragraph{原根} $n\in\mathbb{N_+},a\in\mathbb{Z},Ord_n(a)=\varphi(n)$，则称$a$为模$n$的一个原根，由阶的定义可知原根和$n$必然互质。
-\paragraph{求质数$p$的原根算法}
-	暴力从小到大枚举$g\in\mathbb{N_+}$，$\forall a\in\{x\;|\;x|p-1,x\in\mathbb{P}\},g^{\frac{p-1}{a}}\not\equiv1\pmod{p}$
+\paragraph{求质数$p$的原根算法} 暴力从小到大枚举$g\in\mathbb{N_+}$，$\forall a\in\{x\;|\;x|p-1,x\in\mathbb{P}\},g^{\frac{p-1}{a}}\not\equiv1\pmod{p}$
 \codeinput[Primitive Root]{assets/day3/proot.cpp}
 \paragraph{练习题}
 \subparagraph{\href{http://poj.org/problem?id=1284}{POJ1284} - Primitive Roots} 如果$n\in\mathbb{N_+}$有一个原根，那么$n$一共有$\varphi(\varphi(n))$个不同余的原根
 \codeinput[Primitive Roots]{assets/day3/poj1284.cpp}
+\section{day4 数据结构}
+\subsection{树状数组} 在$\lg{n}$的时间内更新或查询$\sum\limits_{i=1}^n a_i$
+\paragraph{lowbit} \verb|lowbit(x) = x & -x|
+\paragraph{两个操作} $\lg{n}$更新或查询
+\codeinput[Fenwick tree]{assets/day4/FenwickTree.cpp}
+\paragraph{练习题}
+\subparagraph{\href{http://poj.org/problem?id=2352}{POJ2352} - Stars} 。。。
+\codeinput[Stars]{assets/day4/poj2352.cpp}
+\subparagraph{\href{http://poj.org/problem?id=2299}{POJ2299} - Ultra-QuickSort} 求逆序对数量，不过配图是啥玩意？马桶橛子？
+\codeinput[Ultra-QuickSort]{assets/day4/poj2299.cpp}
+\begin{center}\includegraphics[height=10cm]{assets/day4/poj2299.jpg}\end{center}
+\subparagraph{\href{http://poj.org/problem?id=1990}{POJ1990} - MooFest} 杀光奶牛问题就会得到解决
+\codeinput[MooFest]{assets/day4/poj1990.cpp}
+\subsection{Sparse Table} 处理区间最值，即 RMQ（Range Minimum Query）问题。
+\paragraph{预处理} 计算一个数组$f$，使$f[i][j]=min[i,i+2^j)$，然后你就可以开始倍增了。
+	\begin{eqnarray}
+	f[i][j]=\left\{\begin{array}{lr}
+		a[i] & j=0 \\
+		min(f[i][j-1],f[i+2^{j-1}][j-1]) & j>0
+		\end{array}\right.
+	\end{eqnarray}
+\paragraph{询问}
+	考虑一个询问区间$[x,y)$的最小值的询问操作。\\
+	我们可以求出满足$2^i\le y-x < 2^{i+1}$的$i$，即$\lfloor\log_2{y-x}\rfloor$，这样我们可以用两个长度为$2^i$的小区间覆盖询问的大区间。\\
+	而长度为$2^i$的小区间的最小值在预处理时已经求出，于是区间$[x,y)$的最小值为$min\{f[x][i],f[y-2^i][i]\}$，由于是求最值，区间有交集也没关系。
+\paragraph{练习题}
+\subparagraph{\href{http://poj.org/problem?id=3264}{POJ3264} - Balanced Lineup}
+	给你一个长度为$n$的序列$a[N]$，询问$Q$次，每次输出$[L,R]$区间最大值与最小值的差是多少，果真这种简化了的题面真是清晰易懂。
+\codeinput[Balanced Lineup]{assets/day4/poj3264.cpp}
+\subparagraph{\href{http://codeforces.com/problemset/problem/359/D}{CF359D} - Pair of Numbers} 首先要知道gcd有“最值的性质”，然后二分暴力。
+\codeinput[Pair of Numbers]{assets/day4/CF359D.cpp}
 \end{document}
