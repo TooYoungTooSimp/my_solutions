@@ -364,4 +364,19 @@ Manacher 模板题
 \codeinput[Balanced Lineup]{assets/day4/poj3264.cpp}
 \subparagraph{\href{http://codeforces.com/problemset/problem/359/D}{CF359D} - Pair of Numbers} 首先要知道gcd有“最值的性质”，然后二分暴力。
 \codeinput[Pair of Numbers]{assets/day4/CF359D.cpp}
+\subsection{左偏树} 左偏树是一种可以合并的堆，所以它可以支持堆的几种操作，并且也都是在相同的时间复杂度下完成的，并且它能额外支持合并两棵左偏树的这种操作。
+\paragraph{性质} 我们先定义节点$i$的距离为节点$i$到它的后代中，最近的外节点所经过的边数，其中左子树或右子树为空的节点被称为外节点，这种节点的距离为$0$。
+\subparagraph{性质1：堆有序性质} 节点的值不小于其子节点的值（假设这是一个大根左偏树）。
+\subparagraph{性质2：左偏性质} 节点的左子节点的距离不小于右子节点的距离。
+\subparagraph{性质3} 节点的距离等于它的右子节点的距离加一。
+\paragraph{左偏树的操作}
+\subparagraph{合并} 
+	现在我们有两棵左偏树A和B，欲将其合并。我们假设A的根节点大于B的根节点，不然交换一下就行了。然后把A的右子节点与树B合并作为A的新右子节点，检查A现在的左子节点和右子节点的距离，如果右子节点的距离大于左子节点，那么交换这两棵子树，然后更新A的距离，如此这般递归下去，因为只有$\log_2{n}$的深度，所以铁定不会爆栈，除非你的脸黑到一定境界了。
+\subparagraph{插入} 把新节点当作一棵只有一个节点的树与原树合并。
+\subparagraph{删除极值} 合并根节点下的两个子节点。
+\subparagraph{删除指定元素} 将指定节点的两个子树合并作为这个节点。然后维护其父节点的数值，如果父节点被改变，就继续向上维护，直到节点数据不改变。
+\paragraph{练习题}
+\subparagraph{\href{http://www.lydsy.com/JudgeOnline/problem.php?id=2809}{BZOJ2809} - [Apio2012]dispatching}
+	考虑对每个点维护一个大根堆，堆内存储的是这个节点子树内所有点的$C_i$。当堆内的和大于$M$时就要弹出堆顶元素；每个点的堆可以通过将所有儿子的堆合并起来再插入自己节点的$C_i$来得到
+\codeinput[Apio2012 dispatching]{assets/day4/bzoj2809.cpp}
 \end{document}
