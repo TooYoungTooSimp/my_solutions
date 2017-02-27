@@ -372,6 +372,7 @@ Manacher 模板题
 \paragraph{左偏树的操作}
 \subparagraph{合并} 
 	现在我们有两棵左偏树A和B，欲将其合并。我们假设A的根节点大于B的根节点，不然交换一下就行了。然后把A的右子节点与树B合并作为A的新右子节点，检查A现在的左子节点和右子节点的距离，如果右子节点的距离大于左子节点，那么交换这两棵子树，然后更新A的距离，如此这般递归下去，因为只有$\log_2{n}$的深度，所以铁定不会爆栈，除非你的脸黑到一定境界了。
+	\codeinput[合并的简单实现]{assets/day4/merge_impl.cpp}
 \subparagraph{插入} 把新节点当作一棵只有一个节点的树与原树合并。
 \subparagraph{删除极值} 合并根节点下的两个子节点。
 \subparagraph{删除指定元素} 将指定节点的两个子树合并作为这个节点。然后维护其父节点的数值，如果父节点被改变，就继续向上维护，直到节点数据不改变。
@@ -379,4 +380,17 @@ Manacher 模板题
 \subparagraph{\href{http://www.lydsy.com/JudgeOnline/problem.php?id=2809}{BZOJ2809} - [Apio2012]dispatching}
 	考虑对每个点维护一个大根堆，堆内存储的是这个节点子树内所有点的$C_i$。当堆内的和大于$M$时就要弹出堆顶元素；每个点的堆可以通过将所有儿子的堆合并起来再插入自己节点的$C_i$来得到
 \codeinput[Apio2012 dispatching]{assets/day4/bzoj2809.cpp}
+\subsection{线段树} 既可以$\log(n)$修改，也可以$\log(n)$查询最值，也可以$\log(n)$查询和，总之只要是能合并的数据都能在$\log(n)$的时间内用其维护。
+\paragraph{普通的线段树：单点修改，区间查询} 直接搞
+\paragraph{稍屌的线段树：区间修改，单点查询} 普通的Lazy-tag
+\paragraph{通用的线段树：区间修改，区间查询}
+	这东西包括以上两者，有两种实现方法，标记下传和标记永久化，其中标记永久化在可持久化数据结构中是必须的。现在给出一个大模板题，并且下面将会用两种方法加以实现。\\
+	这是题：\href{http://poj.org/problem?id=3468}{POJ3468} - A Simple Problem with Integers
+\subparagraph{标记下传}
+	这玩意儿是这么个搞法，还是照例的打标记，当我们要从某个节点递归下去时，将当前节点的$add$值下传，更新两个子节点的$add$与$sum$值，并将当前节点的$add$值清零。
+	\codeinput[标记下传例程：2.3s]{assets/day4/poj3468_pushdown.cpp}
+\subparagraph{标记永久化}
+	这种情况下$add$标记将不会被下传，子节点的影响在修改时便已计算，递归时要累加祖先节点上的标记。
+	\codeinput[标记永久化例程：2.0s]{assets/day4/3468_persistentTag.cpp}
+	经过测试，发现标记永久化的写法快一些，可能是因为没有那么多的pushdown导致的。
 \end{document}
