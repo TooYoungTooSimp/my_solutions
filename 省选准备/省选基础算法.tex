@@ -398,4 +398,39 @@ Manacher 模板题
 \paragraph{练习题}
 \subparagraph{\href{http://www.lydsy.com/JudgeOnline/problem.php?id=1036}{BZOJ1036} - [ZJOI2008]树的统计Count} 模板题
 \codeinput[ZJOI2008 树的统计Count]{assets/day4/bzoj1036.cpp}
+\section{day5 计算几何}
+\subsection{基础概念}
+\paragraph{点} $P(x,y)$
+\paragraph{线段}
+	用两个端点或一个端点加一条向量表示，这两种方式等价。其中线段$AB$上的点$C$满足：$$\forall C \in AB,\exists p \in [0,1],C=pA+(1-p)B$$
+\paragraph{直线}
+	使用直线方程$ax+by+c=0$或$y=kx+b$或直线上两个不同点或一个点加上一个向量表示。
+\paragraph{多边形} 若干条线段首尾顺次相连所形成的平面图形
+\paragraph{圆} 使用圆心坐标和半径表示
+\paragraph{向量} 几何向量是线性空间中有大小与方向的量。
+\subparagraph{向量的表示} $a=\overrightarrow{OA}=(x,y),|a|=\sqrt{x^2+y^2}$
+\subparagraph{向量的计算} $a=(x_1,y_1),b=(x_2,y_2),a\pm b=(x_1+x_2\pm y_1+y_2),ak=(kx_1,ky_1)$
+\subparagraph{向量的夹角} $\cos{<a,b>}=\frac{ab}{|a||b|}$
+\subparagraph{正弦定理} 对于任意三角形$ABC$，$a,b,c$分别为$\angle{A},\angle{B},\angle{C}$的对边，$R$为三角形$ABC$外接圆半径，则有$$\frac{a}{\sin{A}}=\frac{b}{\sin{B}}=\frac{c}{\sin{C}}=2R$$
+\subparagraph{余弦定理} 对于任意三角形$ABC$，$a,b,c$分别为$\angle{A},\angle{B},\angle{C}$的对边，则有
+	\begin{equation*}
+	\left\{\begin{aligned}
+		& a^2=b^2+c^2-2bc\cos{A}\\
+		& b^2=a^2+c^2-2ac\cos{B}\\
+		& c^2=a^2+b^2-2ab\cos{C}\\
+	\end{aligned}\right.
+	\end{equation*}
+\subparagraph{向量的点积} $a=(x_1,y_1),b=(x_2,y_2),ab=(x_1 x_2,y_1 y_2)=|a||b|\cos{<a,b>}$
+\subparagraph{向量的叉积} $\\$
+	\textbf{三维叉积：}两个向量$a=(x_1,y_1,z_1),b=(x_2,y_2,z_2)$的叉积的结果是一个向量$c$，记作$$c=a\times b=
+	\left|\begin{array}{cccc}   
+	    i   & j   & k   \\
+	    x_1 & y_1 & z_1 \\
+	    x_2 & y_2 & z_2 \\   
+	\end{array}\right|$$
+	$c$的模长等于以$a,b$为两条邻边所作成的平行四边形的面积，$c$的方向遵循右手定则。\\
+	\textbf{二维叉积：}若$a=(x_1,y_1),b=(x_2,y_2)$，则我们可以将它们看做是$z$轴为$0$的两个三维向量，根据定义我们可知叉积结果为$(0,0,x_1 y_2-x_2 y_1)$。因此我们定义二维叉积为$a\times b=x_1 y_2-x_2 y_1$，它的几何意义是，叉积结果大小等于以$a,b$为两条邻边所作成的平行四边形的有向面积，即$a\times b=|a|\times|b|\times\sin{<a,b>}$\\
+	根据叉积结果，我们能判断$a,b$的方向。当$a\times b>0$时，$b$在$a$的逆时针方向，当$a\times b<0$时，$b$在$a$的顺时针方向。\\
+	$a\times b=-b\times a \qquad a\times b=0\iff a,b\mbox{共线}$
+\subparagraph{向量的旋转} 向量$a=(x,y)$逆时针旋转$\theta$，得到的向量$b$的坐标$b=(x\cos\theta-y\sin\theta,x\sin\theta+y\cos\theta)$。我们可以借助两个复数相乘，积的模等于两复数模的积，积的辐角等于两复数辐角的和这个性质，将旋转看做是两个复数相乘，即$(x+yi)$与$(\cos\theta+i\sin\theta)$相乘，再利用复数乘法式子$(a+bi)\times(c+di)=(ac-bd)+(ad+bc)i$得出上面向量旋转的结果。
 \end{document}
