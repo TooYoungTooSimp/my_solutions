@@ -393,4 +393,9 @@ Manacher 模板题
 	这种情况下$add$标记将不会被下传，子节点的影响在修改时便已计算，递归时要累加祖先节点上的标记。
 	\codeinput[标记永久化例程：2.0s]{assets/day4/3468_persistentTag.cpp}
 	经过测试，发现标记永久化的写法快一些，可能是因为没有那么多的pushdown导致的。
+\subsection{树链剖分}
+	轻重链剖分，把重链连续的铺在一棵线段树上，然后就解决了！是不是很容易？233333333333333333333333
+\paragraph{练习题}
+\subparagraph{\href{http://www.lydsy.com/JudgeOnline/problem.php?id=1036}{BZOJ1036} - [ZJOI2008]树的统计Count} 模板题
+\codeinput[ZJOI2008 树的统计Count]{assets/day4/bzoj1036.cpp}
 \end{document}
