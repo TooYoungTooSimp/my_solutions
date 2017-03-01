@@ -1,6 +1,7 @@
 \documentclass[]{cpp}
 \title{省选基础算法}
 \author{雷宇辰}
+\renewcommand{\Vec}{\overrightarrow}
 \begin{document}
 \setcounter{page}{0}
 \maketitle
@@ -408,7 +409,7 @@ Manacher 模板题
 \paragraph{多边形} 若干条线段首尾顺次相连所形成的平面图形
 \paragraph{圆} 使用圆心坐标和半径表示
 \paragraph{向量} 几何向量是线性空间中有大小与方向的量。
-\subparagraph{向量的表示} $a=\overrightarrow{OA}=(x,y),|a|=\sqrt{x^2+y^2}$
+\subparagraph{向量的表示} $a=\Vec{OA}=(x,y),|a|=\sqrt{x^2+y^2}$
 \subparagraph{向量的计算} $a=(x_1,y_1),b=(x_2,y_2),a\pm b=(x_1+x_2\pm y_1+y_2),ak=(kx_1,ky_1)$
 \subparagraph{向量的夹角} $\cos{<a,b>}=\frac{ab}{|a||b|}$
 \subparagraph{正弦定理} 对于任意三角形$ABC$，$a,b,c$分别为$\angle{A},\angle{B},\angle{C}$的对边，$R$为三角形$ABC$外接圆半径，则有$$\frac{a}{\sin{A}}=\frac{b}{\sin{B}}=\frac{c}{\sin{C}}=2R$$
@@ -433,4 +434,46 @@ Manacher 模板题
 	根据叉积结果，我们能判断$a,b$的方向。当$a\times b>0$时，$b$在$a$的逆时针方向，当$a\times b<0$时，$b$在$a$的顺时针方向。\\
 	$a\times b=-b\times a \qquad a\times b=0\iff a,b\mbox{共线}$
 \subparagraph{向量的旋转} 向量$a=(x,y)$逆时针旋转$\theta$，得到的向量$b$的坐标$b=(x\cos\theta-y\sin\theta,x\sin\theta+y\cos\theta)$。我们可以借助两个复数相乘，积的模等于两复数模的积，积的辐角等于两复数辐角的和这个性质，将旋转看做是两个复数相乘，即$(x+yi)$与$(\cos\theta+i\sin\theta)$相乘，再利用复数乘法式子$(a+bi)\times(c+di)=(ac-bd)+(ad+bc)i$得出上面向量旋转的结果。
+\subsection{基础问题}
+\paragraph{1.} $a=(x_1,y_1),b=(x_2,y_2)$两点距离：$\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}$
+\paragraph{2.}
+\subparagraph{(1) 叉积：} $2S_\triangle{ABC}=|\Vec{AB}\times\Vec{AC}|=|\Vec{BA}\times\Vec{BC}|=|\Vec{CA}\times\Vec{CB}|$
+\subparagraph{(2) 海伦公式：} $S=\sqrt{p(p-a)(p-b)(p-c)},p=\frac{a+b+c}{2}$
+\paragraph{3.} 判断点$P$是否在线段$AB$上：判断是否$|PA|+|PB|=|AB|$
+\paragraph{4.} 判断点$P$是否在直线$AB$上（三点共线）：判断是否$\Vec{PA}\times\Vec{PB}=0$
+\paragraph{5.} 判断连续两条线段$AB,BC$的拐向：叉积判断，如$\Vec{AB}\times\Vec{AC}>0\iff$逆时针拐弯
+\paragraph{6.} 求$\angle{AOB}$的种类：$s=\Vec{OA}\cdot\Vec{OB},s=0\iff\mbox{直角},s>0\iff\mbox{锐角},s<0\iff\mbox{钝角}$
+\paragraph{7.} 求点$P$到线段$AB$的最短距离：
+\subparagraph{(1)} 若$\angle{BAP},\angle{ABP}$有一个是钝角，则最短距离为$min(|PA|,|PB|)$
+\subparagraph{(2)} 否则最短距离为$\triangle{PAB}$底边$AB$的高：$\frac{|\Vec{PA}\times\Vec{PB}|}{|\Vec{AB}|}$
+\paragraph{8.} 判断两线段$AB,CD$是否相交：判断$A,B$是否在$CD$两边，以及$C,D$是否在$AB$两边,注意共线的特殊情况。若$AB,CD$不共线，则判断$(\Vec{CD}\times\Vec{CA})\times(\Vec{CD}\times\Vec{CB})\le0$且$(\Vec{AB}\times\Vec{AC})\times(\Vec{AB}\times\Vec{AD})\le0$；否则判断是否$\exists P \in AB,P\in CD$。
+\paragraph{9.} 求两直线（线段）交点，假设交点存在：
+\subparagraph{(1) 代数方法：} 求出两条直线的方程，列方程组求解
+\subparagraph{(2) 几何方法：} $s_1=\Vec{AC}\times\Vec{AD},s_2=\Vec{BD}\times\Vec{BC},P=A+\frac{\Vec{AB}\times s_1}{s_1 + s_2}$
+\paragraph{10.} 求点$E$到直线$AB$的垂足$D$
+\subparagraph{(1)} 将$\Vec{AB}$旋转$\frac{\pi}{2}$，直线求交
+\subparagraph{(2)} $$D=A+\Vec{AB}\times\frac{\Vec{AE}\times\Vec{AB}}{\Vec{AB}\times\Vec{AB}}$$
+\paragraph{11.} 求$\angle{E}$的角平分线：做两点$A,B$使得$EA=EB$，则此时将$\Vec{AB}$旋转即可。
+\paragraph{12.} 求一个点$P$是否在多边形$Q$内部：射线法，过$P$做一条平行于$x$轴的射线$L$，若与多边形有奇数个交点，则点在多边形内部，这可以转化为求$L$与$Q$的每一条边是否有交点，但要注意一些特殊情况，比如交点时多边形的顶点，这时我们需要规定交在边的下端点统计进答案或是交在边的上端点统计进答案（也就是保证一个点要么都被统计要么都不被统计）。
+\paragraph{13.} 多边形面积：利用叉积的几何意义（有向面积）求解。$$S=\frac{1}{2}\left|\sum\limits_{i=0}^{n-1} v_i \times v_{(i+1)\ mod\ n}\right|$$
+\paragraph{14.} 圆与直线求交点：求圆心到直线的距离$d$，根据半径$R$以及$d$求$\angle{AOE}$，然后再以$O$为中心顺时针、逆时针分别旋转$\Vec{OE}$，再利用缩放得出$\Vec{OA},\Vec{OB}$，进而求出$A,B$
+\paragraph{15.} 圆与圆求交点：已知大小半径$R,r$，并且可以利用圆心坐标求出圆心距$d$，利用圆心距与半径的关系可以先判断两圆关系，若有交点则我们可以利用余弦定理求出$\angle{BAP}$，再以$A$为中心旋转、缩放$\Vec{AB}$得到$\Vec{AQ},\Vec{AP}$，进而求出$P,Q$。
+\paragraph{16.} 求两圆公切线：考虑求出两个切点，分两种情况讨论：
+\subparagraph{(1)} $AC$长度为两圆半径差，$\angle{ACB}$是直角，进而可知$\angle{BAC}$大小，将$\Vec{AB}$旋转至$\Vec{AC}$再进行缩放得到切点坐标。另一个切点同理可求。
+\subparagraph{(2)} 由两圆半径比例可得$AO$长度，$\angle{ACO}$是直角且$AC$是半径，因此可求$\angle{OAC}$，将$\Vec{AO}$旋转缩放得到$\Vec{AC}$，求出切点坐标。另一个切点同理可求。
+\paragraph{练习题}
+\subparagraph{\href{http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1081}{ZOJ1081} - Points Within} 以上第12点
+\codeinput[Points Within]{assets/day5/zoj1081.cpp}
+\subsection{凸包} 平面上有$N$个点，有一个周长最小（面积最小）的凸多边形包含这$N$个点，这个凸多边形就叫做这个点集的凸包。
+\paragraph{做法} 常用Graham扫描法：
+\subparagraph{(1)} 选出最左下角的点（$x$坐标最小，如果相同就$y$坐标最小）作为极点，这个点显然在凸包上。
+\subparagraph{(2)} 对其余点进行极角排序，相同时比较到极点的距离（使用叉积实现，免得调用CRT的数学库）
+\subparagraph{(3)} 用一个栈来储存凸包上的点，先将极点和极角序最小的两个点入栈。
+\subparagraph{(4)} 按序扫描每个点，检查栈顶的两个点和这个点“是否拐向右”
+\subparagraph{(5)} 如果是的，弹出栈顶元素，回到第四步
+\subparagraph{(6)} 该点入栈，继续循环这个过程。
+\subparagraph{(7)} 没了
+\paragraph{练习题}
+\subparagraph{\href{http://poj.org/problem?id=3348}{POJ3348} - Cows} 模板题，注意公式要背对
+\codeinput[Cows]{assets/day5/POJ3348.cpp}
 \end{document}
