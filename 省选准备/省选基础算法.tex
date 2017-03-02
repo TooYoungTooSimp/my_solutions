@@ -476,4 +476,9 @@ Manacher 模板题
 \paragraph{练习题}
 \subparagraph{\href{http://poj.org/problem?id=3348}{POJ3348} - Cows} 模板题，注意公式要背对
 \codeinput[Cows]{assets/day5/POJ3348.cpp}
+\subsection{旋转卡壳} 你知道吗？旋转卡壳有16种读法。\\
+	首先有个很直观的结论：最远点对的两点一定在凸包上。我们的思路就是枚举凸包上的所有边，对每一条边找出凸包上离该边最远的顶点，计算这个顶点到该边两个端点的距离，并记录最大的值。当我们逆时针枚举边的时候，最远点的变化也是逆时针的，这样就可以不用从头计算最远点，而可以紧接着上一次的最远点继续计算，于是我们得到了$O(n)$的算法。
+\paragraph{练习题}
+\subparagraph{\href{http://poj.org/problem?id=2187}{POJ2187} - Beauty Contest} 模板题，注意符号要写对
+\codeinput[Beauty Contest]{assets/day5/POJ2187.cpp}
 \end{document}
