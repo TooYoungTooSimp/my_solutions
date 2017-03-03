@@ -481,4 +481,12 @@ Manacher 模板题
 \paragraph{练习题}
 \subparagraph{\href{http://poj.org/problem?id=2187}{POJ2187} - Beauty Contest} 模板题，注意符号要写对
 \codeinput[Beauty Contest]{assets/day5/POJ2187.cpp}
+\section{day6 网络流}
+\subsection{最大流/最小割} 我不想抄讲义了，就通俗易懂的说一下。每次找一条从源点到汇点的可行流，增广，直到源点和汇点不联通。就这样。Dinic和ISAP都是最短增广路算法，不同的就是维护增广路的方式。
+\paragraph{Dinic} 虽然我并不使用Dinic，不过，我认为研究这种算法也是有其必要性的。比如可以加深对费用流的理解（滑稽）。
+\codeinput[\href{http://poj.org/problem?id=1273}{POJ1273} - Drainage Ditches (Dinic)]{assets/day6/poj1273_dinic.cpp}
+对这段代码简单的说两句。值得注意的有这么几点，一是\verb|cur[u]|的使用，在单次增广时可以避免无谓的探查；二是40，41行在没有把以上配额用光之前没有返回可以造成多路增广的情况来增加效率；三是第42，43行的判断，如果所有子节点的可用流之和都不能满足当前点的配额，这个点就没有访问的必要了。我想大概就这么些。
+\paragraph{ISAP} 我经常使用ISAP，因为据说这玩意更稳定，由于我的脸黑，我怕碰上一些恶心的数据卡掉Dinic，并且目前没有一道普通网络流的题能卡掉ISAP，我很高兴。以下还是上面那道题。
+\codeinput[\href{http://poj.org/problem?id=1273}{POJ1273} - Drainage Ditches (ISAP)]{assets/day6/poj1273_ISAP.cpp}
+重新写了一遍，1A，我还是很高兴。ISAP比Dinic要注意的点真是多多了，注意第58行的break，这可以大大加速，因为此时源点和汇点已经不会联通了，继续做下去无益。反正我觉得ISAP要是能一遍写出来的话是比Dinic好的。
 \end{document}
