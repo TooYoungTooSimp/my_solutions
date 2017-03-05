@@ -30,18 +30,16 @@ bool bfs()
                 dis[que[len++] = to[e]] = dis[que[i]] + 1;
     return dis[n] < inf;
 }
-int dinic(const int u, const int flow)
+int dinic(const int u, int rest)
 {
-    if (u == n)
-        return flow;
-    int res = 0;
-    for (int e = cur[u], curFlow; ~e; e = nxt[e])
+    if (u == n) return rest;
+    int flow = 0;
+    for (int e = cur[u], curFlow; rest && ~e; e = nxt[e])
         if (cap[e] && dis[u] == dis[to[e]] - 1)
-            if (curFlow = dinic(to[e], min(cap[e], flow - res)))
-                res += curFlow, cap[e] -= curFlow, cap[e ^ 1] += curFlow, cur[u] = e;
-    if (res != flow)
-        dis[u] = inf;
-    return res;
+            if ((curFlow = dinic(to[e], min(cap[e], rest))))
+                rest -= curFlow, flow += curFlow, cap[e] -= curFlow, cap[e ^ 1] += curFlow, cur[u] = e;
+    if (rest) dis[u] = inf;
+    return flow;
 }
 int main()
 {
@@ -52,8 +50,7 @@ int main()
         for (int i = 0, x, y, z; i < m; i++)
             scanf("%d%d%d", &x, &y, &z), addEdge(x, y, z);
         int ans = 0;
-        while (bfs())
-            ans += dinic(1, inf);
+        while (bfs()) ans += dinic(1, inf);
         printf("%d\n", ans);
     }
     return 0;
