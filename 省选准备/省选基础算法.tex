@@ -489,7 +489,7 @@ Manacher 模板题
 \paragraph{ISAP} 我经常使用ISAP，因为据说这玩意更稳定，由于我的脸黑，我怕碰上一些恶心的数据卡掉Dinic，并且目前没有一道普通网络流的题能卡掉ISAP。以下还是上面那道题。
 \codeinput[\href{http://poj.org/problem?id=1273}{POJ1273} - Drainage Ditches (ISAP)]{assets/day6/poj1273_ISAP.cpp}
 	重新写了一遍，1A，我很高兴。ISAP比Dinic要注意的点真是多多了，注意第58行的break，这可以大大加速，因为此时源点和汇点已经不会联通了，继续做下去无益。反正我觉得ISAP要是能一遍写出来的话是比Dinic好的。
-\subsection{最小费用最大流}
-	每次找到一条最短的路增广，大体上与Dinic完全相同，不过总感觉很奇怪，包括没有了cur，多出了vis等一些不同，并且不加就会爆炸。
+\subsection{最小费用最大流} 每次找到一条最短的路增广，大体上与Dinic完全相同，不过总感觉很奇怪，包括没有了cur，多出了vis等一些不同，并且不加就会爆炸。
 \codeinput[\href{http://poj.org/problem?id=2135}{POJ2135} - Farm Tour]{assets/day6/poj2135.cpp}
+\paragraph{后记} 我多次尝试直接移植dinic的模板来解决最小费用最大流问题，不过最后都只是收获了一个个RE，看来直接照抄dinic的代码是不行的，仍然要加上vis数组之类的东西来保证不会爆栈（虽然我觉得我的移植代码也不会爆栈），如果哪名巨佬在Review我的代码时发现了方法，请不吝告知，蒟蒻万分感谢。
 \end{document}

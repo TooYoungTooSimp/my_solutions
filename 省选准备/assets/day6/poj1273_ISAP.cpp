@@ -48,8 +48,8 @@ int ISAP(int S, int T)
         }
         bool needRetreat = true;
         for (int e = cur[x]; needRetreat && ~e; e = nxt[e])
-            if (cap[e] && dis[x] == dis[to[e]] + 1)
-                needRetreat = false, cur[x] = e, fa[x = to[e]] = e;
+            if (cur[x] = e, cap[e] && dis[x] == dis[to[e]] + 1)
+                needRetreat = false, fa[x = to[e]] = e;
         if (needRetreat)
         {
             int nd = N - 2;

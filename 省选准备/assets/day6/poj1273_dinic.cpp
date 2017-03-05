@@ -35,9 +35,10 @@ int dinic(const int u, int rest)
     if (u == n) return rest;
     int flow = 0;
     for (int e = cur[u], curFlow; rest && ~e; e = nxt[e])
-        if (cap[e] && dis[u] == dis[to[e]] - 1)
+        if (cur[u] = e, cap[e] && dis[u] == dis[to[e]] - 1)
             if ((curFlow = dinic(to[e], min(cap[e], rest))))
-                rest -= curFlow, flow += curFlow, cap[e] -= curFlow, cap[e ^ 1] += curFlow, cur[u] = e;
+                rest -= curFlow, flow += curFlow,
+                cap[e] -= curFlow, cap[e ^ 1] += curFlow;
     if (rest) dis[u] = inf;
     return flow;
 }
