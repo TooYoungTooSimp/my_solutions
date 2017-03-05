@@ -492,4 +492,20 @@ Manacher 模板题
 \subsection{最小费用最大流} 每次找到一条最短的路增广，大体上与Dinic完全相同，不过总感觉很奇怪，包括没有了cur，多出了vis等一些不同，并且不加就会爆炸。
 \codeinput[\href{http://poj.org/problem?id=2135}{POJ2135} - Farm Tour]{assets/day6/poj2135.cpp}
 \paragraph{后记} 我多次尝试直接移植dinic的模板来解决最小费用最大流问题，不过最后都只是收获了一个个RE，看来直接照抄dinic的代码是不行的，仍然要加上vis数组之类的东西来保证不会爆栈（虽然我觉得我的移植代码也不会爆栈），如果哪名巨佬在Review我的代码时发现了方法，请不吝告知，蒟蒻万分感谢。
+\section{day7 XJB算法合集1} XJB算法的时间复杂度均为$O(\mbox{跑得过})$，空间复杂度均为$)(\mbox{开的下})$。
+\subsection{二分与三分}
+\paragraph{二分} 玄学算法之一，什么都可以往上套，会使时间复杂度乘上$\log{n}$。但是二分法仅适用于求解具有单调性的问题，所以做题前要大胆猜想，小（bu）心（yong）求证。
+\paragraph{二分的写法}
+\subparagraph{整数二分的写法}
+	我被STL荼毒了
+	\begin{verbatim}while (L < R) check(m = (L + R) >> 1) ? L = m + 1 : R = m;\end{verbatim}
+	注意答案的取值是L还是R还是其他什么的，这是一个大问题，因题而异，不可描述。
+\subparagraph{实数二分的写法} \begin{verbatim}while (R - L > eps) check(m = (L + R) / 2) ? L = m : R = m;\end{verbatim}
+\paragraph{二分法常见模型}
+\subparagraph{二分答案}
+	最小值最大（或是最大值最小）问题，这类双最值问题常常使用二分法求解，也就是确定答案后，配合贪心或DP等其他算法来检验这个答案是否合法，将最优化问题转变为判定性问题。例如：将长度为$n$的序列$a_i$分成最多$m$个连续段，求所有分法中每段和的最大值最小能是多少。
+\subparagraph{二分查找}
+	具有单调性的布尔表达式求解分界点，比如在有序数列中求解数字 x 的排名。
+\subparagraph{二分导数代替三分}
+	有时对于一些单峰函数，我们可以通过二分导函数的方法求解函数极值，这样使用时通常定义域为整数域比较方便，因为此时$dx$可以直接取整数$1$。
 \end{document}
