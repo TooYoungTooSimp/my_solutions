@@ -10,7 +10,7 @@
 \tableofcontents
 \newpage
 \setcounter{page}{1}
-\section{day1 图论}
+\section{图论}
 \subsection{有向图强连通分量的 Tarjan 算法}
 \paragraph{定义}
 	在\textbf{有向图$G$}中，如果两个顶点$u,v$间存在一条路径$u$到$v$的路径且也存在一条$v$到$u$的路径，则称这两个顶点$u,v$是\textbf{强连通的(strongly connected)}。如果有向图$G$的每两个顶点都强连通，称$G$是一个\textbf{强连通图}。有向非强连通图的 极大强连通子图，称为\textbf{强连通分量(strongly connected components)}。若将有向图中的强连通分量都缩为一个点，则原图会形成一个 DAG（有向无环图）。
@@ -125,7 +125,7 @@ Additionally, there are several pairs of people conducting adulterous relationsh
 \subparagraph{\href{http://uoj.ac/problem/117}{UOJ117} - 欧拉回路}
 混合两个子任务使代码风格变得鬼畜起来。
 \codeinput[Building roads]{assets/day1/uoj117.cpp}
-\section{day2 字符串（一）}
+\section{字符串（一）}
 \subsection{KMP}
 \paragraph{算法介绍} 用来在线性时间内匹配字符串
 \paragraph{算法流程}
@@ -176,7 +176,7 @@ AC 自动机模板题，注意统计答案时，每个节点只能统计一次�
 \subparagraph{\href{http://poj.org/problem?id=3974}{POJ3974} - Palindrome}
 Manacher 模板题
 \codeinput[Palindrome]{assets/day2/poj3974.cpp}
-\section{day3 简单数学}
+\section{简单数学}
 说是简单数学其实我后半部分也没看懂\\
 \subsection{整除及剩余}
 \paragraph{整除定义}
@@ -334,7 +334,7 @@ Manacher 模板题
 \paragraph{练习题}
 \subparagraph{\href{http://poj.org/problem?id=1284}{POJ1284} - Primitive Roots} 如果$n\in\mathbb{N_+}$有一个原根，那么$n$一共有$\varphi(\varphi(n))$个不同余的原根
 \codeinput[Primitive Roots]{assets/day3/poj1284.cpp}
-\section{day4 数据结构}
+\section{数据结构}
 \subsection{树状数组} 在$\lg{n}$的时间内更新或查询$\sum\limits_{i=1}^n a_i$
 \paragraph{lowbit} \verb|lowbit(x) = x & -x|
 \paragraph{两个操作} $\lg{n}$更新或查询
@@ -399,7 +399,7 @@ Manacher 模板题
 \paragraph{练习题}
 \subparagraph{\href{http://www.lydsy.com/JudgeOnline/problem.php?id=1036}{BZOJ1036} - [ZJOI2008]树的统计Count} 模板题
 \codeinput[ZJOI2008 树的统计Count]{assets/day4/bzoj1036.cpp}
-\section{day5 计算几何}
+\section{计算几何}
 \subsection{基础概念}
 \paragraph{点} $P(x,y)$
 \paragraph{线段}
@@ -481,7 +481,7 @@ Manacher 模板题
 \paragraph{练习题}
 \subparagraph{\href{http://poj.org/problem?id=2187}{POJ2187} - Beauty Contest} 模板题，注意符号要写对
 \codeinput[Beauty Contest]{assets/day5/POJ2187.cpp}
-\section{day6 网络流}
+\section{网络流}
 \subsection{最大流/最小割} 我不想抄讲义了，就通俗易懂的说一下。每次找一条从源点到汇点的可行流，增广，直到源点和汇点不联通。就这样。Dinic和ISAP都是最短增广路算法，不同的就是维护增广路的方式。
 \paragraph{Dinic} 虽然我并不使用Dinic，不过，我认为研究这种算法也是有其必要性的。比如可以加深对费用流的理解（滑稽）。
 \codeinput[\href{http://poj.org/problem?id=1273}{POJ1273} - Drainage Ditches (Dinic)]{assets/day6/poj1273_dinic.cpp}
@@ -492,7 +492,7 @@ Manacher 模板题
 \subsection{最小费用最大流} 每次找到一条最短的路增广，大体上与Dinic完全相同，不过总感觉很奇怪，包括没有了cur，多出了vis等一些不同，并且不加就会爆炸。
 \codeinput[\href{http://poj.org/problem?id=2135}{POJ2135} - Farm Tour]{assets/day6/poj2135.cpp}
 \paragraph{后记} 我多次尝试直接移植dinic的模板来解决最小费用最大流问题，不过最后都只是收获了一个个RE，看来直接照抄dinic的代码是不行的，仍然要加上vis数组之类的东西来保证不会爆栈（虽然我觉得我的移植代码也不会爆栈），如果哪名巨佬在Review我的代码时发现了方法，请不吝告知，蒟蒻万分感谢。
-\section{day7 XJB算法合集1} XJB算法的时间复杂度均为$O(\mbox{跑得过})$，空间复杂度均为$)(\mbox{开的下})$。
+\section{XJB算法合集1} XJB算法的时间复杂度均为$O(\mbox{跑得过})$，空间复杂度均为$)(\mbox{开的下})$。
 \subsection{二分与三分}
 \paragraph{二分} 玄学算法之一，什么都可以往上套，会使时间复杂度乘上$\log{n}$。但是二分法仅适用于求解具有单调性的问题，所以做题前要大胆猜想，小（bu）心（yong）求证。
 \paragraph{二分的写法}
@@ -552,4 +552,21 @@ Manacher 模板题
 这就是折半搜索第二种常用的模型，方程模型，其核心就是通过移项，将方程两边的变量数进行平衡，之后再暴力搜索每一边，所得到的的结果利用数据结构进行存储查询，或是利用其他的一些算法进行合并，从而优化复杂度。
 \paragraph{算法总结}
 	通常折半搜索能将时间复杂度从$O(D^L)$变为$O(D^\frac{L}{2} \times\mbox{合并复杂度})$。尽管时间复杂度仍然是指数级别，但指数减小一半，在一些问题中就能使得我们在时限内出解。并且该算法实现简单，算法使用的搜索过程与朴素算法无异，合并时也只需要用到哈希表等简单的数据结构。
+\section{分治} 把问题分割成更小的子问题递归求解，再处理不同子问题之间的部分，这种算法设计方法就是分治法。关于分治类算法的时间复杂度，算法导论上详细的介绍了专有结论：主定理。在此不再赘述。
+\subsection{序列上的分治}
+	数列的逆序对数除了使用数据结构外，也可以在归并排序的基础上统计额外信息来求得。\\
+	假设我们现在要统计数列 A 中逆序对的个数。如图所示，我们可以将数列$A$平均分成两半得到数列$B$和数列 C，于是，数列 A 中的逆序对 ) , ( j i 必然是下面三种之一：\\
+	(1)$i,j$都属于数列$B$的逆序对$(i,j)$\\
+	(2)$i,j$都属于数列$C$的逆序对$(i,j)$\\
+	(3)$i$属于数列$B$而$j$属于数列$C$的逆序对$(i,j)$\\
+	对于(1)和(2)，它们的总数即为数列$B$与数列$C$的逆序对总数，这是一个子问题，我们递归就可以解决。而对于(3)，我们可以对数列$C$中的每个数字$x$，统计在数列$B$中比$x$大的数字的个数，再把所有的这样的个数加起来，得到的结果就是(3)的逆序对数。
+\codeinput[\href{http://poj.org/problem?id=2299}{POJ2299} - Ultra-QuickSort]{assets/day8/poj2299.cpp}
+\begin{center}\includegraphics[height=18cm]{assets/day4/poj2299.jpg}\end{center}
+\subsection{平面上的分治}
+	给定平面上的$n$个点，求距离最近的两个点的距离。假设我们把所有点按$x$坐标平均分成了左右两个部分，那么最近点对$p,q$的距离就是
+下面二者的最小值：\\
+	(1) 两点$p,q$同属于左半边或者右半边时的最近点对距离\\
+	(2) 两点$p,q$属于不同区域时的最近点对距离\\
+	递归计算，完成。
+\codeinput[\href{http://acm.hdu.edu.cn/showproblem.php?pid=1007}{HDU1007} - Quoit Design]{assets/day8/hdu1007.cpp}
 \end{document}
