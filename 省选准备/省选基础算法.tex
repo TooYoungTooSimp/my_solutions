@@ -334,7 +334,7 @@ Manacher 模板题
 \paragraph{练习题}
 \subparagraph{\href{http://poj.org/problem?id=1284}{POJ1284} - Primitive Roots} 如果$n\in\mathbb{N_+}$有一个原根，那么$n$一共有$\varphi(\varphi(n))$个不同余的原根
 \codeinput[Primitive Roots]{assets/day3/poj1284.cpp}
-\section{数据结构}
+\section{数据结构 I}
 \subsection{树状数组} 在$\lg{n}$的时间内更新或查询$\sum\limits_{i=1}^n a_i$
 \paragraph{lowbit} \verb|lowbit(x) = x & -x|
 \paragraph{两个操作} $\lg{n}$更新或查询
@@ -492,7 +492,7 @@ Manacher 模板题
 \subsection{最小费用最大流} 每次找到一条最短的路增广，大体上与Dinic完全相同，不过总感觉很奇怪，包括没有了cur，多出了vis等一些不同，并且不加就会爆炸。
 \codeinput[\href{http://poj.org/problem?id=2135}{POJ2135} - Farm Tour]{assets/day6/poj2135.cpp}
 \paragraph{后记} 我多次尝试直接移植dinic的模板来解决最小费用最大流问题，不过最后都只是收获了一个个RE，看来直接照抄dinic的代码是不行的，仍然要加上vis数组之类的东西来保证不会爆栈（虽然我觉得我的移植代码也不会爆栈），如果哪名巨佬在Review我的代码时发现了方法，请不吝告知，蒟蒻万分感谢。
-\section{XJB算法合集1} XJB算法的时间复杂度均为$O(\mbox{跑得过})$，空间复杂度均为$)(\mbox{开的下})$。
+\section{XJB算法合集 I} XJB算法的时间复杂度均为$O(\mbox{跑得过})$，空间复杂度均为$)(\mbox{开的下})$。
 \subsection{二分与三分}
 \paragraph{二分} 玄学算法之一，什么都可以往上套，会使时间复杂度乘上$\log{n}$。但是二分法仅适用于求解具有单调性的问题，所以做题前要大胆猜想，小（bu）心（yong）求证。
 \paragraph{二分的写法}
@@ -555,7 +555,7 @@ Manacher 模板题
 \section{分治} 把问题分割成更小的子问题递归求解，再处理不同子问题之间的部分，这种算法设计方法就是分治法。关于分治类算法的时间复杂度，算法导论上详细的介绍了专有结论：主定理。在此不再赘述。
 \subsection{序列上的分治}
 	数列的逆序对数除了使用数据结构外，也可以在归并排序的基础上统计额外信息来求得。\\
-	假设我们现在要统计数列 A 中逆序对的个数。如图所示，我们可以将数列$A$平均分成两半得到数列$B$和数列 C，于是，数列 A 中的逆序对 ) , ( j i 必然是下面三种之一：\\
+	假设我们现在要统计数列 A 中逆序对的个数。如图所示，我们可以将数列$A$平均分成两半得到数列$B$和数列$C$，于是，数列$A$中的逆序对$(i,j)$必然是下面三种之一：\\
 	(1)$i,j$都属于数列$B$的逆序对$(i,j)$\\
 	(2)$i,j$都属于数列$C$的逆序对$(i,j)$\\
 	(3)$i$属于数列$B$而$j$属于数列$C$的逆序对$(i,j)$\\
@@ -571,4 +571,23 @@ Manacher 模板题
 \codeinput[\href{http://acm.hdu.edu.cn/showproblem.php?pid=1007}{HDU1007} - Quoit Design]{assets/day8/hdu1007.cpp}
 \subsection{树分治} 暂时跳过
 \subsection{cdq分治} 暂时跳过
+\section{数据结构 II}
+\subsection{平衡树}
+\subsubsection{前导知识}
+\paragraph{二叉搜索树} 假定我们都知道什么是二叉搜索树。
+\paragraph{二叉搜索树的旋转} 假定我们都知道如何左旋和右旋。
+\paragraph{算法时间复杂度分析初步} 没有必要的知识。
+\subsubsection{Splay}
+\paragraph{简介} 一种通过Splay操作使\textbf{均摊}时间复杂度为$\log{n}$的二叉搜索树。
+\paragraph{Splay操作} 将一个点移动到它上方的指定位置。
+\subparagraph{节点$x$的父节点$y$是根节点} 将$x$通过左旋或右旋转到根。结束。
+\subparagraph{节点$x$的父节点$y$不是根节点，$y$的父节点为$z$，且$x$与$y$同时是各自父节点的左孩子或者同时是各自父节点的右孩子} 先将$y$转上去，再将$x$转上去。
+\subparagraph{节点$x$的父节点$y$不是根节点，$y$的父节点为$z$，且$x$与$y$一个是其父节点的左孩子而另一个是其父节点的右孩子} 把$x$转上去两次。
+\paragraph{示例代码} 模板题
+\codeinput[\href{http://www.lydsy.com/JudgeOnline/problem.php?id=3224}{BZOJ3224} - 普通平衡树]{assets/day10/Splay.cpp}
+\subsubsection{Treap}
+\paragraph{简介} 权值满足堆性质，\textbf{期望}时间复杂度为$\log{n}$的二叉搜索树。
+\paragraph{做法} 插入之后维护一下堆性质，乱搞搞就好了，递归的方法写起来很容易，并且不易写错。删除的时候就把那个节点转到一条链上，然后删掉它。
+\paragraph{示例代码} 模板题
+\codeinput[\href{http://www.lydsy.com/JudgeOnline/problem.php?id=3224}{BZOJ3224} - 普通平衡树]{assets/day10/Treap.cpp}
 \end{document}
