@@ -608,4 +608,15 @@ Manacher 模板题
 \subsection{莫队算法} 将询问分块，依次暴力处理。
 \paragraph{示例代码} 暴力维护区间内不同点的个数，经过对询问的恰当排序，可以保证时间复杂度为$n\sqrt{n}$
 \codeinput[\href{http://www.lydsy.com/JudgeOnline/problem.php?id=1878}{BZOJ1878} - HH的项链]{assets/day11/bzoj1878.cpp}
+\section{FFT} 这里介绍的是\href{https://zh.wikipedia.org/wiki/库利－图基快速傅里叶变换算法}{库利－图基快速傅里叶变换算法}/\href{https://en.wikipedia.org/wiki/Cooley–Tukey_FFT_algorithm}{Cooley–Tukey FFT algorithm}。它能将离散傅里叶变换或其逆变换在$O(n\log{n})$的时间内计算出来（按照离散傅里叶变换的原始定义进行计算则需要$O(n^2)$的时间）。
+\subsection{离散傅里叶变换}
+\paragraph{定义}
+	对于N点序列$\left\{x[n]\right\}_{0\le n <N}$，它的离散傅里叶变换（DFT）为$$\hat{x}[k]=\sum_{n=0}^{N-1} e^{-i\frac{2\pi}{N}nk}x[n] \qquad k = 0,1,\ldots,N-1.$$其中$e$是自然对数的底数，$i$是虚数单位。通常以符号$\mathcal{F}$表示这一变换，即$$\hat{x}=\mathcal{F}x$$
+	离散傅里叶变换的逆变换（IDFT）为：$$x\left[n\right]={1 \over N}\sum_{k=0}^{N-1} e^{ i\frac{2\pi}{N}nk}\hat{x}[k] \qquad n = 0,1,\ldots,N-1.$$可以记为：$$x=\mathcal{F}^{-1}\hat{x}$$
+	显然如果按照定义进行计算的话，时间复杂度将会是$O(n^2)$。
+\paragraph{示例代码} 实现中用到了$e^{i\theta}=\cos\theta+i\sin\theta$
+\codeinput[naïve DFT/IDFT]{assets/day12/naive_transform.cpp}
+\subsection{练习题}
+\paragraph{示例代码} 两个大整数相乘
+\codeinput[\href{http://acm.hdu.edu.cn/showproblem.php?pid=1402}{HDU1402} - A * B Problem Plus]{assets/day12/hdu1402.cpp}
 \end{document}
