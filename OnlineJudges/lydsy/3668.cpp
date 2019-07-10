@@ -1,29 +1,50 @@
-#include <cstdio>
-int a[100010], n, m;
-char op[100010], buf[10];
-int calc(int x)
-{
-    for (int i = 0; i < n; i++)
-    {
-        if (op[i] == 'A') x &= a[i];
-        if (op[i] == 'O') x |= a[i];
-        if (op[i] == 'X') x ^= a[i];
-    }
-    return x;
-}
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 1e5 + 50;
+unsigned T[N];
+char op[N][4];
+bool can[32];
 int main()
 {
+    int n, m;
     scanf("%d%d", &n, &m);
     for (int i = 0; i < n; i++)
+        scanf("%s%u", op[i], T + i);
+    for (int i = 0; i < 32; i++)
     {
-        scanf("%s%d", buf, a + i);
-        op[i] = buf[0];
+        int x = 1;
+        for (int j = 0; j < n; j++)
+            switch (*op[j])
+            {
+            case 'A':
+                x = x & (T[j] >> i) & 1;
+                break;
+            case 'O':
+                x = x | (T[j] >> i) & 1;
+                break;
+            case 'X':
+                x = x ^ (T[j] >> i) & 1;
+                break;
+            }
+        can[i] = x;
     }
-    int cur = 1, ans = 0;
-    while (cur <= m) cur <<= 1;
-    for (cur >>= 1; cur; cur >>= 1)
-        if ((!(calc(0) & cur)) && (ans + cur <= m) && (calc(cur) & cur))
-            ans += cur;
-    printf("%d", calc(ans));
+    unsigned ans = 0;
+    for (int i = 0; i < 32; i++)
+        if (can[i] && (ans | (1 << i)) <= m)
+            ans |= 1 << i;
+    for (int j = 0; j < n; j++)
+        switch (*op[j])
+        {
+        case 'A':
+            ans &= T[j];
+            break;
+        case 'O':
+            ans |= T[j];
+            break;
+        case 'X':
+            ans ^= T[j];
+            break;
+        }
+    printf("%u", ans);
     return 0;
 }
