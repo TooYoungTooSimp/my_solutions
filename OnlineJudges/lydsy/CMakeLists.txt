@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.0)                                               
+set(CMAKE_CXX_STANDARD 17)
+if(MSVC)                                                                                             
+	add_compile_options("/Zc:__cplusplus")                                                           
+endif()                                                                                              
+include_directories("D:\\PortableApps\\MSYS2\\mingw64\\include\\c++\\9.1.0\\x86_64-w64-mingw32") 
+add_executable(lydsy lydsy.cpp)
