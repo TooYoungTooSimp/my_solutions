@@ -100,9 +100,7 @@ bool dfs2(int x)
     if (cov[x]) return true;
     for (int t, e = G.adj[x]; e; e = G.E[e].nxt)
         if (t = G.E[e].to, t != fa[0][x])
-        {
             if (!dfs2(t)) return false;
-        }
     return !ch[x].empty();
 }
 int n, m;
